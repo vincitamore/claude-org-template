@@ -1,0 +1,29 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Obsidian
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Generated
+tags/
+
+# Personal (if forking this template, these would be your content)
+# Uncomment if you want to track structure but not content:
+# inbox/
+# tasks/
+# knowledge/
+# queries/
+# archive/
