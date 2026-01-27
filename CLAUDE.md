@@ -396,15 +396,30 @@ For complex projects, use **both** systems together:
 
 ## Hooks (Automation)
 
-Claude Code supports hooks - scripts that run at specific points. Key patterns:
+Claude Code supports hooks - scripts that run at specific points. **The stop hook is critical** - it's what makes the system self-maintaining rather than dependent on discipline.
+
+### Maintenance Hook (Stop) - ESSENTIAL
+
+**Install this first.** Before ending any session, the hook forces evaluation:
+- New knowledge to capture?
+- Project status changed?
+- Tasks to create?
+- Questions worth preserving?
+
+Without this hook, maintenance becomes "remember to do it" - which means it won't happen consistently. The hook makes maintenance automatic.
+
+```python
+# examples/hooks/maintenance-check.py - Copy to ~/.claude/hooks/
+# Configure in settings.json as Stop hook
+# Exit code 1 blocks stop until Claude addresses maintenance
+```
+
+The hook outputs a checklist and exits with error, blocking the stop until Claude either performs maintenance or explicitly states "No maintenance needed." This is the mechanism that keeps documentation from drifting.
 
 ### Session Start Hook
-Automatically read orientation files, compute current state from frontmatter, present context to Claude.
+Automatically read orientation files, compute current state from frontmatter, present context to Claude. Helpful but not critical - Claude can orient manually.
 
-### Maintenance Hook (Stop)
-Before ending a session, check: any new knowledge to capture? Project status changed? Tasks to create? Questions worth preserving?
-
-See `examples/hooks/` for implementations.
+See `examples/hooks/` for full implementations and installation instructions.
 
 ## Current State
 

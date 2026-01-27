@@ -56,6 +56,35 @@ Next conversation (or continuing):
 
 ---
 
+## Phase 2.5: Install the Stop Hook (5 minutes)
+
+**This is critical.** The stop hook is what makes the system self-maintaining.
+
+```bash
+# Copy the hook
+cp examples/hooks/maintenance-check.py ~/.claude/hooks/
+
+# Configure in Claude Code settings (or ~/.claude/settings.json)
+```
+
+Add to your Claude Code settings:
+```json
+{
+  "hooks": {
+    "Stop": {
+      "command": "python ~/.claude/hooks/maintenance-check.py",
+      "timeout": 5000
+    }
+  }
+}
+```
+
+**What this does:** Before any session ends, the hook forces Claude to evaluate whether maintenance is needed - knowledge to capture, status to update, tasks to create. It blocks the stop until Claude either performs maintenance or explicitly states nothing is needed.
+
+**Why it matters:** Without this, maintenance depends on remembering to do it. The hook makes it automatic. This is the mechanism that prevents documentation drift.
+
+---
+
 ## Phase 3: The Capture Habit (Ongoing)
 
 Now the system is ready to use. The most important habit:

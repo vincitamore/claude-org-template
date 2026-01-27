@@ -6,12 +6,20 @@ This folder contains example implementations of hooks and agent definitions that
 
 Hooks are scripts that run at specific points in a Claude Code session.
 
+### ⚠️ The Stop Hook is Essential
+
+**Install `maintenance-check.py` first.** This hook is what makes the system self-maintaining.
+
+Without it, maintenance (capturing knowledge, updating status, creating tasks) depends on discipline - which means it won't happen consistently. The stop hook forces evaluation at the end of every session, blocking the stop until maintenance is addressed.
+
+This is the difference between a system that drifts and one that stays accurate.
+
 ### Available Examples
 
-| Hook | File | Purpose |
-|------|------|---------|
-| Session Start | `hooks/session-start.py` | Auto-orient Claude with current state |
-| Maintenance Check | `hooks/maintenance-check.py` | Prompt for maintenance before stopping |
+| Hook | File | Purpose | Priority |
+|------|------|---------|----------|
+| **Maintenance Check** | `hooks/maintenance-check.py` | Force maintenance evaluation before stopping | **ESSENTIAL** |
+| Session Start | `hooks/session-start.py` | Auto-orient Claude with current state | Helpful |
 
 ### Installation
 
