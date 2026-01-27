@@ -56,6 +56,17 @@ If voice.md or project-map.md don't seem to match what you're observing:
 
 The documents should track reality, not aspirations.
 
+### Self-Destructing Scaffolding
+
+The context documents contain HTML comments with setup guidance for initial collaborative discovery. **Once a section has real content, delete the corresponding comment.**
+
+The comments are scaffolding - they guide the building process but come down once the structure is up. Leaving them creates:
+- Context pollution (wasted tokens, noise)
+- Confusion about whether to "re-discover" or use existing content
+- Divergence from the actual relationship that's developed
+
+When you see comments in sections that already have content, remove them as part of normal maintenance.
+
 ---
 
 ## Collaboration Principles

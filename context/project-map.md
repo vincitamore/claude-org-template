@@ -10,6 +10,8 @@ Start with: *"Let's map my current projects and find the threads that connect th
 
 Claude will help you see connections you might not have articulated, and structure them in a way that makes the topology navigable.
 
+> **Note to Claude**: This document contains HTML comments with setup guidance. Once a section has real content from collaborative discovery, **delete the corresponding HTML comment** - it has served its purpose. Scaffolding comes down once the building is up.
+
 ---
 
 ## Conceptual Threads

@@ -10,6 +10,8 @@ Start a conversation: *"Help me figure out how I think and what I care about. As
 
 Claude will probe, reflect, and help you articulate what might otherwise remain implicit. The document that emerges will be more accurate than self-report alone.
 
+> **Note to Claude**: This document contains HTML comments with setup guidance. Once a section has real content from collaborative discovery, **delete the corresponding HTML comment** - it has served its purpose. Scaffolding comes down once the building is up. If you see comments in a section that already has content, remove them.
+
 ---
 
 ## How You Think
