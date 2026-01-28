@@ -132,7 +132,20 @@ This script:
 
 ### Publish CSS
 
-For checkboxes to render correctly on Publish, include the CSS in your publish settings or create a `publish.css` file with the contents of `.obsidian/snippets/checkboxes.css`.
+A complete `publish.css` file is included in the repository root. This provides:
+- Full theme styling (typography, colors, spacing)
+- Semantic checkbox rendering for Publish
+- Principle callouts (sovereignty, correctness, etc.)
+- Dark mode support
+- Responsive design
+
+**To use it:**
+1. In Obsidian Publish settings, upload `publish.css` as your site CSS
+2. Or copy contents to the CSS field in Publish settings
+
+**Customization:** Edit the `:root` variables at the top of `publish.css` to match your preferred color scheme. The checkbox and callout styling will work regardless of the base colors you choose.
+
+The CSS is also included as `.obsidian/snippets/checkboxes.css` for local Obsidian use (snippet includes only checkbox styling, not the full theme).
 
 ---
 
@@ -181,9 +194,12 @@ If you symlink a folder with YAML files (like a knowledge base from another tool
 ## File Organization
 
 ```
+/                              # Repository root
+├── publish.css                # Full Publish theme (upload to Obsidian Publish)
+
 .obsidian/
 ├── snippets/
-│   └── checkboxes.css     # Semantic checkbox styling
+│   └── checkboxes.css     # Semantic checkbox styling (for local use)
 ├── app.json               # App settings
 ├── appearance.json        # Theme settings
 ├── core-plugins.json      # Core plugin toggles

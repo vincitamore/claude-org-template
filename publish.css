@@ -1,0 +1,581 @@
+/*
+ * Claude-Org Publish Theme
+ * Clean, professional theme for Obsidian Publish
+ *
+ * Customize the :root variables to match your preferred palette.
+ * The checkbox and callout styling should work regardless of color scheme.
+ */
+
+/* ===== Color Variables ===== */
+:root {
+  /* Core palette - neutral warm gray
+   * Customize these to match your brand/preferences */
+  --color-base-00: #fafafa;        /* Page background */
+  --color-base-05: #f5f5f5;        /* Subtle background */
+  --color-base-10: #ebebeb;        /* Light accent */
+  --color-base-20: #d4d4d4;        /* Borders, dividers */
+  --color-base-25: #a3a3a3;        /* Muted text */
+  --color-base-30: #737373;        /* Secondary text */
+  --color-base-35: #525252;        /* Darker muted */
+  --color-base-40: #404040;        /* Dark gray */
+  --color-base-50: #2d2d2d;        /* Near-black */
+  --color-base-60: #1f1f1f;        /* Dark */
+  --color-base-70: #171717;        /* Main text */
+  --color-base-100: #0a0a0a;       /* Darkest */
+
+  /* Accent colors - customize these for your brand */
+  --color-accent: #4f46e5;         /* Primary accent (indigo) */
+  --color-accent-1: #6366f1;       /* Secondary accent */
+  --color-accent-2: #3730a3;       /* Tertiary accent */
+
+  /* Functional colors (derived from base/accent) */
+  --background-primary: var(--color-base-00);
+  --background-secondary: var(--color-base-05);
+  --background-modifier-border: var(--color-base-20);
+
+  --text-normal: var(--color-base-70);
+  --text-muted: var(--color-base-35);
+  --text-faint: var(--color-base-30);
+  --text-accent: var(--color-accent);
+  --text-accent-hover: var(--color-accent-2);
+
+  --interactive-accent: var(--color-accent);
+  --interactive-accent-hover: var(--color-accent-2);
+
+  /* Typography
+   * Serif for body text (scholarly feel), sans-serif for UI
+   * Customize font-family if you prefer different fonts */
+  --font-text: 'Georgia', 'Times New Roman', serif;
+  --font-monospace: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --font-interface: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --font-text-size: 18px;
+  --line-height: 1.7;
+
+  /* Spacing */
+  --size-4-1: 4px;
+  --size-4-2: 8px;
+  --size-4-3: 12px;
+  --size-4-4: 16px;
+  --size-4-6: 24px;
+  --size-4-8: 32px;
+}
+
+/* ===== Dark Mode ===== */
+.theme-dark {
+  --color-base-00: #171717;
+  --color-base-05: #1f1f1f;
+  --color-base-10: #262626;
+  --color-base-20: #373737;
+  --color-base-25: #525252;
+  --color-base-30: #737373;
+  --color-base-35: #a3a3a3;
+  --color-base-40: #d4d4d4;
+  --color-base-50: #e5e5e5;
+  --color-base-60: #f0f0f0;
+  --color-base-70: #f5f5f5;
+  --color-base-100: #fafafa;
+
+  --color-accent: #818cf8;         /* Lighter accent for dark mode */
+  --color-accent-1: #a5b4fc;
+  --color-accent-2: #6366f1;
+}
+
+/* ===== Typography ===== */
+body {
+  font-family: var(--font-text);
+  font-size: var(--font-text-size);
+  line-height: var(--line-height);
+  color: var(--text-normal);
+  background-color: var(--background-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Justified paragraphs with hyphenation - scholarly typography */
+.markdown-preview-view p,
+.markdown-rendered p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  word-spacing: -0.05em;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-text);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2em;
+  border-bottom: 2px solid var(--color-base-20);
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 1.6em;
+  border-bottom: 1px solid var(--color-base-20);
+  padding-bottom: 0.2em;
+}
+
+h3 {
+  font-size: 1.3em;
+  color: var(--color-accent-2);
+}
+
+h4, h5, h6 {
+  font-size: 1.1em;
+  color: var(--color-accent-1);
+}
+
+/* Links */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+a:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+/* ===== Content Styling ===== */
+
+/* Blockquotes */
+blockquote {
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--background-secondary);
+  padding: 1em 1.5em;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* Code blocks */
+code {
+  font-family: var(--font-monospace);
+  font-size: 0.85em;
+  background-color: var(--background-secondary);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+pre {
+  background-color: var(--color-base-10);
+  border: 1px solid var(--color-base-20);
+  border-radius: 4px;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5em 0;
+}
+
+th {
+  background-color: var(--color-accent);
+  color: var(--color-base-00);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75em 1em;
+}
+
+td {
+  border-bottom: 1px solid var(--color-base-20);
+  padding: 0.75em 1em;
+}
+
+tr:hover td {
+  background-color: var(--background-secondary);
+}
+
+/* Lists */
+ul, ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+li {
+  margin: 0.5em 0;
+}
+
+li::marker {
+  color: var(--color-accent-1);
+}
+
+/* Basic task lists */
+input[type="checkbox"] {
+  accent-color: var(--color-accent);
+}
+
+/* ===== Custom Task Checkboxes (Publish-Compatible) ===== */
+/*
+   Semantic checkbox states for task management:
+   - [ ] Todo (default)
+   - [x] Done (default)
+   - [/] In Progress (orange half-fill)
+   - [>] Blocked/Forwarded (red arrow)
+   - [?] Needs Input (blue question)
+   - [!] Urgent (red exclamation)
+   - [-] Cancelled (gray strikethrough)
+   - [~] In Review (purple tilde)
+
+   Note: Selectors scoped to .markdown-preview-view for Publish compatibility.
+   Uses ::before on checkbox (void elements can't have ::after children).
+*/
+
+/* Base styling for all custom checkboxes */
+.markdown-preview-view .task-list-item-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid var(--text-muted);
+  position: relative;
+  width: 1.1em;
+  height: 1.1em;
+  margin: 0 0.5em 0 0;
+  border-radius: 3px;
+  cursor: pointer;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Hide default checkmark for custom task states */
+.markdown-preview-view li[data-task="/"] > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task=">"] > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="?"] > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="!"] > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="-"] > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="~"] > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="/"] > p > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task=">"] > p > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="?"] > p > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="!"] > p > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="-"] > p > .task-list-item-checkbox:checked,
+.markdown-preview-view li[data-task="~"] > p > .task-list-item-checkbox:checked {
+  background-image: none !important;
+  --checkbox-marker-color: transparent;
+  --checklist-done-decoration: none;
+}
+
+/* [/] In Progress - Orange half-circle */
+.markdown-preview-view li[data-task="/"] > .task-list-item-checkbox,
+.markdown-preview-view li[data-task="/"] > p > .task-list-item-checkbox {
+  border-color: #f59e0b;
+  background: linear-gradient(90deg, #f59e0b 50%, rgba(245, 158, 11, 0.15) 50%);
+}
+.markdown-preview-view li[data-task="/"] {
+  color: #b45309;
+}
+
+/* [>] Blocked/Forwarded - Red with arrow */
+.markdown-preview-view li[data-task=">"] > .task-list-item-checkbox,
+.markdown-preview-view li[data-task=">"] > p > .task-list-item-checkbox {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.15);
+}
+.markdown-preview-view li[data-task=">"] > .task-list-item-checkbox::before,
+.markdown-preview-view li[data-task=">"] > p > .task-list-item-checkbox::before {
+  content: "→";
+  color: #ef4444;
+  font-size: 0.75em;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview-view li[data-task=">"] {
+  color: #dc2626;
+}
+
+/* [?] Question/Needs Input - Blue */
+.markdown-preview-view li[data-task="?"] > .task-list-item-checkbox,
+.markdown-preview-view li[data-task="?"] > p > .task-list-item-checkbox {
+  border-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.15);
+}
+.markdown-preview-view li[data-task="?"] > .task-list-item-checkbox::before,
+.markdown-preview-view li[data-task="?"] > p > .task-list-item-checkbox::before {
+  content: "?";
+  color: #3b82f6;
+  font-size: 0.8em;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview-view li[data-task="?"] {
+  color: #2563eb;
+}
+
+/* [!] Urgent/Important - Red */
+.markdown-preview-view li[data-task="!"] > .task-list-item-checkbox,
+.markdown-preview-view li[data-task="!"] > p > .task-list-item-checkbox {
+  border-color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.2);
+}
+.markdown-preview-view li[data-task="!"] > .task-list-item-checkbox::before,
+.markdown-preview-view li[data-task="!"] > p > .task-list-item-checkbox::before {
+  content: "!";
+  color: #dc2626;
+  font-size: 0.8em;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview-view li[data-task="!"] {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* [-] Cancelled - Gray strikethrough */
+.markdown-preview-view li[data-task="-"] > .task-list-item-checkbox,
+.markdown-preview-view li[data-task="-"] > p > .task-list-item-checkbox {
+  border-color: #9ca3af;
+  background-color: #e5e7eb;
+}
+.markdown-preview-view li[data-task="-"] > .task-list-item-checkbox::before,
+.markdown-preview-view li[data-task="-"] > p > .task-list-item-checkbox::before {
+  content: "—";
+  color: #6b7280;
+  font-size: 0.75em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview-view li[data-task="-"] {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* [~] In Review - Purple */
+.markdown-preview-view li[data-task="~"] > .task-list-item-checkbox,
+.markdown-preview-view li[data-task="~"] > p > .task-list-item-checkbox {
+  border-color: #8b5cf6;
+  background-color: rgba(139, 92, 246, 0.15);
+}
+.markdown-preview-view li[data-task="~"] > .task-list-item-checkbox::before,
+.markdown-preview-view li[data-task="~"] > p > .task-list-item-checkbox::before {
+  content: "~";
+  color: #8b5cf6;
+  font-size: 0.85em;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.markdown-preview-view li[data-task="~"] {
+  color: #7c3aed;
+}
+
+/* Horizontal rules */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-base-20);
+  margin: 2em 0;
+}
+
+/* ===== Frontmatter / YAML ===== */
+.frontmatter-container {
+  background-color: var(--background-secondary);
+  border: 1px solid var(--color-base-20);
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  font-family: var(--font-monospace);
+  font-size: 0.85em;
+}
+
+/* ===== Tags ===== */
+.tag {
+  background-color: var(--color-accent);
+  color: var(--color-base-00);
+  padding: 0.2em 0.6em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-family: var(--font-interface);
+}
+
+/* ===== Navigation & Site Structure ===== */
+.site-header {
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.nav-folder-title {
+  font-family: var(--font-interface);
+  font-weight: 500;
+  color: var(--color-accent-2);
+}
+
+.nav-file-title {
+  font-family: var(--font-interface);
+}
+
+/* ===== Graph View ===== */
+.graph-view.color-fill {
+  color: var(--color-accent);
+}
+
+.graph-view.color-line {
+  color: var(--color-base-25);
+}
+
+/* ===== Backlinks Panel ===== */
+.backlinks-title {
+  font-family: var(--font-interface);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ===== Search ===== */
+.search-result-file-title {
+  color: var(--color-accent);
+}
+
+.search-result-file-matched-text {
+  color: var(--text-normal);
+}
+
+/* ===== Callouts ===== */
+.callout {
+  border-radius: 4px;
+  border-left: 4px solid var(--color-accent);
+  background-color: var(--background-secondary);
+}
+
+.callout-title {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ===== Principle Callouts ===== */
+/*
+   Custom callout types for highlighting principle-based content.
+
+   Usage:
+   > [!inversion] Title
+   > Content about inverting assumptions
+
+   > [!sovereignty] Title
+   > Content about data ownership
+
+   > [!correctness] Title
+   > Content about structural correctness
+
+   > [!irreducibility] Title
+   > Content about minimal form
+
+   > [!visibility] Title
+   > Content about observability
+
+   > [!single-source] Title
+   > Content about computed state
+*/
+
+/* Inversion - Deep purple */
+.callout[data-callout="inversion"] {
+  border-left-color: #7c3aed;
+  background-color: rgba(124, 58, 237, 0.08);
+}
+.callout[data-callout="inversion"] .callout-title {
+  color: #7c3aed;
+}
+
+/* Sovereignty - Gold */
+.callout[data-callout="sovereignty"] {
+  border-left-color: #b8860b;
+  background-color: rgba(184, 134, 11, 0.08);
+}
+.callout[data-callout="sovereignty"] .callout-title {
+  color: #b8860b;
+}
+
+/* Correctness (Structural) - Blue */
+.callout[data-callout="correctness"],
+.callout[data-callout="structural"] {
+  border-left-color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.08);
+}
+.callout[data-callout="correctness"] .callout-title,
+.callout[data-callout="structural"] .callout-title {
+  color: #2563eb;
+}
+
+/* Irreducibility - Silver/steel */
+.callout[data-callout="irreducibility"] {
+  border-left-color: #708090;
+  background-color: rgba(112, 128, 144, 0.08);
+}
+.callout[data-callout="irreducibility"] .callout-title {
+  color: #708090;
+}
+
+/* Visibility - Teal */
+.callout[data-callout="visibility"] {
+  border-left-color: #0d9488;
+  background-color: rgba(13, 148, 136, 0.08);
+}
+.callout[data-callout="visibility"] .callout-title {
+  color: #0d9488;
+}
+
+/* Single-source - Amber */
+.callout[data-callout="single-source"] {
+  border-left-color: #d97706;
+  background-color: rgba(217, 119, 6, 0.08);
+}
+.callout[data-callout="single-source"] .callout-title {
+  color: #d97706;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3 {
+    color: #000;
+    border-bottom-color: #000;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  :root {
+    --font-text-size: 16px;
+  }
+
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.4em; }
+  h3 { font-size: 1.2em; }
+}
