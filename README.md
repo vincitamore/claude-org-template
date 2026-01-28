@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="claude-org-logo.png" alt="Claude-Org Logo" width="200">
+</p>
+
 # Claude-Org: Personal Organization System Template
 
 A collaborative organization system for working with Claude Code. Not just a folder structure - a framework for maintaining continuity across sessions through architecture rather than memory.
