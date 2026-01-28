@@ -44,11 +44,11 @@ See `ONBOARDING.md` - guided process for discovering your voice and mapping your
 
 These aren't decoration - they're operational constraints that make the system work:
 
-- **Sovereignty (⊕)**: You own your data. Everything local, no SaaS dependency.
-- **Structural Correctness (≡)**: Architecture that prevents invalid states.
-- **Irreducibility (Σ→1)**: Compress to essential form. Capture insights, not conversations.
-- **Single-Source (1→7)**: One source of truth, many derived views.
-- **Visibility (∮)**: What matters should be observable. Archive don't delete.
+- **Sovereignty**: You own your data. Everything local, no SaaS dependency.
+- **Structural Correctness**: Architecture that prevents invalid states.
+- **Irreducibility**: Compress to essential form. Capture insights, not conversations.
+- **Single-Source**: One source of truth, many derived views.
+- **Visibility**: What matters should be observable. Archive don't delete.
 
 ## The Collaborative Relationship
 

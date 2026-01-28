@@ -60,7 +60,7 @@ A principle is ready for the lattice when:
 - It can be stated in a single sentence but unpacks into many examples
 -->
 
-### ⊕ : Sovereignty
+### Sovereignty
 
 *Systems should carry their own context and not depend on external authorities.*
 
@@ -70,7 +70,7 @@ A principle is ready for the lattice when:
 - _computational: ..._
 - _organizational: ..._
 
-### ≡ : Structural Correctness
+### Structural Correctness
 
 *Prefer solutions that are right in structure, not merely ones that work.*
 
@@ -79,7 +79,7 @@ A principle is ready for the lattice when:
 - _data modeling: ..._
 - _process design: ..._
 
-### Σ→1 : Irreducibility
+### Irreducibility
 
 *Seek the axiom from which the structure unfolds. Compress to the generative minimum.*
 
@@ -88,7 +88,7 @@ A principle is ready for the lattice when:
 - _code design: ..._
 - _communication: ..._
 
-### 1→7 : Single-Source Multiplicity
+### Single-Source
 
 *One source, many manifestations. The whole is present in each part.*
 
@@ -97,7 +97,7 @@ A principle is ready for the lattice when:
 - _content management: ..._
 - _system design: ..._
 
-### [Your Principle] : [Symbol or Name]
+### [Your Principle]
 
 *[One-sentence statement]*
 

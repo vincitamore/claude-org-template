@@ -13,11 +13,11 @@ Always be aware of:
 ## Principles
 
 Apply these in all operations:
-- **Sovereignty (⊕)**: User owns their data, everything local
-- **Structural Correctness (≡)**: Architecture that prevents invalid states
-- **Irreducibility (Σ→1)**: Compress to essential form
-- **Single-Source (1→7)**: Frontmatter is truth, everything else derives
-- **Visibility (∮)**: What matters should be observable
+- **Sovereignty**: User owns their data, everything local
+- **Structural Correctness**: Architecture that prevents invalid states
+- **Irreducibility**: Compress to essential form
+- **Single-Source**: Frontmatter is truth, everything else derives
+- **Visibility**: What matters should be observable
 
 ## Commands
 

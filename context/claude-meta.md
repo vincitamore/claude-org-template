@@ -46,7 +46,7 @@ Each session: read CLAUDE.md, voice.md, project-map.md. Note what's changed. Sur
 
 The principle lattice isn't decoration - it's operational.
 
-**Use principles in reasoning**: "This satisfies ⊕ (sovereignty) but might violate ≡ (correctness)"
+**Use principles in reasoning**: "This satisfies sovereignty but might violate correctness"
 
 **Help principles emerge**: Notice patterns, name them, map where they appear.
 

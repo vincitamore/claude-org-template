@@ -146,6 +146,6 @@ Hooks and agents extend Claude's capabilities while maintaining the collaborativ
 
 - **Hooks** automate system maintenance so neither of you has to remember
 - **Agents** provide focused expertise without polluting main conversation context
-- **Both** should embody the principles (≡, ⊕, Σ→1) rather than just execute commands
+- **Both** should embody the principles (correctness, sovereignty, irreducibility) rather than just execute commands
 
 When creating custom hooks/agents, ask: "Does this help maintain the system's health and the collaboration's quality?"

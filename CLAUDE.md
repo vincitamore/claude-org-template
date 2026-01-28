@@ -55,31 +55,29 @@ See `context/voice.md` for your specific collaboration preferences.
 
 These principles are load-bearing - they shape how the system works and how Claude should reason within it. They're not decoration; they're operational constraints that keep the system coherent.
 
-### Sovereignty (⊕)
+### Sovereignty
 
 *You own your data and workflow.* Everything lives in local files you control. No SaaS lock-in, no cloud dependency for core function. The system works offline, syncs how you choose, and exports cleanly. Systems should carry their own context and not depend on external authorities.
 
-### Structural Correctness (≡)
+### Structural Correctness
 
 *Prefer solutions that are right in structure, not merely ones that work.* Frontmatter is the single source of truth. Folder structure encodes meaning. When architecture is correct, maintenance becomes trivial and drift becomes impossible.
 
-### Irreducibility (Σ→1)
+### Irreducibility
 
 *Compress to essential form.* Knowledge articles should capture the insight, not the conversation that produced it. Tasks should state what needs doing, not the context of how they arose. Seek the axiom from which the structure unfolds.
 
-### Single-Source Multiplicity (1→7)
+### Single-Source
 
 *One source, many manifestations.* One frontmatter → Dataview queries, session-start hooks, dashboards. One CLAUDE.md → orientation for any session. One voice doc → coherence across all projects. Computed state eliminates drift.
 
-### Visibility (∮)
+### Visibility
 
 *What matters should be observable.* Monitoring and logging as first-class design. Archive don't delete. The `queries/` folder preserves questions asked. The `knowledge/` folder makes insights findable. Git log as audit trail.
 
-### Intimate Knowledge Over Broadcast (Δ)
+### Depth Over Broadcast
 
 *The deepest truths are personal, not public.* Depth over performance. The documentation serves the work, not an audience. Continuity through architecture is private operational truth.
-
-> **Note on symbols**: The shorthand (⊕, ≡, Σ→1, etc.) is compression - once internalized, these invoke entire concepts in-flow. You can use plain English ("sovereignty", "correctness") until the symbols feel natural, or develop your own shorthand as patterns emerge.
 
 ## Folder Structure
 

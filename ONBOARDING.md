@@ -170,7 +170,7 @@ The documents aren't self-report - they're what emerged from working together. T
 The system evolves. When something doesn't fit, you refine it. When patterns emerge, you capture them. The documentation tracks reality rather than aspirations.
 
 ### Principle-Aware Reasoning
-Once the principle lattice exists, Claude can reason in terms of your principles: "This approach satisfies ⊕ (sovereignty) but might violate ≡ (correctness) - let's think about the tradeoff."
+Once the principle lattice exists, Claude can reason in terms of your principles: "This approach satisfies sovereignty but might violate correctness - let's think about the tradeoff."
 
 ---
 
