@@ -206,6 +206,6 @@ The best way to understand the system is to use it. Start collaborating.
 
 - [QUICKSTART.md](QUICKSTART.md) - 5-minute fast track
 - [CLAUDE.md](CLAUDE.md) - Full system documentation
-- [context/claude-meta.md](context/claude-meta.md) - Initial orientation scaffolding (delete when established)
+- [context/claude-meta.md](context/claude-meta.md) - How to work with this system
 - [examples/README.md](examples/README.md) - Hooks and agents guide
 - [templates/](templates/) - File templates

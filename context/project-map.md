@@ -187,5 +187,5 @@ The map should always reflect current reality. If it's stale, it's not useful.
 ## Related
 
 - [voice.md](voice.md) - Your thinking patterns and collaboration preferences
-- [claude-meta.md](claude-meta.md) - How Claude approaches this workspace
+- [claude-meta.md](claude-meta.md) - How to work with this system
 - [../CLAUDE.md](../CLAUDE.md) - The system's ground truth and living index

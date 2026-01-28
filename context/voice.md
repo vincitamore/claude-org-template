@@ -144,5 +144,5 @@ The document is a living artifact of the relationship, not a static configuratio
 ## Related
 
 - [project-map.md](project-map.md) - Your project topology and principle lattice
-- [claude-meta.md](claude-meta.md) - How Claude approaches this workspace
+- [claude-meta.md](claude-meta.md) - How to work with this system
 - [../CLAUDE.md](../CLAUDE.md) - The system's ground truth and living index
