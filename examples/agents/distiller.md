@@ -62,3 +62,10 @@ tags: [relevant tags]
 
 [Distilled content...]
 ```
+
+## Related
+
+- [architect.md](architect.md) - Architecture decisions worth distilling
+- [explorer.md](explorer.md) - Exploration findings to capture
+- [reviewer.md](reviewer.md) - Review insights to preserve
+- [../README.md](../README.md) - Installation and usage guide

@@ -46,3 +46,10 @@ The reviewer should evaluate code against documented principles:
 - **Single-Source**: Is there one source of truth, or scattered duplication?
 - **Visibility**: Are failures observable? Is behavior transparent?
 - **Depth Over Broadcast**: Does it serve the work, not an audience?
+
+## Related
+
+- [architect.md](architect.md) - Design before implementation
+- [explorer.md](explorer.md) - Understand code before review
+- [distiller.md](distiller.md) - Extract knowledge from review findings
+- [../README.md](../README.md) - Installation and usage guide

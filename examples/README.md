@@ -18,8 +18,8 @@ This is the difference between a system that drifts and one that stays accurate.
 
 | Hook | File | Purpose | Priority |
 |------|------|---------|----------|
-| **Maintenance Check** | `hooks/maintenance-check.py` | Force maintenance evaluation before stopping | **ESSENTIAL** |
-| Session Start | `hooks/session-start.py` | Auto-orient Claude with current state | Helpful |
+| **Maintenance Check** | [hooks/maintenance-check.py](hooks/maintenance-check.py) | Force maintenance evaluation before stopping | **ESSENTIAL** |
+| Session Start | [hooks/session-start.py](hooks/session-start.py) | Auto-orient Claude with current state | Helpful |
 
 ### Installation
 
@@ -74,10 +74,10 @@ Agents are specialized subagent configurations that Claude can spawn for focused
 
 | Agent | File | Purpose |
 |-------|------|---------|
-| Architect | `agents/architect.md` | Design with structural correctness |
-| Reviewer | `agents/reviewer.md` | Code review + principle alignment |
-| Distiller | `agents/distiller.md` | Knowledge extraction |
-| Explorer | `agents/explorer.md` | Deep codebase understanding |
+| Architect | [agents/architect.md](agents/architect.md) | Design with structural correctness |
+| Reviewer | [agents/reviewer.md](agents/reviewer.md) | Code review + principle alignment |
+| Distiller | [agents/distiller.md](agents/distiller.md) | Knowledge extraction |
+| Explorer | [agents/explorer.md](agents/explorer.md) | Deep codebase understanding |
 
 ### Installation
 
@@ -149,3 +149,12 @@ Hooks and agents extend Claude's capabilities while maintaining the collaborativ
 - **Both** should embody the principles (correctness, sovereignty, irreducibility) rather than just execute commands
 
 When creating custom hooks/agents, ask: "Does this help maintain the system's health and the collaboration's quality?"
+
+---
+
+## Related
+
+- [../CLAUDE.md](../CLAUDE.md) - Full system documentation
+- [../ONBOARDING.md](../ONBOARDING.md) - Guided setup process
+- [../context/claude-meta.md](../context/claude-meta.md) - How Claude approaches this workspace
+- [populated/](populated/) - Example populated content for reference

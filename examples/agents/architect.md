@@ -37,4 +37,11 @@ Task(architect, "I want to add real-time updates. What's the right architecture?
 
 ## Principle Alignment
 
-The architect agent embodies **≡ (structural correctness)**: prefer solutions that are right in structure. It should actively flag when proposed approaches create the possibility of invalid states, even if they "would work in practice."
+The architect agent embodies **Structural Correctness**: prefer solutions that are right in structure. It should actively flag when proposed approaches create the possibility of invalid states, even if they "would work in practice."
+
+## Related
+
+- [reviewer.md](reviewer.md) - Code review after implementation
+- [explorer.md](explorer.md) - Deep codebase understanding before design
+- [distiller.md](distiller.md) - Extract knowledge from architecture decisions
+- [../README.md](../README.md) - Installation and usage guide

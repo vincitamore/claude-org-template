@@ -181,3 +181,11 @@ As projects evolve:
 Tell Claude: *"I just finished X / started Y / noticed Z - let's update the project map."*
 
 The map should always reflect current reality. If it's stale, it's not useful.
+
+---
+
+## Related
+
+- [voice.md](voice.md) - Your thinking patterns and collaboration preferences
+- [claude-meta.md](claude-meta.md) - How Claude approaches this workspace
+- [../CLAUDE.md](../CLAUDE.md) - The system's ground truth and living index

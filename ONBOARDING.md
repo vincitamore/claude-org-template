@@ -30,7 +30,7 @@ Open Claude Code in this workspace and start with something like:
 - Talk about recent work that felt satisfying or unsatisfying
 - Let tangents happen - they often reveal important patterns
 
-**By the end**, you'll have a first draft of `context/voice.md` that captures your intellectual coordinates.
+**By the end**, you'll have a first draft of [context/voice.md](context/voice.md) that captures your intellectual coordinates.
 
 ---
 
@@ -52,7 +52,7 @@ Next conversation (or continuing):
 - Ideas you haven't started but keep returning to
 - Frustrations with how projects relate (or don't)
 
-**By the end**, you'll have a first draft of `context/project-map.md` with your project topology and emerging principles.
+**By the end**, you'll have a first draft of [context/project-map.md](context/project-map.md) with your project topology and emerging principles.
 
 ---
 
@@ -70,7 +70,7 @@ Next conversation (or continuing):
 # Create hooks folder if needed
 mkdir -p ~/.claude/hooks  # or %USERPROFILE%\.claude\hooks on Windows
 
-# Copy the hook
+# Copy the hook (see examples/hooks/ for full docs)
 cp examples/hooks/maintenance-check.py ~/.claude/hooks/
 ```
 
@@ -116,7 +116,7 @@ Don't overthink categorization. The `inbox/` exists so you can capture without f
 
 ## Phase 4: Developing the Principle Lattice (Over Time)
 
-The principle lattice in `context/project-map.md` grows organically. You don't fill it in upfront - you populate it as patterns emerge.
+The principle lattice in [context/project-map.md](context/project-map.md) grows organically. You don't fill it in upfront - you populate it as patterns emerge.
 
 **When to add a principle:**
 - You notice yourself caring about the same thing in different contexts
@@ -161,7 +161,7 @@ The collaboration works best with certain patterns:
 ## What Makes This Work
 
 ### Continuity Through Architecture
-Each session, Claude reads `CLAUDE.md`, `context/voice.md`, and `context/project-map.md`. That's enough to resume collaboration at depth. You don't need to re-explain who you are.
+Each session, Claude reads [CLAUDE.md](CLAUDE.md), [context/voice.md](context/voice.md), and [context/project-map.md](context/project-map.md). That's enough to resume collaboration at depth. You don't need to re-explain who you are.
 
 ### Collaborative Discovery
 The documents aren't self-report - they're what emerged from working together. That makes them more accurate and more useful.
@@ -197,3 +197,13 @@ When they're wrong. If a session reveals something the documents don't capture, 
 3. **Trust the process**: The system reveals its value over multiple sessions as continuity compounds
 
 The best way to understand the system is to use it. Start collaborating.
+
+---
+
+## Related
+
+- [QUICKSTART.md](QUICKSTART.md) - 5-minute fast track
+- [CLAUDE.md](CLAUDE.md) - Full system documentation
+- [context/claude-meta.md](context/claude-meta.md) - How Claude approaches this workspace
+- [examples/README.md](examples/README.md) - Hooks and agents guide
+- [templates/](templates/) - File templates

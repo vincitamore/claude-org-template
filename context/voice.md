@@ -138,3 +138,11 @@ This document should evolve. As patterns emerge in collaboration:
 Tell Claude: *"Something felt off in that exchange - let's figure out what and update voice.md"*
 
 The document is a living artifact of the relationship, not a static configuration file.
+
+---
+
+## Related
+
+- [project-map.md](project-map.md) - Your project topology and principle lattice
+- [claude-meta.md](claude-meta.md) - How Claude approaches this workspace
+- [../CLAUDE.md](../CLAUDE.md) - The system's ground truth and living index

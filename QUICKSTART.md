@@ -44,7 +44,7 @@ The system grows with you. Start minimal, expand as needed.
 
 ## If You Want More Structure
 
-Read `ONBOARDING.md` for the full guided setup process.
+Read [ONBOARDING.md](ONBOARDING.md) for the full guided setup process.
 
 ## If Something Feels Off
 
@@ -62,3 +62,12 @@ Tell Claude: "Something about how we're working isn't quite right." It will help
 | Process inbox | "Let's go through inbox and sort things" |
 
 The system is conversational. Just tell Claude what you need.
+
+---
+
+## Related
+
+- [CLAUDE.md](CLAUDE.md) - Full system documentation and living index
+- [ONBOARDING.md](ONBOARDING.md) - Guided 30-60 minute setup
+- [context/voice.md](context/voice.md) - Your collaboration preferences
+- [examples/](examples/) - Hooks and agents to install

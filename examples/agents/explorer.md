@@ -60,3 +60,10 @@ Specify thoroughness when invoking:
 ```
 Task(explorer, "Do a thorough exploration of the auth system - I need to understand it completely before refactoring")
 ```
+
+## Related
+
+- [architect.md](architect.md) - Design based on exploration findings
+- [reviewer.md](reviewer.md) - Review code after implementation
+- [distiller.md](distiller.md) - Extract knowledge from what you learned
+- [../README.md](../README.md) - Installation and usage guide

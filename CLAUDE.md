@@ -18,13 +18,13 @@ The key insight: Claude doesn't persist memory between sessions, but a well-stru
 When arriving at this workspace, orient with these documents in order:
 
 1. **This file** (`CLAUDE.md`) - current state, active tasks, structure
-2. **`context/voice.md`** - collaboration style, intellectual coordinates, working relationship
-3. **`context/project-map.md`** - project relationships, conceptual threads, cross-connections
-4. **`context/claude-meta.md`** - how Claude should approach this workspace (meta-instructions)
+2. **[context/voice.md](context/voice.md)** - collaboration style, intellectual coordinates, working relationship
+3. **[context/project-map.md](context/project-map.md)** - project relationships, conceptual threads, cross-connections
+4. **[context/claude-meta.md](context/claude-meta.md)** - how Claude should approach this workspace (meta-instructions)
 
 These together form the attractor basin. The more thoughtfully you shape these documents, the faster Claude can find its footing in any session.
 
-**For new users**: See `ONBOARDING.md` for a guided introduction to building this system collaboratively with Claude.
+**For new users**: See [ONBOARDING.md](ONBOARDING.md) for a guided introduction to building this system collaboratively with Claude. Or try [QUICKSTART.md](QUICKSTART.md) for a 5-minute fast track.
 
 ### Before Starting Technical Work
 
@@ -49,7 +49,7 @@ These aren't suggestions - they're the collaboration philosophy that makes the s
 - **Philosophical digressions often contain the actual design insight**
 - **No assistant-mode servility**, no over-engineering, no padding
 
-See `context/voice.md` for your specific collaboration preferences.
+See [context/voice.md](context/voice.md) for your specific collaboration preferences.
 
 ## Core Principles
 
@@ -160,7 +160,7 @@ Run `python scripts/generate-tag-pages.py` before publishing. This follows 1→7
 
 ### Dashboard
 
-Copy `templates/dashboard.md` to your root folder for a live view showing:
+Copy [templates/dashboard.md](templates/dashboard.md) to your root folder for a live view showing:
 - Active tasks and their status
 - Active projects
 - Recent knowledge articles
@@ -425,7 +425,7 @@ The hook outputs a checklist and exits with error, blocking the stop until Claud
 ### Session Start Hook
 Automatically read orientation files, compute current state from frontmatter, present context to Claude. Helpful but not critical - Claude can orient manually.
 
-See `examples/hooks/` for full implementations and installation instructions.
+See [examples/README.md](examples/README.md) for full implementations and installation instructions.
 
 ## Current State
 
@@ -443,8 +443,9 @@ _Empty - knowledge will accumulate as you work_
 
 ### Context Documents
 
-- `context/voice.md` - Collaboration style, intellectual coordinates, working relationship
-- `context/project-map.md` - Project topology, conceptual threads, cross-connections
+- [context/voice.md](context/voice.md) - Collaboration style, intellectual coordinates, working relationship
+- [context/project-map.md](context/project-map.md) - Project topology, conceptual threads, cross-connections
+- [context/claude-meta.md](context/claude-meta.md) - Meta-instructions for Claude's collaborative role
 
 ---
 
@@ -452,8 +453,8 @@ _Empty - knowledge will accumulate as you work_
 
 This system is a starting point. Make it yours:
 
-1. **Fill in `context/voice.md`** with how you actually think and work
-2. **Populate `context/project-map.md`** with your project relationships
+1. **Fill in [context/voice.md](context/voice.md)** with how you actually think and work
+2. **Populate [context/project-map.md](context/project-map.md)** with your project relationships
 3. **Add domain-specific knowledge** as you work
 4. **Add integrations** (MCPs, hooks, skills) for your tools
 5. **Develop your own principle shorthand** as patterns emerge
