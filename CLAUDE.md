@@ -124,9 +124,11 @@ Create new subfolders when 5+ items of the same type emerge.
 | `tasks/completed/` | Completed tasks (status: complete) |
 | `tasks/paused/` | Paused tasks (status: paused) |
 
-## Obsidian Integration
+## Obsidian Integration (Optional)
 
-This workspace is optimized for viewing in Obsidian with Dataview plugin.
+This workspace can be viewed in Obsidian with Dataview plugin for visual dashboards and graph views. **Obsidian is not required** - the system works without it, using Claude and the command line.
+
+If using Obsidian:
 
 ### Computed State (1→7)
 
@@ -156,12 +158,14 @@ Run `python scripts/generate-tag-pages.py` before publishing. This follows 1→7
 
 ### Dashboard
 
-**`dashboard.md`** - Live Dataview queries showing:
+Copy `templates/dashboard.md` to your root folder for a live view showing:
 - Active tasks and their status
 - Active projects
 - Recent knowledge articles
 - Inbox items pending processing
 - Recently completed tasks
+
+Requires Dataview plugin to render the queries.
 
 ### Frontmatter Convention
 

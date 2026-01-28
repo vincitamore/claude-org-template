@@ -60,24 +60,33 @@ Next conversation (or continuing):
 
 **This is critical.** The stop hook is what makes the system self-maintaining.
 
+**Platform paths:**
+| Platform | Hooks folder |
+|----------|--------------|
+| macOS/Linux | `~/.claude/hooks/` |
+| Windows | `%USERPROFILE%\.claude\hooks\` |
+
 ```bash
+# Create hooks folder if needed
+mkdir -p ~/.claude/hooks  # or %USERPROFILE%\.claude\hooks on Windows
+
 # Copy the hook
 cp examples/hooks/maintenance-check.py ~/.claude/hooks/
-
-# Configure in Claude Code settings (or ~/.claude/settings.json)
 ```
 
-Add to your Claude Code settings:
+Add to your Claude Code settings (settings.json):
 ```json
 {
   "hooks": {
     "Stop": {
-      "command": "python ~/.claude/hooks/maintenance-check.py",
+      "command": "python /full/path/to/maintenance-check.py",
       "timeout": 5000
     }
   }
 }
 ```
+
+Use the full path to your hooks folder. Restart Claude Code after changing settings.
 
 **What this does:** Before any session ends, the hook forces Claude to evaluate whether maintenance is needed - knowledge to capture, status to update, tasks to create. It blocks the stop until Claude either performs maintenance or explicitly states nothing is needed.
 

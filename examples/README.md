@@ -23,23 +23,39 @@ This is the difference between a system that drifts and one that stays accurate.
 
 ### Installation
 
-1. Copy hook files to `~/.claude/hooks/`
-2. Configure in Claude Code settings:
+**Dependencies:**
+```bash
+pip install PyYAML  # Only needed for session-start.py
+```
+
+**Platform paths:**
+| Platform | Hooks folder |
+|----------|--------------|
+| macOS/Linux | `~/.claude/hooks/` |
+| Windows | `%USERPROFILE%\.claude\hooks\` |
+| Windows (git bash) | `~/.claude/hooks/` |
+
+**Steps:**
+1. Create hooks folder if it doesn't exist
+2. Copy hook files to hooks folder
+3. Configure in Claude Code settings (settings.json or via UI):
 
 ```json
 {
   "hooks": {
     "SessionStart": {
-      "command": "python ~/.claude/hooks/session-start.py",
+      "command": "python path/to/session-start.py",
       "timeout": 5000
     },
     "Stop": {
-      "command": "python ~/.claude/hooks/maintenance-check.py",
+      "command": "python path/to/maintenance-check.py",
       "timeout": 5000
     }
   }
 }
 ```
+
+Replace `path/to/` with your actual hooks folder path.
 
 ### Customization
 

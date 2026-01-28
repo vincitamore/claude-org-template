@@ -1,0 +1,4 @@
+# Dependencies for hooks
+# Only needed if using session-start.py (maintenance-check.py has no deps)
+
+PyYAML>=6.0  # For parsing frontmatter in session-start.py
