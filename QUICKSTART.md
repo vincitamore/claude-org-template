@@ -35,7 +35,7 @@ That's it. You now have:
 As you work with Claude:
 - The system will suggest captures to `knowledge/`
 - Tasks will accumulate in `tasks/`
-- Patterns will emerge for `context/project-map.md`
+- Patterns will emerge for `context/projects.md`
 - Your `voice.md` will refine through use
 
 The system grows with you. Start minimal, expand as needed.
@@ -70,4 +70,4 @@ The system is conversational. Just tell Claude what you need.
 - [CLAUDE.md](CLAUDE.md) - Full system documentation and living index
 - [ONBOARDING.md](ONBOARDING.md) - Guided 30-60 minute setup
 - [context/voice.md](context/voice.md) - Your collaboration preferences
-- [examples/](examples/) - Hooks and agents to install
+- [setup/](setup/) - Hooks and agents to install

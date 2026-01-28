@@ -20,11 +20,12 @@ Claude doesn't remember between sessions. But a well-structured workspace create
 ├── QUICKSTART.md          # 5-minute fast track
 ├── context/
 │   ├── voice.md           # Template: your thinking patterns & collaboration preferences
-│   ├── project-map.md     # Template: project relationships & principle lattice
-│   └── claude-meta.md     # How to work with this system
-├── examples/
+│   └── projects.md        # Template: project relationships & principle lattice
+├── setup/
 │   ├── hooks/             # Session-start, maintenance-check scripts
-│   └── agents/            # Architect, reviewer, distiller, explorer definitions
+│   ├── agents/            # Architect, reviewer, distiller, explorer definitions
+│   └── skills/            # Organization skill definitions
+├── samples/               # Example completed documents for reference
 ├── templates/             # Task, knowledge, inbox file templates
 ├── inbox/                 # Quick captures, unsorted items
 ├── tasks/                 # Active task tracking
@@ -62,7 +63,7 @@ This system treats Claude as a **collaborative thinker**, not a service provider
 - Claude suggests captures and refinements
 - You refine together, not fill in forms
 
-See [context/claude-meta.md](context/claude-meta.md) for the collaboration philosophy.
+See [CLAUDE.md](CLAUDE.md) for the collaboration philosophy.
 
 ## Requirements
 
@@ -74,16 +75,17 @@ See [context/claude-meta.md](context/claude-meta.md) for the collaboration philo
 The structure is load-bearing; the content is yours to shape:
 
 1. Work with Claude to develop your [context/voice.md](context/voice.md)
-2. Map your projects in [context/project-map.md](context/project-map.md)
+2. Map your projects in [context/projects.md](context/projects.md)
 3. Add domain-specific knowledge as you work
-4. Install and customize hooks from [examples/hooks/](examples/hooks/)
-5. Configure agents from [examples/agents/](examples/agents/)
+4. Install and customize hooks from [setup/hooks/](setup/hooks/)
+5. Configure agents from [setup/agents/](setup/agents/)
 6. Develop your own principles as patterns emerge
 
 ## Related Documentation
 
 - [CLAUDE.md](CLAUDE.md) - The living index and ground truth for your workspace
-- [examples/README.md](examples/README.md) - Hooks and agents installation guide
+- [setup/README.md](setup/README.md) - Hooks, agents, and infrastructure installation guide
+- [samples/](samples/) - Example completed documents for reference
 - [templates/](templates/) - File templates for tasks, knowledge, inbox items
 
 ## License

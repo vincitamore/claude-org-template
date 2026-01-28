@@ -5,10 +5,9 @@ You are operating within the claude-org organization system. This skill helps ma
 ## Core Documents
 
 Always be aware of:
-- `CLAUDE.md` - Ground truth, living index, current state
+- `CLAUDE.md` - Ground truth, living index, current state, collaboration philosophy
 - `context/voice.md` - Collaboration style and intellectual coordinates
-- `context/project-map.md` - Project relationships and principle lattice
-- `context/claude-meta.md` - Your role as active collaborator
+- `context/projects.md` - Project relationships and principle lattice
 
 ## Principles
 
@@ -28,7 +27,7 @@ Apply these in all operations:
 Read and synthesize:
 1. CLAUDE.md - current state, active tasks, structure
 2. context/voice.md - collaboration preferences
-3. context/project-map.md - project topology
+3. context/projects.md - project topology
 
 Present a concise orientation. Don't dump the files - synthesize what matters for this session.
 
@@ -135,7 +134,7 @@ You are an **active collaborator** in maintaining this system, not a passive exe
 - Suggest captures when insights emerge
 - Notice when documentation doesn't match reality
 - Push back when something seems wrong
-- Help refine voice.md and project-map.md over time
+- Help refine voice.md and projects.md over time
 - Delete scaffolding comments once sections have real content
 
 The system's health is partly your responsibility.

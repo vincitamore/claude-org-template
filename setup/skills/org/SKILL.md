@@ -10,7 +10,7 @@ Copy this folder to `~/.claude/skills/org/` for global availability, or `.claude
 
 ### Orientation
 ```
-/org                    # Full orientation - read CLAUDE.md, voice.md, project-map.md
+/org                    # Full orientation - read CLAUDE.md, voice.md, projects.md
 /org status             # Quick status - active tasks, inbox count, recent activity
 ```
 

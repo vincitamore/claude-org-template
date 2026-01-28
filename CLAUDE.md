@@ -19,8 +19,7 @@ When arriving at this workspace, orient with these documents in order:
 
 1. **This file** (`CLAUDE.md`) - current state, active tasks, structure
 2. **[context/voice.md](context/voice.md)** - collaboration style, intellectual coordinates, working relationship
-3. **[context/project-map.md](context/project-map.md)** - project relationships, conceptual threads, cross-connections
-4. **[context/claude-meta.md](context/claude-meta.md)** - how to work with this system
+3. **[context/projects.md](context/projects.md)** - project relationships, conceptual threads, cross-connections
 
 These together form the attractor basin. The more thoughtfully you shape these documents, the faster Claude can find its footing in any session.
 
@@ -90,14 +89,14 @@ claude-org/
 ├── CLAUDE.md          # This file - living index and instructions
 ├── context/           # Orientation documents for collaboration continuity
 │   ├── voice.md       # Intellectual coordinates & collaboration style
-│   └── project-map.md # Project relationships & conceptual threads
+│   └── projects.md    # Project relationships & conceptual threads
 ├── inbox/             # Quick captures, unsorted items, raw notes
 ├── tasks/             # Task files (one file per task or task group)
 │   ├── completed/     # Completed tasks
 │   └── paused/        # Paused tasks (preserves context for later)
 ├── projects/          # Larger multi-step efforts with their own structure
 ├── knowledge/         # Distilled insights, organized by topic
-├── queries/           # Questions asked and answers received
+├── queries/           # Questions asked and answers received (optional)
 ├── scripts/           # Utility scripts for organization
 ├── templates/         # Templates for quick file creation
 └── archive/           # Semantic archive for completed/old items
@@ -303,7 +302,7 @@ For **focused, isolated work**, spawn specialized subagents. Custom agents (in `
 
 | Agent | Purpose | When to Use |
 |-------|---------|-------------|
-| `architect` | Design with structural correctness (≡) | Planning features, refactoring, architectural decisions |
+| `architect` | Design with structural correctness | Planning features, refactoring, architectural decisions |
 | `reviewer` | Code review + principle alignment | After writing/modifying code |
 | `explorer` | Deep codebase understanding | Before making changes, understanding architecture |
 | `distiller` | Extract knowledge worth capturing | After substantive work sessions |
@@ -396,7 +395,7 @@ For complex projects, use **both** systems together:
 ### Maintenance
 
 - Update this file after any structural change
-- Update `context/project-map.md` when project statuses change
+- Update `context/projects.md` when project statuses change
 - Update `context/voice.md` when collaboration patterns evolve
 - Archive don't delete - preserve history for reference
 
@@ -414,14 +413,14 @@ Claude Code supports hooks - scripts that run at specific points. **The stop hoo
 
 Without this hook, maintenance becomes "remember to do it" - which means it won't happen consistently. The hook makes maintenance automatic.
 
-See [examples/hooks/maintenance-check.py](examples/hooks/maintenance-check.py) for the full implementation. Copy it to `~/.claude/hooks/` and configure in settings.json.
+See [setup/hooks/maintenance-check.py](setup/hooks/maintenance-check.py) for the full implementation. Copy it to `~/.claude/hooks/` and configure in settings.json.
 
 The hook outputs a checklist and exits with error, blocking the stop until Claude either performs maintenance or explicitly states "No maintenance needed." This is the mechanism that keeps documentation from drifting.
 
 ### Session Start Hook
 Automatically read orientation files, compute current state from frontmatter, present context to Claude. Helpful but not critical - Claude can orient manually.
 
-See [examples/README.md](examples/README.md) for full implementations and installation instructions.
+See [setup/README.md](setup/README.md) for full implementations and installation instructions.
 
 ## Current State
 
@@ -440,8 +439,7 @@ _Empty - knowledge will accumulate as you work_
 ### Context Documents
 
 - [context/voice.md](context/voice.md) - Collaboration style, intellectual coordinates, working relationship
-- [context/project-map.md](context/project-map.md) - Project topology, conceptual threads, cross-connections
-- [context/claude-meta.md](context/claude-meta.md) - How to work with this system
+- [context/projects.md](context/projects.md) - Project topology, conceptual threads, cross-connections
 
 ---
 
@@ -450,7 +448,7 @@ _Empty - knowledge will accumulate as you work_
 This system is a starting point. Make it yours:
 
 1. **Fill in [context/voice.md](context/voice.md)** with how you actually think and work
-2. **Populate [context/project-map.md](context/project-map.md)** with your project relationships
+2. **Populate [context/projects.md](context/projects.md)** with your project relationships
 3. **Add domain-specific knowledge** as you work
 4. **Add integrations** (MCPs, hooks, skills) for your tools
 5. **Develop your own principle shorthand** as patterns emerge

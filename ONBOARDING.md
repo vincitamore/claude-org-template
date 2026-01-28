@@ -32,6 +32,25 @@ Open Claude Code in this workspace and start with something like:
 
 **By the end**, you'll have a first draft of [context/voice.md](context/voice.md) that captures your intellectual coordinates.
 
+### Developing voice.md: Questions Claude Might Ask
+
+When helping develop your voice document, Claude explores:
+
+**How you think:**
+- What domains do you move between? (technical, creative, philosophical, practical)
+- What patterns recur across your interests?
+- What do you find yourself caring about that others overlook?
+
+**How you collaborate:**
+- What communication style resonates with you?
+- What behaviors from assistants/collaborators frustrate you?
+- What does productive disagreement look like?
+
+**Discovery prompts that help:**
+- "What's a recent project that felt particularly satisfying? What made it work?"
+- "When you look at someone else's code/writing/system, what catches your eye first?"
+- "What problems keep coming back across different areas of your work?"
+
 ---
 
 ## Phase 2: Mapping Your Projects (20 minutes)
@@ -52,7 +71,7 @@ Next conversation (or continuing):
 - Ideas you haven't started but keep returning to
 - Frustrations with how projects relate (or don't)
 
-**By the end**, you'll have a first draft of [context/project-map.md](context/project-map.md) with your project topology and emerging principles.
+**By the end**, you'll have a first draft of [context/projects.md](context/projects.md) with your project topology and emerging principles.
 
 ---
 
@@ -71,10 +90,10 @@ Next conversation (or continuing):
 mkdir -p ~/.claude/hooks  # or %USERPROFILE%\.claude\hooks on Windows
 
 # Copy the hook
-cp examples/hooks/maintenance-check.py ~/.claude/hooks/
+cp setup/hooks/maintenance-check.py ~/.claude/hooks/
 ```
 
-See [examples/hooks/maintenance-check.py](examples/hooks/maintenance-check.py) for the full implementation with detailed comments.
+See [setup/hooks/maintenance-check.py](setup/hooks/maintenance-check.py) for the full implementation with detailed comments.
 
 Add to your Claude Code settings (settings.json):
 ```json
@@ -118,7 +137,7 @@ Don't overthink categorization. The `inbox/` exists so you can capture without f
 
 ## Phase 4: Developing the Principle Lattice (Over Time)
 
-The principle lattice in [context/project-map.md](context/project-map.md) grows organically. You don't fill it in upfront - you populate it as patterns emerge.
+The principle lattice in [context/projects.md](context/projects.md) grows organically. You don't fill it in upfront - you populate it as patterns emerge.
 
 **When to add a principle:**
 - You notice yourself caring about the same thing in different contexts
@@ -163,7 +182,7 @@ The collaboration works best with certain patterns:
 ## What Makes This Work
 
 ### Continuity Through Architecture
-Each session, Claude reads [CLAUDE.md](CLAUDE.md), [context/voice.md](context/voice.md), and [context/project-map.md](context/project-map.md). That's enough to resume collaboration at depth. You don't need to re-explain who you are.
+Each session, Claude reads [CLAUDE.md](CLAUDE.md), [context/voice.md](context/voice.md), and [context/projects.md](context/projects.md). That's enough to resume collaboration at depth. You don't need to re-explain who you are.
 
 ### Collaborative Discovery
 The documents aren't self-report - they're what emerged from working together. That makes them more accurate and more useful.
@@ -206,6 +225,6 @@ The best way to understand the system is to use it. Start collaborating.
 
 - [QUICKSTART.md](QUICKSTART.md) - 5-minute fast track
 - [CLAUDE.md](CLAUDE.md) - Full system documentation
-- [context/claude-meta.md](context/claude-meta.md) - How to work with this system
-- [examples/README.md](examples/README.md) - Hooks and agents guide
+- [setup/README.md](setup/README.md) - Hooks and agents guide
+- [samples/](samples/) - Example completed documents
 - [templates/](templates/) - File templates
