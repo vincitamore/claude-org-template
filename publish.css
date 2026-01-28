@@ -1,6 +1,6 @@
 /*
- * Claude-Org Publish Theme
- * Clean, professional theme for Obsidian Publish
+ * Warm Scholarly Theme for Obsidian Publish
+ * Burgundy, bronze, cream palette
  *
  * Customize the :root variables to match your preferred palette.
  * The checkbox and callout styling should work regardless of color scheme.
@@ -8,25 +8,25 @@
 
 /* ===== Color Variables ===== */
 :root {
-  /* Core palette - neutral warm gray
+  /* Core palette - warm cream/brown
    * Customize these to match your brand/preferences */
-  --color-base-00: #fafafa;        /* Page background */
-  --color-base-05: #f5f5f5;        /* Subtle background */
-  --color-base-10: #ebebeb;        /* Light accent */
-  --color-base-20: #d4d4d4;        /* Borders, dividers */
-  --color-base-25: #a3a3a3;        /* Muted text */
-  --color-base-30: #737373;        /* Secondary text */
-  --color-base-35: #525252;        /* Darker muted */
-  --color-base-40: #404040;        /* Dark gray */
-  --color-base-50: #2d2d2d;        /* Near-black */
-  --color-base-60: #1f1f1f;        /* Dark */
-  --color-base-70: #171717;        /* Main text */
-  --color-base-100: #0a0a0a;       /* Darkest */
+  --color-base-00: #faf8f5;        /* Cream white - page background */
+  --color-base-05: #f5f2ed;        /* Warm off-white */
+  --color-base-10: #ebe7e0;        /* Light cream */
+  --color-base-20: #d4cfc5;        /* Muted cream */
+  --color-base-25: #b4a99a;        /* Warm taupe */
+  --color-base-30: #8c8278;        /* Muted brown-gray */
+  --color-base-35: #6b6259;        /* Darker taupe */
+  --color-base-40: #4a443d;        /* Dark warm gray */
+  --color-base-50: #38332d;        /* Near-black warm */
+  --color-base-60: #2a2520;        /* Deep warm black */
+  --color-base-70: #231f1b;        /* Main text */
+  --color-base-100: #1a1714;       /* Darkest */
 
-  /* Accent colors - customize these for your brand */
-  --color-accent: #4f46e5;         /* Primary accent (indigo) */
-  --color-accent-1: #6366f1;       /* Secondary accent */
-  --color-accent-2: #3730a3;       /* Tertiary accent */
+  /* Accent colors - burgundy/bronze */
+  --color-accent: #78302c;         /* Deep burgundy - primary accent */
+  --color-accent-1: #8c644b;       /* Warm bronze - secondary */
+  --color-accent-2: #553c37;       /* Muted brown - tertiary */
 
   /* Functional colors (derived from base/accent) */
   --background-primary: var(--color-base-00);
@@ -45,7 +45,7 @@
   /* Typography
    * Serif for body text (scholarly feel), sans-serif for UI
    * Customize font-family if you prefer different fonts */
-  --font-text: 'Georgia', 'Times New Roman', serif;
+  --font-text: 'EB Garamond', 'Crimson Text', 'Georgia', serif;
   --font-monospace: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
   --font-interface: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
@@ -63,22 +63,22 @@
 
 /* ===== Dark Mode ===== */
 .theme-dark {
-  --color-base-00: #171717;
-  --color-base-05: #1f1f1f;
-  --color-base-10: #262626;
-  --color-base-20: #373737;
-  --color-base-25: #525252;
-  --color-base-30: #737373;
-  --color-base-35: #a3a3a3;
-  --color-base-40: #d4d4d4;
-  --color-base-50: #e5e5e5;
-  --color-base-60: #f0f0f0;
-  --color-base-70: #f5f5f5;
-  --color-base-100: #fafafa;
+  --color-base-00: #1a1714;
+  --color-base-05: #231f1b;
+  --color-base-10: #2a2520;
+  --color-base-20: #38332d;
+  --color-base-25: #4a443d;
+  --color-base-30: #6b6259;
+  --color-base-35: #8c8278;
+  --color-base-40: #b4a99a;
+  --color-base-50: #d4cfc5;
+  --color-base-60: #ebe7e0;
+  --color-base-70: #f5f2ed;
+  --color-base-100: #faf8f5;
 
-  --color-accent: #818cf8;         /* Lighter accent for dark mode */
-  --color-accent-1: #a5b4fc;
-  --color-accent-2: #6366f1;
+  --color-accent: #c4756f;         /* Lighter burgundy for dark mode */
+  --color-accent-1: #d4a574;       /* Lighter bronze */
+  --color-accent-2: #a08070;       /* Lighter brown */
 }
 
 /* ===== Typography ===== */
@@ -482,7 +482,7 @@ hr {
    > [!sovereignty] Title
    > Content about data ownership
 
-   > [!correctness] Title
+   > [!structural] Title
    > Content about structural correctness
 
    > [!irreducibility] Title
@@ -491,17 +491,20 @@ hr {
    > [!visibility] Title
    > Content about observability
 
+   > [!intimate] Title
+   > Content about deep knowledge
+
    > [!single-source] Title
    > Content about computed state
 */
 
-/* Inversion - Deep purple */
+/* Inversion - Deep burgundy (primary accent) */
 .callout[data-callout="inversion"] {
-  border-left-color: #7c3aed;
-  background-color: rgba(124, 58, 237, 0.08);
+  border-left-color: var(--color-accent);
+  background-color: rgba(120, 48, 44, 0.08);
 }
 .callout[data-callout="inversion"] .callout-title {
-  color: #7c3aed;
+  color: var(--color-accent);
 }
 
 /* Sovereignty - Gold */
@@ -513,17 +516,6 @@ hr {
   color: #b8860b;
 }
 
-/* Correctness (Structural) - Blue */
-.callout[data-callout="correctness"],
-.callout[data-callout="structural"] {
-  border-left-color: #2563eb;
-  background-color: rgba(37, 99, 235, 0.08);
-}
-.callout[data-callout="correctness"] .callout-title,
-.callout[data-callout="structural"] .callout-title {
-  color: #2563eb;
-}
-
 /* Irreducibility - Silver/steel */
 .callout[data-callout="irreducibility"] {
   border-left-color: #708090;
@@ -533,16 +525,34 @@ hr {
   color: #708090;
 }
 
-/* Visibility - Teal */
-.callout[data-callout="visibility"] {
-  border-left-color: #0d9488;
-  background-color: rgba(13, 148, 136, 0.08);
+/* Structural Correctness - Bronze (secondary accent) */
+.callout[data-callout="structural"] {
+  border-left-color: var(--color-accent-1);
+  background-color: rgba(140, 100, 75, 0.08);
 }
-.callout[data-callout="visibility"] .callout-title {
-  color: #0d9488;
+.callout[data-callout="structural"] .callout-title {
+  color: var(--color-accent-1);
 }
 
-/* Single-source - Amber */
+/* Visibility - Teal */
+.callout[data-callout="visibility"] {
+  border-left-color: #2d8a8a;
+  background-color: rgba(45, 138, 138, 0.08);
+}
+.callout[data-callout="visibility"] .callout-title {
+  color: #2d8a8a;
+}
+
+/* Intimate Knowledge - Purple */
+.callout[data-callout="intimate"] {
+  border-left-color: #6b4c9a;
+  background-color: rgba(107, 76, 154, 0.08);
+}
+.callout[data-callout="intimate"] .callout-title {
+  color: #6b4c9a;
+}
+
+/* Single-source Multiplicity - Warm amber */
 .callout[data-callout="single-source"] {
   border-left-color: #d97706;
   background-color: rgba(217, 119, 6, 0.08);
