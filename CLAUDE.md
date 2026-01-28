@@ -20,7 +20,7 @@ When arriving at this workspace, orient with these documents in order:
 1. **This file** (`CLAUDE.md`) - current state, active tasks, structure
 2. **[context/voice.md](context/voice.md)** - collaboration style, intellectual coordinates, working relationship
 3. **[context/project-map.md](context/project-map.md)** - project relationships, conceptual threads, cross-connections
-4. **[context/claude-meta.md](context/claude-meta.md)** - how Claude should approach this workspace (meta-instructions)
+4. **[context/claude-meta.md](context/claude-meta.md)** - initial orientation scaffolding (delete once system is established)
 
 These together form the attractor basin. The more thoughtfully you shape these documents, the faster Claude can find its footing in any session.
 
@@ -441,7 +441,7 @@ _Empty - knowledge will accumulate as you work_
 
 - [context/voice.md](context/voice.md) - Collaboration style, intellectual coordinates, working relationship
 - [context/project-map.md](context/project-map.md) - Project topology, conceptual threads, cross-connections
-- [context/claude-meta.md](context/claude-meta.md) - Meta-instructions for Claude's collaborative role
+- [context/claude-meta.md](context/claude-meta.md) - Initial orientation scaffolding (delete when system is self-orienting)
 
 ---
 

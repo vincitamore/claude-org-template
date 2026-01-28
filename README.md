@@ -21,7 +21,7 @@ Claude doesn't remember between sessions. But a well-structured workspace create
 ├── context/
 │   ├── voice.md           # Template: your thinking patterns & collaboration preferences
 │   ├── project-map.md     # Template: project relationships & principle lattice
-│   └── claude-meta.md     # Meta-instructions for Claude's role as collaborator
+│   └── claude-meta.md     # Initial orientation scaffolding (delete when established)
 ├── examples/
 │   ├── hooks/             # Session-start, maintenance-check scripts
 │   └── agents/            # Architect, reviewer, distiller, explorer definitions
@@ -62,7 +62,7 @@ This system treats Claude as a **collaborative thinker**, not a service provider
 - Claude suggests captures and refinements
 - You refine together, not fill in forms
 
-See [context/claude-meta.md](context/claude-meta.md) for the full philosophy.
+See [context/claude-meta.md](context/claude-meta.md) for initial orientation (this file is scaffolding - delete it once the system is established).
 
 ## Requirements
 
