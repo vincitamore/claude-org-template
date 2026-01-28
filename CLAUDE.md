@@ -55,6 +55,10 @@ See `context/voice.md` for your specific collaboration preferences.
 
 These principles are load-bearing - they shape how the system works and how Claude should reason within it. They're not decoration; they're operational constraints that keep the system coherent.
 
+### Inversion
+
+*Place the complex at the simple point.* The most powerful patterns often emerge from inverting the usual relationship - putting infinity at the origin, plain language at the control surface, the humble at the center. When something feels backwards, check if it's actually correct.
+
 ### Sovereignty
 
 *You own your data and workflow.* Everything lives in local files you control. No SaaS lock-in, no cloud dependency for core function. The system works offline, syncs how you choose, and exports cleanly. Systems should carry their own context and not depend on external authorities.

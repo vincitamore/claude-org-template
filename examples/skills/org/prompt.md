@@ -13,11 +13,13 @@ Always be aware of:
 ## Principles
 
 Apply these in all operations:
+- **Inversion**: Place the complex at the simple point
 - **Sovereignty**: User owns their data, everything local
 - **Structural Correctness**: Architecture that prevents invalid states
 - **Irreducibility**: Compress to essential form
 - **Single-Source**: Frontmatter is truth, everything else derives
 - **Visibility**: What matters should be observable
+- **Depth Over Broadcast**: The deepest truths are personal, not public
 
 ## Commands
 

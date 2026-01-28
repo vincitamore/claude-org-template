@@ -60,6 +60,16 @@ A principle is ready for the lattice when:
 - It can be stated in a single sentence but unpacks into many examples
 -->
 
+### Inversion
+
+*Place the complex at the simple point. The powerful at the humble position.*
+
+**Your instantiations**:
+- _mathematical: ..._
+- _linguistic: ..._
+- _relational: ..._
+- _aesthetic: ..._
+
 ### Sovereignty
 
 *Systems should carry their own context and not depend on external authorities.*
@@ -96,6 +106,24 @@ A principle is ready for the lattice when:
 - _configuration: ..._
 - _content management: ..._
 - _system design: ..._
+
+### Visibility
+
+*What matters should be observable. Monitoring and logging as first-class design.*
+
+**Your instantiations**:
+- _infrastructural: ..._
+- _developmental: ..._
+- _organizational: ..._
+
+### Depth Over Broadcast
+
+*The deepest truths are personal, not public. Depth over performance.*
+
+**Your instantiations**:
+- _epistemological: ..._
+- _collaborative: ..._
+- _creative: ..._
 
 ### [Your Principle]
 

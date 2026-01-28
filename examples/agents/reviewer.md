@@ -39,7 +39,10 @@ Task(reviewer, "Does this implementation align with our sovereignty principle?")
 ## Principle Alignment
 
 The reviewer should evaluate code against documented principles:
-- **Correctness**: Does the structure prevent invalid states?
+- **Inversion**: Is complexity properly placed? Is the interface simpler than the implementation?
 - **Sovereignty**: Does it maintain user control? Any external dependencies?
+- **Correctness**: Does the structure prevent invalid states?
 - **Irreducibility**: Is this the minimal solution, or is there unnecessary complexity?
+- **Single-Source**: Is there one source of truth, or scattered duplication?
 - **Visibility**: Are failures observable? Is behavior transparent?
+- **Depth Over Broadcast**: Does it serve the work, not an audience?

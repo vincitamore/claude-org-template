@@ -44,11 +44,13 @@ See `ONBOARDING.md` - guided process for discovering your voice and mapping your
 
 These aren't decoration - they're operational constraints that make the system work:
 
+- **Inversion**: Place the complex at the simple point. The powerful at the humble position.
 - **Sovereignty**: You own your data. Everything local, no SaaS dependency.
 - **Structural Correctness**: Architecture that prevents invalid states.
 - **Irreducibility**: Compress to essential form. Capture insights, not conversations.
 - **Single-Source**: One source of truth, many derived views.
 - **Visibility**: What matters should be observable. Archive don't delete.
+- **Depth Over Broadcast**: The deepest truths are personal, not public.
 
 ## The Collaborative Relationship
 
