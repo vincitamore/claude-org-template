@@ -1,0 +1,163 @@
+/* Custom Task Checkboxes
+
+   Usage in markdown:
+   - [ ] Todo (default)
+   - [x] Done (default)
+   - [/] In Progress (orange half-fill)
+   - [>] Blocked/Forwarded (red arrow)
+   - [?] Needs Input/Question (blue)
+   - [!] Important/Urgent (red)
+   - [-] Cancelled/Won't Do (gray strikethrough)
+   - [~] Partial/In Review (purple)
+
+   Note: Uses .task-list-item-checkbox class and ::before pseudo-element
+   for compatibility with both desktop app and Publish.
+*/
+
+/* Base styling for custom checkboxes */
+.task-list-item-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid var(--text-muted);
+  position: relative;
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 3px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* Hide default checkmark for custom task states */
+li[data-task="/"] > .task-list-item-checkbox:checked,
+li[data-task=">"] > .task-list-item-checkbox:checked,
+li[data-task="?"] > .task-list-item-checkbox:checked,
+li[data-task="!"] > .task-list-item-checkbox:checked,
+li[data-task="-"] > .task-list-item-checkbox:checked,
+li[data-task="~"] > .task-list-item-checkbox:checked,
+li[data-task="/"] > p > .task-list-item-checkbox:checked,
+li[data-task=">"] > p > .task-list-item-checkbox:checked,
+li[data-task="?"] > p > .task-list-item-checkbox:checked,
+li[data-task="!"] > p > .task-list-item-checkbox:checked,
+li[data-task="-"] > p > .task-list-item-checkbox:checked,
+li[data-task="~"] > p > .task-list-item-checkbox:checked {
+  background-image: none !important;
+  --checkbox-marker-color: transparent;
+  --checklist-done-decoration: none;
+}
+
+/* [/] In Progress - Orange half-fill */
+li[data-task="/"] > .task-list-item-checkbox,
+li[data-task="/"] > p > .task-list-item-checkbox {
+  border-color: #f59e0b;
+  background: linear-gradient(90deg, #f59e0b 50%, rgba(245, 158, 11, 0.15) 50%);
+}
+li[data-task="/"] {
+  color: #b45309;
+}
+
+/* [>] Blocked/Forwarded - Red arrow */
+li[data-task=">"] > .task-list-item-checkbox,
+li[data-task=">"] > p > .task-list-item-checkbox {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.15);
+}
+li[data-task=">"] > .task-list-item-checkbox::before,
+li[data-task=">"] > p > .task-list-item-checkbox::before {
+  content: ">";
+  color: #ef4444;
+  font-size: 0.75em;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+li[data-task=">"] {
+  color: #dc2626;
+}
+
+/* [?] Needs Input - Blue question mark */
+li[data-task="?"] > .task-list-item-checkbox,
+li[data-task="?"] > p > .task-list-item-checkbox {
+  border-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.15);
+}
+li[data-task="?"] > .task-list-item-checkbox::before,
+li[data-task="?"] > p > .task-list-item-checkbox::before {
+  content: "?";
+  color: #3b82f6;
+  font-size: 0.8em;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+li[data-task="?"] {
+  color: #2563eb;
+}
+
+/* [!] Important/Urgent - Red exclamation */
+li[data-task="!"] > .task-list-item-checkbox,
+li[data-task="!"] > p > .task-list-item-checkbox {
+  border-color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.2);
+}
+li[data-task="!"] > .task-list-item-checkbox::before,
+li[data-task="!"] > p > .task-list-item-checkbox::before {
+  content: "!";
+  color: #dc2626;
+  font-size: 0.8em;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+li[data-task="!"] {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* [-] Cancelled - Gray strikethrough */
+li[data-task="-"] > .task-list-item-checkbox,
+li[data-task="-"] > p > .task-list-item-checkbox {
+  border-color: #9ca3af;
+  background-color: #e5e7eb;
+}
+li[data-task="-"] > .task-list-item-checkbox::before,
+li[data-task="-"] > p > .task-list-item-checkbox::before {
+  content: "-";
+  color: #6b7280;
+  font-size: 0.75em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+li[data-task="-"] {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* [~] Partial/In Review - Purple tilde */
+li[data-task="~"] > .task-list-item-checkbox,
+li[data-task="~"] > p > .task-list-item-checkbox {
+  border-color: #8b5cf6;
+  background-color: rgba(139, 92, 246, 0.15);
+}
+li[data-task="~"] > .task-list-item-checkbox::before,
+li[data-task="~"] > p > .task-list-item-checkbox::before {
+  content: "~";
+  color: #8b5cf6;
+  font-size: 0.85em;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+li[data-task="~"] {
+  color: #7c3aed;
+}

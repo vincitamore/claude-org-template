@@ -19,6 +19,10 @@ __pycache__/
 
 # Generated
 tags/
+publish-dashboard.md
+
+# Config (contains API keys)
+scripts/.publish-config.json
 
 # Personal (if forking this template, these would be your content)
 # Uncomment if you want to track structure but not content:
