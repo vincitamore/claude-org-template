@@ -414,11 +414,7 @@ Claude Code supports hooks - scripts that run at specific points. **The stop hoo
 
 Without this hook, maintenance becomes "remember to do it" - which means it won't happen consistently. The hook makes maintenance automatic.
 
-```python
-# examples/hooks/maintenance-check.py - Copy to ~/.claude/hooks/
-# Configure in settings.json as Stop hook
-# Exit code 1 blocks stop until Claude addresses maintenance
-```
+See [examples/hooks/maintenance-check.py](examples/hooks/maintenance-check.py) for the full implementation. Copy it to `~/.claude/hooks/` and configure in settings.json.
 
 The hook outputs a checklist and exits with error, blocking the stop until Claude either performs maintenance or explicitly states "No maintenance needed." This is the mechanism that keeps documentation from drifting.
 

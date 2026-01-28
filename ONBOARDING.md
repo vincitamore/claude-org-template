@@ -70,9 +70,11 @@ Next conversation (or continuing):
 # Create hooks folder if needed
 mkdir -p ~/.claude/hooks  # or %USERPROFILE%\.claude\hooks on Windows
 
-# Copy the hook (see examples/hooks/ for full docs)
+# Copy the hook
 cp examples/hooks/maintenance-check.py ~/.claude/hooks/
 ```
+
+See [examples/hooks/maintenance-check.py](examples/hooks/maintenance-check.py) for the full implementation with detailed comments.
 
 Add to your Claude Code settings (settings.json):
 ```json
