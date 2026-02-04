@@ -33,10 +33,10 @@ Just run it:
 
 ```bash
 # Windows - double-click or run from terminal
-setup\tools\org-viewer.exe
+org-viewer.exe
 
 # Specify a different org folder
-setup\tools\org-viewer.exe C:\path\to\your\org
+org-viewer.exe C:\path\to\your\org
 ```
 
 The viewer opens automatically. That's it.
@@ -96,7 +96,7 @@ Add to `~/.claude/settings.json`:
   "mcpServers": {
     "org-viewer": {
       "command": "node",
-      "args": ["path/to/claude-org/setup/tools/mcp/dist/index.js"],
+      "args": ["path/to/claude-org/tools/mcp/dist/index.js"],
       "env": {
         "ORG_ROOT": "path/to/your/claude-org"
       }
@@ -156,4 +156,4 @@ taskkill /F /PID <pid>
 
 - [org-viewer GitHub](https://github.com/vincitamore/org-viewer) - Source code and releases
 - [Tailscale Documentation](https://tailscale.com/kb/) - Network setup help
-- [ONBOARDING.md](../../ONBOARDING.md) - Full setup guide
+- [ONBOARDING.md](ONBOARDING.md) - Full setup guide
