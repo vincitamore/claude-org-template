@@ -25,6 +25,12 @@ Auto-generated tag pages group related documents by topic:
 
 ![Tag Page](screenshots/org-viewer-tag-page-example.png)
 
+### Themes
+
+Six color themes - press `t` to switch:
+
+![Themes](screenshots/org-viewer-themes.png)
+
 ## Quick Start
 
 ### Local Use (Same Machine)
