@@ -11,6 +11,12 @@ Reference examples showing what completed documents look like.
   - Reflects actual working patterns, not aspirations
   - Dense - no unnecessary padding
 
+- **projects-complete.md** - A populated projects.md with principle lattice
+  - Multiple conceptual threads showing project relationships
+  - 6 principles with 3-6 instantiations each
+  - Project maturity spectrum and tech stack
+  - Lattice maintenance protocols
+
 - **knowledge-example.md** - A distilled knowledge article
   - Proper frontmatter structure
   - The insight itself (compressed, not the conversation that produced it)

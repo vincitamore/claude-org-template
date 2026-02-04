@@ -294,6 +294,27 @@ When they're wrong. If a session reveals something the documents don't capture, 
 
 ---
 
+## First Session Success Criteria
+
+By the end of your first real session (after setup), you should have:
+
+- [ ] **voice.md populated** - At least 3 sections filled with concrete, specific content (not placeholders)
+- [ ] **Stop hook working** - When you end with `/stop`, you see the maintenance checklist
+- [ ] **One capture made** - Something in `inbox/` or a task in `tasks/`
+- [ ] **One knowledge article** - Even a small one, to establish the pattern
+
+**Signs it's working:**
+- Claude references your voice.md naturally in conversation
+- The maintenance prompt catches something you would have forgotten
+- You find yourself thinking "I should capture this" during work
+
+**Signs something's off:**
+- Claude keeps asking about your preferences (voice.md not detailed enough)
+- Sessions end without any maintenance (hook not installed or threshold too high)
+- You're not sure where to put things (review CLAUDE.md folder structure)
+
+---
+
 ## Next Steps
 
 1. **Start Phase 1**: Open Claude Code and begin the voice.md conversation

@@ -1,3 +1,5 @@
+<!-- If you're Claude, read CLAUDE.md instead - that's your ground truth -->
+
 <p align="center">
   <img src="claude-org-logo.png" alt="Claude-Org Logo" width="200">
 </p>

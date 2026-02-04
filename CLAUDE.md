@@ -1,6 +1,20 @@
 # Claude-Org: Personal Organization System
 
+> **For Claude instances**: This is your ground truth. Start here, then read `context/voice.md` and `context/projects.md`.
+
 > **SELF-UPDATING INSTRUCTION**: This file is the ground truth for this workspace. After ANY change to this system (new files, completed tasks, acquired knowledge, structural changes), update this file to reflect the current state. This ensures continuity across sessions.
+
+---
+
+**⚠️ SETUP CHECKPOINT**: Before using this system, verify the stop hook is installed:
+
+- [ ] Stop hook installed at `~/.claude/hooks/maintenance-check.py`
+- [ ] Hook configured in `~/.claude/settings.json`
+- [ ] Tested: `/stop` shows maintenance checklist
+
+The stop hook is what makes the system self-maintaining. Without it, maintenance depends on discipline (which fails). See [setup/README.md](setup/README.md) for installation.
+
+---
 
 ## Purpose
 
@@ -90,8 +104,11 @@ claude-org/
 ├── context/           # Orientation documents for collaboration continuity
 │   ├── voice.md       # Intellectual coordinates & collaboration style
 │   └── projects.md    # Project relationships & conceptual threads
-├── inbox/             # Quick captures, unsorted items, raw notes
-├── tasks/             # Task files (one file per task or task group)
+├── inbox/             # Quick captures, unsorted items
+│   ├── emails/        # Email staging area
+│   ├── tickets/       # Work tickets, support requests
+│   └── captures/      # Session captures, ideas, notes
+├── tasks/             # Task files (see tasks/README.md for full model)
 │   ├── completed/     # Completed tasks
 │   └── paused/        # Paused tasks (preserves context for later)
 ├── projects/          # Larger multi-step efforts with their own structure
@@ -105,6 +122,30 @@ claude-org/
     └── reports/       # Audit reports, status reports, investigations
 ```
 
+### Inbox Structure
+
+Semantic subfolders for incoming items:
+
+| Folder | Contents | Source |
+|--------|----------|--------|
+| `inbox/emails/` | Email staging | Email integrations |
+| `inbox/tickets/` | Work tickets | Ticketing systems |
+| `inbox/captures/` | Ideas, notes, quick thoughts | Session captures |
+
+Process inbox items regularly - move to tasks, knowledge, or archive.
+
+### Task Folder Structure
+
+See `tasks/README.md` for full status model (starter 4-status or full 7-status).
+
+| Folder | Contents |
+|--------|----------|
+| `tasks/` | Active and blocked tasks |
+| `tasks/completed/` | Completed tasks (status: complete) |
+| `tasks/paused/` | Paused tasks (status: paused) |
+
+Additional folders for full model: `tasks/review/`, `tasks/backlog/`, `tasks/incubating/`
+
 ### Archive Structure
 
 Semantic folders ensure everything has a clear home:
@@ -116,14 +157,6 @@ Semantic folders ensure everything has a clear home:
 | `reports/` | Audits, status reports, investigations | Manual |
 
 Create new subfolders when 5+ items of the same type emerge.
-
-### Task Folder Structure
-
-| Folder | Contents |
-|--------|----------|
-| `tasks/` | Active tasks (status: active) |
-| `tasks/completed/` | Completed tasks (status: complete) |
-| `tasks/paused/` | Paused tasks (status: paused) |
 
 ## Obsidian Integration (Optional)
 
@@ -170,18 +203,30 @@ Requires Dataview plugin to render the queries.
 
 ### Frontmatter Convention
 
-All files use YAML frontmatter for Dataview queries:
+All files use YAML frontmatter for Dataview queries. See `tasks/README.md` for full task model documentation.
 
-**Tasks** (`tasks/*.md`):
+**Tasks** (`tasks/*.md`) - Starter Model:
 ```yaml
 ---
 type: task
-status: active | blocked | complete | paused
+status: active | blocked | paused | complete
 created: 2026-01-27
 completed: null
 tags: []
-blocks: []
 blocked-by: []
+---
+```
+
+**Tasks** - Full Model (adds review, backlog, incubating statuses):
+```yaml
+---
+type: task
+status: active | blocked | review | backlog | incubating | paused | complete
+created: 2026-01-27
+completed: null
+tags: []
+blocked-by: []           # for blocked status
+review-needed: ""        # for review status - what decision?
 ---
 ```
 
