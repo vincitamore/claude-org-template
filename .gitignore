@@ -20,6 +20,10 @@ __pycache__/
 # Generated
 tags/
 publish-dashboard.md
+.org-viewer-index.json
+
+# Node
+node_modules/
 
 # Config (contains API keys)
 scripts/.publish-config.json
