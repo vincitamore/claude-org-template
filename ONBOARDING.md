@@ -21,8 +21,9 @@ The goal isn't to document everything about yourself. It's to create just enough
 | 3 | [Stop Hook](#phase-3-install-the-stop-hook) | 5 min | **Essential** |
 | 4 | [Capture Habit](#phase-4-the-capture-habit) | Ongoing | Yes |
 | 5 | [Agents & Skills](#phase-5-agents--skills-optional) | 15 min | Optional |
-| 6 | [Obsidian](#phase-6-obsidian-integration-optional) | 30 min | Optional |
-| 7 | [Principle Lattice](#phase-7-developing-the-principle-lattice) | Ongoing | Grows naturally |
+| 6 | [Org Viewer](#phase-6-org-viewer-optional) | 10 min | Optional |
+| 7 | [Obsidian](#phase-7-obsidian-integration-optional) | 30 min | Optional |
+| 8 | [Principle Lattice](#phase-8-developing-the-principle-lattice) | Ongoing | Grows naturally |
 
 **Minimum viable setup**: Phases 1-4. Everything else enhances but isn't required.
 
@@ -180,7 +181,26 @@ The `/org` skill provides quick commands:
 
 ---
 
-## Phase 6: Obsidian Integration (Optional)
+## Phase 6: Org Viewer (Optional)
+
+A native document browser for your org. Double-click to open.
+
+**What Org Viewer adds:**
+- Browse documents with TUI-style interface
+- Full-text search across all files
+- Graph view showing document connections
+- Live reload on file changes
+- MCP integration for Claude Code
+
+**Local use:** Just run `setup/tools/org-viewer.exe` - it opens automatically.
+
+**Remote access (optional):** Install [Tailscale](https://tailscale.com/download) to browse from your phone or other devices. Access at `http://your-machine-name:3847` and install as a PWA.
+
+**Full guide:** [setup/tools/README.md](setup/tools/README.md)
+
+---
+
+## Phase 7: Obsidian Integration (Optional)
 
 If you want visual dashboards, graph views, and publishing:
 
@@ -202,7 +222,7 @@ If you want visual dashboards, graph views, and publishing:
 
 ---
 
-## Phase 7: Developing the Principle Lattice
+## Phase 8: Developing the Principle Lattice
 
 The principle lattice in [context/projects.md](context/projects.md) grows organically. You don't fill it in upfront - you populate it as patterns emerge.
 
@@ -286,7 +306,8 @@ When they're wrong. If a session reveals something the documents don't capture, 
 |----------|---------|
 | [CLAUDE.md](CLAUDE.md) | Full system documentation |
 | [QUICKSTART.md](QUICKSTART.md) | 5-minute fast track |
-| [setup/README.md](setup/README.md) | Hooks, agents, skills |
+| [setup/README.md](setup/README.md) | Hooks, agents, skills, tools |
+| [setup/tools/README.md](setup/tools/README.md) | Org Viewer documentation |
 | [setup/obsidian/README.md](setup/obsidian/README.md) | Obsidian integration |
 | [samples/](samples/) | Example completed documents |
 | [templates/](templates/) | File templates |

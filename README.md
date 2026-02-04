@@ -26,7 +26,8 @@ Claude doesn't remember between sessions. But a well-structured workspace create
 ├── setup/
 │   ├── hooks/             # Session-start, maintenance-check scripts
 │   ├── agents/            # Architect, reviewer, distiller, explorer definitions
-│   └── skills/            # Organization skill definitions
+│   ├── skills/            # Organization skill definitions
+│   └── tools/             # Org Viewer native app
 ├── samples/               # Example completed documents for reference
 ├── templates/             # Task, knowledge, inbox file templates
 ├── inbox/                 # Quick captures, unsorted items
@@ -70,6 +71,7 @@ See [CLAUDE.md](CLAUDE.md) for the collaboration philosophy.
 ## Requirements
 
 - [Claude Code](https://github.com/anthropics/claude-code) CLI
+- Optional: [Tailscale](https://tailscale.com/download) for remote access to Org Viewer
 - Optional: [Obsidian](https://obsidian.md) with Dataview plugin for visualization
 
 ## Customization
@@ -83,10 +85,19 @@ The structure is load-bearing; the content is yours to shape:
 5. Configure agents from [setup/agents/](setup/agents/)
 6. Develop your own principles as patterns emerge
 
+## Org Viewer
+
+A native document browser for your org. Double-click `setup/tools/org-viewer.exe` to open.
+
+Features: TUI-style interface, full-text search, graph view, live reload. For remote access from other devices, add [Tailscale](https://tailscale.com/download).
+
+See [setup/tools/README.md](setup/tools/README.md) | [GitHub](https://github.com/vincitamore/org-viewer)
+
 ## Related Documentation
 
 - [CLAUDE.md](CLAUDE.md) - The living index and ground truth for your workspace
-- [setup/README.md](setup/README.md) - Hooks, agents, and infrastructure installation guide
+- [setup/README.md](setup/README.md) - Hooks, agents, tools, and infrastructure
+- [setup/tools/README.md](setup/tools/README.md) - Org Viewer documentation
 - [samples/](samples/) - Example completed documents for reference
 - [templates/](templates/) - File templates for tasks, knowledge, inbox items
 

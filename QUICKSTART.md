@@ -46,6 +46,10 @@ The system grows with you. Start minimal, expand as needed.
 
 Read [ONBOARDING.md](ONBOARDING.md) for the full guided setup process.
 
+## If You Want a Visual Browser
+
+Run `setup/tools/org-viewer.exe` - a native document viewer with search and graph view. For mobile access, add [Tailscale](https://tailscale.com/download). See [setup/tools/README.md](setup/tools/README.md).
+
 ## If Something Feels Off
 
 Tell Claude: "Something about how we're working isn't quite right." It will help you articulate the issue and update the relevant documentation.

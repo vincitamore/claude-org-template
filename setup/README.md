@@ -7,6 +7,7 @@
 | [Hooks](#hooks) | Phase 3 | **Essential** |
 | [Agents](#agents) | Phase 5 | Optional |
 | [Skills](#skills) | Phase 5 | Optional |
+| [Org Viewer](#org-viewer) | Phase 6 | Optional |
 | [Obsidian](#obsidian) | Phase 6 | Optional |
 
 ---
@@ -157,6 +158,29 @@ xcopy setup\skills\org %USERPROFILE%\.claude\skills\org /E /I
 
 ---
 
+## Org Viewer
+
+> **ONBOARDING Phase 6** (Optional) - Native document browser for your org.
+
+A self-contained viewer for your knowledge base. Double-click to open - no configuration needed.
+
+**Features:**
+- TUI-style document browser
+- Full-text search
+- Graph visualization
+- Live reload on file changes
+- MCP integration for Claude Code
+
+### Quick Start
+
+**Local use:** Just run `setup/tools/org-viewer.exe` - it opens automatically.
+
+**Remote access:** Install [Tailscale](https://tailscale.com/download) to access from other devices.
+
+Full documentation: **[tools/README.md](tools/README.md)**
+
+---
+
 ## Obsidian
 
 > **ONBOARDING Phase 6** (Optional) - Add visual dashboards and graph views.
@@ -199,6 +223,9 @@ setup/
 │   └── org/
 │       ├── SKILL.md       # Skill definition
 │       └── prompt.md      # Full skill prompt
+├── tools/
+│   ├── README.md          # Org Viewer documentation
+│   └── org-viewer.exe     # Native document viewer (Windows)
 └── obsidian/
     └── README.md          # Obsidian integration guide
 ```
