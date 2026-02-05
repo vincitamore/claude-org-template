@@ -31,9 +31,10 @@ The key insight: Claude doesn't persist memory between sessions, but a well-stru
 
 When arriving at this workspace, orient with these documents in order:
 
-1. **This file** (`CLAUDE.md`) - current state, active tasks, structure
-2. **[context/voice.md](context/voice.md)** - collaboration style, intellectual coordinates, working relationship
-3. **[context/projects.md](context/projects.md)** - project relationships, conceptual threads, cross-connections
+1. **This file** (`CLAUDE.md`) - structure, schemas, conventions, orchestration
+2. **[context/current-state.md](context/current-state.md)** - dynamic state: tasks, projects, inbox, recent changes
+3. **[context/voice.md](context/voice.md)** - collaboration style, intellectual coordinates, working relationship
+4. **[context/projects.md](context/projects.md)** - project relationships, conceptual threads, cross-connections
 
 These together form the attractor basin. The more thoughtfully you shape these documents, the faster Claude can find its footing in any session.
 
@@ -102,6 +103,7 @@ These principles are load-bearing - they shape how the system works and how Clau
 claude-org/
 ├── CLAUDE.md          # This file - living index and instructions
 ├── context/           # Orientation documents for collaboration continuity
+│   ├── current-state.md  # Dynamic state (tasks, projects, inbox, changes)
 │   ├── voice.md       # Intellectual coordinates & collaboration style
 │   └── projects.md    # Project relationships & conceptual threads
 ├── inbox/             # Quick captures, unsorted items
@@ -495,20 +497,13 @@ See [setup/README.md](setup/README.md) for full implementations and installation
 
 ## Current State
 
-### Active Tasks
+**Dynamic state lives in [context/current-state.md](context/current-state.md)** - tasks, projects, inbox counts, recently completed. Update that file (not this one) when task/project state changes.
 
-_None yet - create your first task in `tasks/`_
-
-### Active Projects
-
-_None yet - create your first project in `projects/`_
-
-### Knowledge Base
-
-_Empty - knowledge will accumulate as you work_
+Quick reference: Check `tasks/*.md` for live task state.
 
 ### Context Documents
 
+- [context/current-state.md](context/current-state.md) - Dynamic state (tasks, projects, inbox, recent changes)
 - [context/voice.md](context/voice.md) - Collaboration style, intellectual coordinates, working relationship
 - [context/projects.md](context/projects.md) - Project topology, conceptual threads, cross-connections
 

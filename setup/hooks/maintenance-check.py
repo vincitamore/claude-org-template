@@ -14,13 +14,15 @@ Claude either performs maintenance or explicitly states
 FEATURES:
 - Skips trivial sessions (< 15 lines) to avoid unnecessary nagging
 - Skips if org system doesn't exist (graceful degradation)
+- Skips if "No maintenance needed" already stated
 - Handles stop_hook_active flag to prevent infinite loops
+- Detects KB files at root that may need organization
 - Uses proper JSON protocol for Claude Code hooks
 
 INSTALLATION:
 1. Copy this file to your hooks folder:
    - macOS/Linux: ~/.claude/hooks/maintenance-check.py
-   - Windows: %USERPROFILE%\.claude\hooks\maintenance-check.py
+   - Windows: %USERPROFILE%\\.claude\\hooks\\maintenance-check.py
 
 2. Add to Claude Code settings.json:
 
@@ -49,6 +51,7 @@ WHY THIS MATTERS:
 import json
 import sys
 import os
+import re
 
 # Customize this path to your org system location
 ORG_DIR = os.path.expanduser("~/Documents/claude-org")
@@ -57,23 +60,48 @@ ORG_DIR = os.path.expanduser("~/Documents/claude-org")
 # Avoids nagging on quick "hello" or single-command sessions
 TRIVIAL_SESSION_THRESHOLD = 15
 
-MAINTENANCE_CHECKLIST = """MAINTENANCE VIGILANCE CHECK
 
-Before stopping, evaluate this session:
+def get_documented_cross_cutting(org_dir: str) -> set:
+    """Parse knowledge/README.md to find files documented as cross-cutting."""
+    readme_path = os.path.join(org_dir, "knowledge", "README.md")
+    if not os.path.exists(readme_path):
+        return set()
 
-| Signal | Action if Present |
-|--------|-------------------|
-| New reusable insight/pattern | → knowledge/<topic>.md |
-| Project status changed | → Update CLAUDE.md, project-map.md |
-| New task identified | → tasks/<name>.md |
-| Question worth preserving | → queries/<question>.md |
-| Cross-project pattern | → Add instantiation to principle lattice |
-| Something to revisit | → inbox/<item>.md |
+    try:
+        with open(readme_path, 'r', encoding='utf-8') as f:
+            content = f.read()
 
-If ANY apply: perform the maintenance NOW.
-If NONE apply: state "No maintenance needed" and stop.
+        # Find "## Root Level" section and extract backtick-quoted filenames
+        root_match = re.search(r'## Root Level\n(.*?)(?=\n## |\Z)', content, re.DOTALL)
+        if not root_match:
+            return set()
 
-Be aggressive about capture - lost insights are unrecoverable."""
+        # Extract filenames from backticks: `filename.md`
+        filenames = re.findall(r'`([^`]+\.md)`', root_match.group(1))
+        return set(filenames)
+    except Exception:
+        return set()
+
+
+def check_kb_organization(org_dir: str) -> list:
+    """Check for KB files at root that might need organization.
+
+    Excludes files documented as intentionally cross-cutting in README.md.
+    """
+    knowledge_dir = os.path.join(org_dir, "knowledge")
+    if not os.path.exists(knowledge_dir):
+        return []
+
+    # Get files explicitly documented as cross-cutting
+    documented_cross_cutting = get_documented_cross_cutting(org_dir)
+
+    root_files = []
+    for entry in os.scandir(knowledge_dir):
+        if entry.is_file() and entry.name.endswith('.md'):
+            if entry.name not in documented_cross_cutting and entry.name != 'README.md':
+                root_files.append(entry.name.replace('.md', ''))
+
+    return root_files
 
 
 def main():
@@ -104,14 +132,48 @@ def main():
     if line_count < TRIVIAL_SESSION_THRESHOLD:
         sys.exit(0)
 
+    # Check if Claude already stated "No maintenance needed" recently
+    # Look at the last ~2000 chars of transcript for this phrase
+    recent_content = content[-2000:] if len(content) > 2000 else content
+    if "No maintenance needed" in recent_content:
+        sys.exit(0)
+
     # Check if org system exists - graceful degradation
     if not os.path.exists(ORG_DIR):
         sys.exit(0)
 
+    # Check KB organization status
+    root_kb_files = check_kb_organization(ORG_DIR)
+    kb_warning = ""
+    if root_kb_files:
+        kb_warning = f"""
+
+**KB Organization Alert:** {len(root_kb_files)} file(s) at knowledge root:
+- {', '.join(root_kb_files[:5])}{'...' if len(root_kb_files) > 5 else ''}
+\u2192 Move to appropriate subfolder, OR
+\u2192 If truly cross-cutting, document in knowledge/README.md under "## Root Level\""""
+
     # Block and prompt for maintenance evaluation
     output = {
         "decision": "block",
-        "reason": MAINTENANCE_CHECKLIST
+        "reason": f"""MAINTENANCE VIGILANCE CHECK
+
+Before stopping, evaluate this session:
+
+| Signal | Action if Present |
+|--------|-------------------|
+| New reusable insight/pattern | \u2192 knowledge/<subfolder>/<topic>.md |
+| Project status changed | \u2192 Update context/current-state.md |
+| New task identified | \u2192 tasks/<name>.md |
+| Question worth preserving | \u2192 queries/<question>.md |
+| Cross-project pattern | \u2192 Add instantiation to principle lattice |
+| Something to revisit | \u2192 inbox/<item>.md |
+| KB file needs organization | \u2192 Move to appropriate subfolder |
+
+If ANY apply: perform the maintenance NOW.
+If NONE apply: state "No maintenance needed" and stop.
+
+Be aggressive about capture - lost insights are unrecoverable.{kb_warning}"""
     }
 
     print(json.dumps(output))

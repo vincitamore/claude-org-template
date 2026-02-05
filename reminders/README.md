@@ -1,6 +1,6 @@
 ---
 type: index
-created: {{date}}
+created: 2026-02-05
 ---
 # Reminders
 

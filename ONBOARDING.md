@@ -88,6 +88,8 @@ Next conversation (or continuing):
 
 **By the end**, you'll have a first draft of [context/projects.md](context/projects.md).
 
+**Also:** Claude will initialize [context/current-state.md](context/current-state.md) - this is the dynamic state file that tracks your tasks, projects, and inbox counts. It gets updated automatically at the end of sessions (via the stop hook). CLAUDE.md stays as static reference; current-state.md holds the moving parts.
+
 ---
 
 ## Phase 3: Install the Stop Hook
@@ -192,11 +194,11 @@ A native document browser for your org. Double-click to open.
 - Live reload on file changes
 - MCP integration for Claude Code
 
-**Local use:** Just run `setup/tools/org-viewer.exe` - it opens automatically.
+**Local use:** Just run `org-viewer.exe` from the org root - it opens automatically.
 
 **Remote access (optional):** Install [Tailscale](https://tailscale.com/download) to browse from your phone or other devices. Access at `http://your-machine-name:3847` and install as a PWA.
 
-**Full guide:** [setup/tools/README.md](setup/tools/README.md)
+**Full guide:** [ORG-VIEWER.md](ORG-VIEWER.md)
 
 ---
 
@@ -274,7 +276,7 @@ Once you have 3+ principles, review periodically:
 
 ## What Makes This Work
 
-**Continuity Through Architecture** - Each session, Claude reads CLAUDE.md, voice.md, and projects.md. That's enough to resume collaboration at depth.
+**Continuity Through Architecture** - Each session, Claude reads CLAUDE.md, current-state.md, voice.md, and projects.md. That's enough to resume collaboration at depth.
 
 **Collaborative Discovery** - The documents aren't self-report. They emerged from working together, making them more accurate.
 
@@ -307,7 +309,7 @@ When they're wrong. If a session reveals something the documents don't capture, 
 | [CLAUDE.md](CLAUDE.md) | Full system documentation |
 | [QUICKSTART.md](QUICKSTART.md) | 5-minute fast track |
 | [setup/README.md](setup/README.md) | Hooks, agents, skills, tools |
-| [setup/tools/README.md](setup/tools/README.md) | Org Viewer documentation |
+| [ORG-VIEWER.md](ORG-VIEWER.md) | Org Viewer documentation |
 | [setup/obsidian/README.md](setup/obsidian/README.md) | Obsidian integration |
 | [samples/](samples/) | Example completed documents |
 | [templates/](templates/) | File templates |

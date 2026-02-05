@@ -77,12 +77,6 @@ Use the full path appropriate for your OS.
 
 **5. Verify:** End a session with `/stop`. You should see the maintenance checklist.
 
-### Dependencies
-
-```bash
-pip install PyYAML  # Only needed for session-start.py
-```
-
 ---
 
 ## Agents
@@ -173,7 +167,7 @@ A self-contained viewer for your knowledge base. Double-click to open - no confi
 
 ### Quick Start
 
-**Local use:** Just run `setup/tools/org-viewer.exe` - it opens automatically.
+**Local use:** Just run `org-viewer.exe` from the org root - it opens automatically.
 
 **Remote access:** Install [Tailscale](https://tailscale.com/download) to access from other devices.
 
@@ -223,9 +217,6 @@ setup/
 │   └── org/
 │       ├── SKILL.md       # Skill definition
 │       └── prompt.md      # Full skill prompt
-├── tools/
-│   ├── README.md          # Org Viewer documentation
-│   └── org-viewer.exe     # Native document viewer (Windows)
 └── obsidian/
     └── README.md          # Obsidian integration guide
 ```
