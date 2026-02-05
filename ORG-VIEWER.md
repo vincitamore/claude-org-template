@@ -12,7 +12,21 @@ A native viewer for your claude-org documents. Double-click to open - no configu
 - **Edit documents** directly with nano-style editor
 - **Search** full-text across all your org files
 - **Graph view** showing document connections
+- **Reminders view** with status filtering (key `5`)
 - **Live reload** - changes appear instantly
+
+### Keyboard Navigation
+
+| Key | View |
+|-----|------|
+| `1` | Dashboard |
+| `2` | Tasks |
+| `3` | Knowledge |
+| `4` | Inbox |
+| `5` | Reminders |
+| `6` | Graph |
+| `t` | Cycle theme |
+| `e` | Edit document |
 
 ### Graph View
 
@@ -125,6 +139,7 @@ Add to `~/.claude/settings.json`:
 
 ### Available Tools
 
+**Viewer Tools:**
 | Tool | Purpose |
 |------|---------|
 | `org_viewer_status` | Check if viewer is running |
@@ -134,6 +149,16 @@ Add to `~/.claude/settings.json`:
 | `org_viewer_search` | Search documents |
 | `org_viewer_publish` | Generate tag index pages |
 | `org_viewer_tag_stats` | Get tag statistics |
+
+**Reminder Tools:**
+| Tool | Purpose |
+|------|---------|
+| `org_reminder_list` | List reminders by status |
+| `org_reminder_create` | Create with due datetime |
+| `org_reminder_update` | Update time, repeat, tags |
+| `org_reminder_complete` | Mark done, move to completed/ |
+| `org_reminder_dismiss` | Skip/cancel, move to completed/ |
+| `org_reminder_snooze` | Delay until later time |
 
 ---
 

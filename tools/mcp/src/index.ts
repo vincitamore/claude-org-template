@@ -18,6 +18,9 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { execSync } from 'child_process';
 import * as os from 'os';
+import { existsSync, readFileSync, writeFileSync, readdirSync, mkdirSync, renameSync } from 'fs';
+import { join, basename, relative } from 'path';
+import matter from 'gray-matter';
 
 // ============================================================================
 // Configuration
@@ -25,6 +28,13 @@ import * as os from 'os';
 
 const DEFAULT_PORT = 3847;
 const SERVER_URL = process.env.ORG_VIEWER_URL || `http://localhost:${DEFAULT_PORT}`;
+
+// Org system paths - get ORG_ROOT from environment or use cwd
+const ORG_ROOT = process.env.ORG_ROOT || process.cwd();
+const ORG_PATHS = {
+  reminders: join(ORG_ROOT, 'reminders'),
+  remindersCompleted: join(ORG_ROOT, 'reminders', 'completed'),
+};
 
 // ============================================================================
 // Helper Functions
@@ -55,6 +65,94 @@ function getTailscaleHostname(): string | null {
 
 function getMachineHostname(): string {
   return os.hostname();
+}
+
+// ============================================================================
+// Org System Helpers
+// ============================================================================
+
+interface Frontmatter {
+  type?: string;
+  status?: string;
+  created?: string;
+  completed?: string | null;
+  'remind-at'?: string;
+  repeat?: string | null;
+  'repeat-until'?: string | null;
+  'snoozed-until'?: string | null;
+  tags?: string[];
+  title?: string;
+  [key: string]: unknown;
+}
+
+interface OrgDocument {
+  path: string;
+  relativePath: string;
+  frontmatter: Frontmatter;
+  content: string;
+  title: string;
+}
+
+type ReminderStatus = 'pending' | 'snoozed' | 'ongoing' | 'completed' | 'dismissed';
+type RepeatType = 'daily' | 'weekly' | 'monthly' | 'custom' | null;
+
+function today(): string {
+  return new Date().toISOString().split('T')[0];
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function extractTitle(filename: string, content: string): string {
+  const h1Match = content.match(/^#\s+(.+)$/m);
+  if (h1Match) return h1Match[1];
+  return basename(filename, '.md')
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function parseOrgDocument(filePath: string): OrgDocument {
+  const content = readFileSync(filePath, 'utf-8');
+  const { data, content: body } = matter(content);
+  const relativePath = relative(ORG_ROOT, filePath).replace(/\\/g, '/');
+
+  return {
+    path: filePath,
+    relativePath,
+    frontmatter: data as Frontmatter,
+    content: body,
+    title: (data as Frontmatter).title || extractTitle(filePath, body),
+  };
+}
+
+function writeOrgDocument(filePath: string, frontmatter: Frontmatter, content: string): void {
+  const output = matter.stringify(content, frontmatter);
+  writeFileSync(filePath, output, 'utf-8');
+}
+
+function scanOrgDirectory(dir: string): OrgDocument[] {
+  if (!existsSync(dir)) return [];
+
+  const docs: OrgDocument[] = [];
+  const entries = readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry.name);
+
+    if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'README.md') {
+      try {
+        docs.push(parseOrgDocument(fullPath));
+      } catch {
+        // Skip files that fail to parse
+      }
+    }
+  }
+
+  return docs;
 }
 
 // ============================================================================
@@ -148,6 +246,82 @@ const tools: Tool[] = [
       type: 'object',
       properties: {},
       required: [],
+    },
+  },
+
+  // Reminder tools
+  {
+    name: 'org_reminder_list',
+    description: 'List reminders, optionally filtered by status. Returns due times and repeat config.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        status: { type: 'string', enum: ['pending', 'snoozed', 'ongoing', 'completed', 'dismissed'], description: 'Filter by status' },
+      },
+      required: [],
+    },
+  },
+  {
+    name: 'org_reminder_create',
+    description: 'Create a new reminder with due datetime. Use ISO format with time (e.g., 2026-02-06T09:00).',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        title: { type: 'string', description: 'Reminder title' },
+        remindAt: { type: 'string', description: 'Due datetime in ISO format (e.g., 2026-02-06T09:00)' },
+        description: { type: 'string', description: 'Optional description' },
+        repeat: { type: 'string', enum: ['daily', 'weekly', 'monthly', 'custom'], description: 'Repeat schedule (optional)' },
+        repeatUntil: { type: 'string', description: 'End date for repeat (ISO date, optional)' },
+        tags: { type: 'array', items: { type: 'string' }, description: 'Tags' },
+      },
+      required: ['title', 'remindAt'],
+    },
+  },
+  {
+    name: 'org_reminder_update',
+    description: 'Update reminder due time, repeat config, or tags',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        path: { type: 'string', description: 'Reminder path (relative)' },
+        remindAt: { type: 'string', description: 'New due datetime (optional)' },
+        repeat: { type: 'string', enum: ['daily', 'weekly', 'monthly', 'custom'], description: 'New repeat schedule (optional, null to remove)' },
+        repeatUntil: { type: 'string', description: 'New repeat end date (optional)' },
+        tags: { type: 'array', items: { type: 'string' }, description: 'Replace all tags' },
+        addTags: { type: 'array', items: { type: 'string' }, description: 'Add these tags' },
+        removeTags: { type: 'array', items: { type: 'string' }, description: 'Remove these tags' },
+      },
+      required: ['path'],
+    },
+  },
+  {
+    name: 'org_reminder_complete',
+    description: 'Mark reminder as completed and move to reminders/completed/',
+    inputSchema: {
+      type: 'object',
+      properties: { path: { type: 'string', description: 'Reminder path (relative)' } },
+      required: ['path'],
+    },
+  },
+  {
+    name: 'org_reminder_dismiss',
+    description: 'Dismiss reminder (skip/cancel) and move to reminders/completed/',
+    inputSchema: {
+      type: 'object',
+      properties: { path: { type: 'string', description: 'Reminder path (relative)' } },
+      required: ['path'],
+    },
+  },
+  {
+    name: 'org_reminder_snooze',
+    description: 'Snooze reminder to a later time. Sets status=snoozed and snoozed-until datetime.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        path: { type: 'string', description: 'Reminder path (relative)' },
+        until: { type: 'string', description: 'Snooze until datetime (ISO format, e.g., 2026-02-06T14:00)' },
+      },
+      required: ['path', 'until'],
     },
   },
 ];
@@ -350,6 +524,234 @@ async function handleOrgViewerTagStats(): Promise<string> {
 }
 
 // ============================================================================
+// Reminder Handlers
+// ============================================================================
+
+async function handleOrgReminderList(args: { status?: ReminderStatus }): Promise<string> {
+  let reminders: OrgDocument[] = [];
+
+  if (args.status === 'completed' || args.status === 'dismissed') {
+    reminders = scanOrgDirectory(ORG_PATHS.remindersCompleted);
+    if (args.status) {
+      reminders = reminders.filter((r) => r.frontmatter.status === args.status);
+    }
+  } else {
+    reminders = scanOrgDirectory(ORG_PATHS.reminders);
+    if (args.status) {
+      reminders = reminders.filter((r) => r.frontmatter.status === args.status);
+    }
+  }
+
+  reminders = reminders.filter((r) => r.frontmatter.type === 'reminder');
+
+  // Sort by remind-at
+  reminders.sort((a, b) => {
+    const aTime = String(a.frontmatter['remind-at'] || '');
+    const bTime = String(b.frontmatter['remind-at'] || '');
+    return aTime.localeCompare(bTime);
+  });
+
+  return JSON.stringify({
+    count: reminders.length,
+    reminders: reminders.map((r) => ({
+      path: r.relativePath,
+      title: r.title,
+      status: r.frontmatter.status,
+      remindAt: r.frontmatter['remind-at'],
+      repeat: r.frontmatter.repeat,
+      snoozedUntil: r.frontmatter['snoozed-until'],
+      tags: r.frontmatter.tags || [],
+    })),
+  }, null, 2);
+}
+
+async function handleOrgReminderCreate(args: {
+  title: string;
+  remindAt: string;
+  description?: string;
+  repeat?: RepeatType;
+  repeatUntil?: string;
+  tags?: string[];
+}): Promise<string> {
+  const slug = slugify(args.title);
+  const filename = `${slug}.md`;
+  const filePath = join(ORG_PATHS.reminders, filename);
+
+  if (existsSync(filePath)) {
+    throw new Error(`Reminder already exists: ${filename}`);
+  }
+
+  if (!existsSync(ORG_PATHS.reminders)) {
+    mkdirSync(ORG_PATHS.reminders, { recursive: true });
+  }
+
+  const frontmatter: Frontmatter = {
+    type: 'reminder',
+    status: args.repeat ? 'ongoing' : 'pending',
+    created: today(),
+    'remind-at': args.remindAt,
+    repeat: args.repeat || null,
+    'repeat-until': args.repeatUntil || null,
+    'snoozed-until': null,
+    completed: null,
+    tags: args.tags || [],
+  };
+
+  const content = `# ${args.title}\n\n${args.description || ''}\n`;
+
+  writeOrgDocument(filePath, frontmatter, content);
+
+  return JSON.stringify({
+    success: true,
+    path: relative(ORG_ROOT, filePath).replace(/\\/g, '/'),
+    message: `Created reminder: ${args.title}`,
+  }, null, 2);
+}
+
+async function handleOrgReminderUpdate(args: {
+  path: string;
+  remindAt?: string;
+  repeat?: RepeatType;
+  repeatUntil?: string;
+  tags?: string[];
+  addTags?: string[];
+  removeTags?: string[];
+}): Promise<string> {
+  const filePath = join(ORG_ROOT, args.path);
+
+  if (!existsSync(filePath)) {
+    throw new Error(`Reminder not found: ${args.path}`);
+  }
+
+  const doc = parseOrgDocument(filePath);
+
+  if (args.remindAt) {
+    doc.frontmatter['remind-at'] = args.remindAt;
+  }
+
+  if (args.repeat !== undefined) {
+    doc.frontmatter.repeat = args.repeat;
+    // Update status if repeat changes
+    if (args.repeat && doc.frontmatter.status === 'pending') {
+      doc.frontmatter.status = 'ongoing';
+    }
+  }
+
+  if (args.repeatUntil !== undefined) {
+    doc.frontmatter['repeat-until'] = args.repeatUntil;
+  }
+
+  if (args.tags) {
+    doc.frontmatter.tags = args.tags;
+  }
+
+  if (args.addTags) {
+    const currentTags = doc.frontmatter.tags || [];
+    doc.frontmatter.tags = [...new Set([...currentTags, ...args.addTags])];
+  }
+
+  if (args.removeTags) {
+    doc.frontmatter.tags = (doc.frontmatter.tags || []).filter(
+      (t: string) => !args.removeTags!.includes(t)
+    );
+  }
+
+  writeOrgDocument(filePath, doc.frontmatter, doc.content);
+
+  return JSON.stringify({
+    success: true,
+    path: args.path,
+    message: `Updated reminder: ${doc.title}`,
+    frontmatter: doc.frontmatter,
+  }, null, 2);
+}
+
+async function handleOrgReminderComplete(docPath: string): Promise<string> {
+  const filePath = join(ORG_ROOT, docPath);
+
+  if (!existsSync(filePath)) {
+    throw new Error(`Reminder not found: ${docPath}`);
+  }
+
+  const doc = parseOrgDocument(filePath);
+
+  doc.frontmatter.status = 'completed';
+  doc.frontmatter.completed = today();
+
+  writeOrgDocument(filePath, doc.frontmatter, doc.content);
+
+  const completedPath = join(ORG_PATHS.remindersCompleted, basename(filePath));
+
+  if (!existsSync(ORG_PATHS.remindersCompleted)) {
+    mkdirSync(ORG_PATHS.remindersCompleted, { recursive: true });
+  }
+
+  renameSync(filePath, completedPath);
+
+  return JSON.stringify({
+    success: true,
+    oldPath: docPath,
+    newPath: relative(ORG_ROOT, completedPath).replace(/\\/g, '/'),
+    message: `Completed reminder: ${doc.title}`,
+  }, null, 2);
+}
+
+async function handleOrgReminderDismiss(docPath: string): Promise<string> {
+  const filePath = join(ORG_ROOT, docPath);
+
+  if (!existsSync(filePath)) {
+    throw new Error(`Reminder not found: ${docPath}`);
+  }
+
+  const doc = parseOrgDocument(filePath);
+
+  doc.frontmatter.status = 'dismissed';
+  doc.frontmatter.completed = today();
+
+  writeOrgDocument(filePath, doc.frontmatter, doc.content);
+
+  const completedPath = join(ORG_PATHS.remindersCompleted, basename(filePath));
+
+  if (!existsSync(ORG_PATHS.remindersCompleted)) {
+    mkdirSync(ORG_PATHS.remindersCompleted, { recursive: true });
+  }
+
+  renameSync(filePath, completedPath);
+
+  return JSON.stringify({
+    success: true,
+    oldPath: docPath,
+    newPath: relative(ORG_ROOT, completedPath).replace(/\\/g, '/'),
+    message: `Dismissed reminder: ${doc.title}`,
+  }, null, 2);
+}
+
+async function handleOrgReminderSnooze(args: {
+  path: string;
+  until: string;
+}): Promise<string> {
+  const filePath = join(ORG_ROOT, args.path);
+
+  if (!existsSync(filePath)) {
+    throw new Error(`Reminder not found: ${args.path}`);
+  }
+
+  const doc = parseOrgDocument(filePath);
+
+  doc.frontmatter.status = 'snoozed';
+  doc.frontmatter['snoozed-until'] = args.until;
+
+  writeOrgDocument(filePath, doc.frontmatter, doc.content);
+
+  return JSON.stringify({
+    success: true,
+    path: args.path,
+    message: `Snoozed reminder until ${args.until}`,
+    snoozedUntil: args.until,
+  }, null, 2);
+}
+
+// ============================================================================
 // MCP Server Setup
 // ============================================================================
 
@@ -408,6 +810,46 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case 'org_viewer_tag_stats':
         result = await handleOrgViewerTagStats();
+        break;
+
+      // Reminder tools
+      case 'org_reminder_list':
+        result = await handleOrgReminderList(args as { status?: ReminderStatus });
+        break;
+
+      case 'org_reminder_create':
+        result = await handleOrgReminderCreate(args as {
+          title: string;
+          remindAt: string;
+          description?: string;
+          repeat?: RepeatType;
+          repeatUntil?: string;
+          tags?: string[];
+        });
+        break;
+
+      case 'org_reminder_update':
+        result = await handleOrgReminderUpdate(args as {
+          path: string;
+          remindAt?: string;
+          repeat?: RepeatType;
+          repeatUntil?: string;
+          tags?: string[];
+          addTags?: string[];
+          removeTags?: string[];
+        });
+        break;
+
+      case 'org_reminder_complete':
+        result = await handleOrgReminderComplete((args as { path: string }).path);
+        break;
+
+      case 'org_reminder_dismiss':
+        result = await handleOrgReminderDismiss((args as { path: string }).path);
+        break;
+
+      case 'org_reminder_snooze':
+        result = await handleOrgReminderSnooze(args as { path: string; until: string });
         break;
 
       default:

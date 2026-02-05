@@ -111,6 +111,8 @@ claude-org/
 ├── tasks/             # Task files (see tasks/README.md for full model)
 │   ├── completed/     # Completed tasks
 │   └── paused/        # Paused tasks (preserves context for later)
+├── reminders/         # Time-based reminders (see reminders/README.md)
+│   └── completed/     # Completed and dismissed reminders
 ├── projects/          # Larger multi-step efforts with their own structure
 ├── knowledge/         # Distilled insights, organized by topic
 ├── queries/           # Questions asked and answers received (optional)
@@ -258,6 +260,30 @@ created: 2026-01-27
 source: email | capture | mobile
 ---
 ```
+
+**Reminders** (`reminders/**/*.md`):
+```yaml
+---
+type: reminder
+status: pending | snoozed | ongoing | completed | dismissed
+created: 2026-02-05
+remind-at: 2026-02-06T09:00    # ISO datetime with time
+repeat: null | daily | weekly | monthly | custom
+repeat-until: null              # ISO date for repeat end
+snoozed-until: null             # ISO datetime for snooze
+completed: null
+tags: []
+---
+```
+
+**Reminder Status Semantics:**
+| Status | Meaning | Folder |
+|--------|---------|--------|
+| `pending` | Due in future, not yet triggered | `reminders/` |
+| `snoozed` | Temporarily delayed | `reminders/` |
+| `ongoing` | Recurring reminder, active | `reminders/` |
+| `completed` | Marked done | `reminders/completed/` |
+| `dismissed` | Skipped/cancelled | `reminders/completed/` |
 
 ### Tag Taxonomy
 
@@ -502,4 +528,4 @@ This system is a starting point. Make it yours:
 The structure is load-bearing; the content is yours to shape.
 
 ---
-*Last updated: 2026-01-27*
+*Last updated: 2026-02-05*

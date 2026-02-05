@@ -68,12 +68,75 @@ def get_inbox_count(inbox_dir: Path) -> dict:
             counts['other'] += 1
     return counts
 
+def get_due_reminders(reminders_dir: Path) -> dict:
+    """Get due and overdue reminders."""
+    result = {'overdue': [], 'due_today': [], 'upcoming': []}
+    if not reminders_dir.exists():
+        return result
+
+    now = datetime.now()
+    today = now.date()
+
+    for f in reminders_dir.glob('*.md'):
+        if f.name.startswith('.') or f.name == 'README.md':
+            continue
+        content = f.read_text(encoding='utf-8')
+        fm = parse_frontmatter(content)
+
+        # Only check pending, snoozed, ongoing reminders
+        status = fm.get('status', '')
+        if status not in ['pending', 'snoozed', 'ongoing']:
+            continue
+
+        remind_at = fm.get('remind-at')
+        if not remind_at:
+            continue
+
+        # Parse the remind-at datetime
+        try:
+            if isinstance(remind_at, str):
+                if 'T' in remind_at:
+                    due_dt = datetime.fromisoformat(remind_at.replace('Z', '+00:00'))
+                else:
+                    due_dt = datetime.fromisoformat(remind_at)
+            elif isinstance(remind_at, datetime):
+                due_dt = remind_at
+            else:
+                continue
+        except:
+            continue
+
+        # Get title from first heading or filename
+        lines = content.split('\n')
+        title = f.stem
+        for line in lines:
+            if line.startswith('# '):
+                title = line[2:].strip()
+                break
+
+        reminder_info = {
+            'name': f.stem,
+            'title': title,
+            'remind_at': due_dt.strftime('%H:%M') if due_dt.date() == today else due_dt.strftime('%Y-%m-%d %H:%M'),
+            'path': f'reminders/{f.name}'
+        }
+
+        if due_dt < now:
+            result['overdue'].append(reminder_info)
+        elif due_dt.date() == today:
+            result['due_today'].append(reminder_info)
+        elif (due_dt.date() - today).days <= 1:
+            result['upcoming'].append(reminder_info)
+
+    return result
+
 def main():
     workspace = Path(os.environ.get('CLAUDE_WORKSPACE', '.')).resolve()
 
     # Gather state
     tasks = get_active_tasks(workspace / 'tasks')
     inbox = get_inbox_count(workspace / 'inbox')
+    reminders = get_due_reminders(workspace / 'reminders')
 
     # Build orientation output
     output = []
@@ -99,6 +162,23 @@ def main():
         if inbox['other'] > 0:
             output.append(f"**Other:** {inbox['other']}")
         output.append("")
+
+    # Due reminders - alert section
+    total_due = len(reminders['overdue']) + len(reminders['due_today'])
+    if total_due > 0:
+        output.append(f"### ACTION REQUIRED: {total_due} Due Reminder(s)\n")
+
+        if reminders['overdue']:
+            output.append("**Overdue:**")
+            for r in reminders['overdue']:
+                output.append(f"- [{r['remind_at']}] **{r['title']}**")
+
+        if reminders['due_today']:
+            output.append("\n**Due Today:**")
+            for r in reminders['due_today']:
+                output.append(f"- [{r['remind_at']}] **{r['title']}**")
+
+        output.append("\nUse `org_reminder_list` to see all reminders.\n")
 
     # Collaboration reminder from voice.md
     voice_file = workspace / 'context' / 'voice.md'
