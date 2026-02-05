@@ -10,6 +10,7 @@ A native viewer for your claude-org documents. Double-click to open - no configu
 
 - **Browse documents** with TUI-style interface (same aesthetic as terminal)
 - **Edit documents** directly with nano-style editor
+- **Code editor** with syntax highlighting for 12+ languages (key `7`)
 - **Search** full-text across all your org files
 - **Graph view** showing document connections
 - **Reminders view** with status filtering (key `5`)
@@ -25,8 +26,20 @@ A native viewer for your claude-org documents. Double-click to open - no configu
 | `4` | Inbox |
 | `5` | Reminders |
 | `6` | Graph |
+| `7` | Code |
 | `t` | Cycle theme |
 | `e` | Edit document |
+
+### Code Editor
+
+Browse and edit project source code with syntax highlighting:
+
+![Code Editor](screenshots/org-viewer-code.png)
+
+- **12+ language packs**: TypeScript, Rust, Python, JSON, CSS, HTML, and more
+- **Project file browser** with type badges and file sizes
+- **Theme-aware syntax highlighting** — matches your active terminal theme
+- **Inline editing**: `e` to edit, `Ctrl+S` to save, `Ctrl+B` to toggle sidebar
 
 ### Graph View
 
@@ -164,7 +177,7 @@ Add to `~/.claude/settings.json`:
 
 ## Architecture
 
-- **Single binary** (~8MB) - no dependencies, no installation
+- **Single binary** (~9MB) - no dependencies, no installation
 - **Embedded UI** - opens in its own window
 - **Rust/Tauri** - native performance
 - **React frontend** - TUI-style components

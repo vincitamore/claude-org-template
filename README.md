@@ -89,7 +89,7 @@ The structure is load-bearing; the content is yours to shape:
 
 A native document browser for your org. Double-click `org-viewer.exe` to open.
 
-Features: TUI-style interface, **document editing**, full-text search, graph view, live reload. For remote access from other devices, add [Tailscale](https://tailscale.com/download).
+Features: TUI-style interface, **document editing**, **code editor** with syntax highlighting, full-text search, graph view, live reload. For remote access from other devices, add [Tailscale](https://tailscale.com/download).
 
 See [ORG-VIEWER.md](ORG-VIEWER.md) | [GitHub](https://github.com/vincitamore/org-viewer)
 
