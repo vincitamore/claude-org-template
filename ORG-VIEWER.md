@@ -9,6 +9,7 @@ A native viewer for your claude-org documents. Double-click to open - no configu
 ## What It Does
 
 - **Browse documents** with TUI-style interface (same aesthetic as terminal)
+- **Edit documents** directly with nano-style editor
 - **Search** full-text across all your org files
 - **Graph view** showing document connections
 - **Live reload** - changes appear instantly
@@ -24,6 +25,17 @@ Visualize your knowledge graph - see how documents connect through wikilinks and
 Auto-generated tag pages group related documents by topic:
 
 ![Tag Page](screenshots/org-viewer-tag-page-example.png)
+
+### Document Editing
+
+Edit documents directly - press `e` or click the Edit button:
+
+![Editor](screenshots/org-viewer-editor.png)
+
+- **Ctrl+S** to save, **Ctrl+X** or **Escape** to exit
+- **Tab** to navigate between fields
+- Touch-friendly buttons for mobile
+- Changes write directly to filesystem
 
 ### Themes
 

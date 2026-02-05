@@ -87,11 +87,11 @@ The structure is load-bearing; the content is yours to shape:
 
 ## Org Viewer
 
-A native document browser for your org. Double-click `setup/tools/org-viewer.exe` to open.
+A native document browser for your org. Double-click `org-viewer.exe` to open.
 
-Features: TUI-style interface, full-text search, graph view, live reload. For remote access from other devices, add [Tailscale](https://tailscale.com/download).
+Features: TUI-style interface, **document editing**, full-text search, graph view, live reload. For remote access from other devices, add [Tailscale](https://tailscale.com/download).
 
-See [setup/tools/README.md](setup/tools/README.md) | [GitHub](https://github.com/vincitamore/org-viewer)
+See [ORG-VIEWER.md](ORG-VIEWER.md) | [GitHub](https://github.com/vincitamore/org-viewer)
 
 ## Related Documentation
 
