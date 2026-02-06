@@ -201,7 +201,7 @@ Add to `~/.claude/settings.json`:
 
 ## Architecture
 
-- **Single binary** (~16MB) - no dependencies, no installation
+- **Single binary** (~17MB) - no dependencies, no installation
 - **Embedded UI** - opens in its own window
 - **Rust/Tauri** - native performance
 - **React frontend** - TUI-style components
@@ -227,7 +227,7 @@ taskkill /F /PID <pid>
 4. Check the log file (`%TEMP%\org-viewer.log`) for TLS errors
 5. Regenerate certs if expired: `tailscale cert your-machine.your-tailnet.ts.net`
 6. Ping your machine from the remote device
-7. Check firewall isn't blocking port 3847
+7. Check firewall isn't blocking ports 3847 (HTTP) and 3848 (HTTPS)
 
 ### Documents Not Showing
 - Verify markdown files have valid YAML frontmatter
