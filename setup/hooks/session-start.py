@@ -128,22 +128,35 @@ def scan_tasks(org_dir: str) -> dict:
 
 
 def scan_inbox(org_dir: str) -> dict:
-    """Scan inbox folder and all subfolders for pending items."""
+    """Scan inbox folder by subfolder location for pending items."""
     inbox_dir = os.path.join(org_dir, "inbox")
     if not os.path.exists(inbox_dir):
-        return {'email': 0, 'capture': 0, 'ticket': 0, 'other': 0}
+        return {}
 
-    counts = {'email': 0, 'capture': 0, 'ticket': 0, 'other': 0}
+    # Map folder names to display categories
+    folder_map = {
+        'emails': 'email',
+        'tickets': 'ticket',
+        'ideas': 'idea',
+        'decisions': 'decision',
+        'investigations': 'investigation',
+        'captures': 'capture',
+    }
 
-    # Scan root and all subfolders recursively
-    for filepath in glob_module.glob(os.path.join(inbox_dir, "**", "*.md"), recursive=True):
-        if os.path.basename(filepath) == 'README.md':
-            continue
-        meta = parse_frontmatter(filepath)
-        source = meta.get('source', 'other')
-        if source in counts:
-            counts[source] += 1
-        else:
+    counts = {v: 0 for v in folder_map.values()}
+    counts['other'] = 0
+
+    # Scan each known subfolder
+    for folder_name, category in folder_map.items():
+        folder_path = os.path.join(inbox_dir, folder_name)
+        if os.path.exists(folder_path):
+            for filepath in glob_module.glob(os.path.join(folder_path, "*.md")):
+                if os.path.basename(filepath) != 'README.md':
+                    counts[category] += 1
+
+    # Scan root inbox for any stray files
+    for filepath in glob_module.glob(os.path.join(inbox_dir, "*.md")):
+        if os.path.basename(filepath) != 'README.md':
             counts['other'] += 1
 
     return counts
@@ -340,19 +353,24 @@ def main():
             print(f"| *(root)* | {len(kb_info['root_files'])} |")
         print('')
 
-    # Inbox summary (with subfolder scanning)
+    # Inbox summary (by folder)
     inbox_counts = scan_inbox(org_dir)
     total_inbox = sum(inbox_counts.values())
     if total_inbox > 0:
-        print('### Inbox Items Pending Sort')
-        if inbox_counts['email'] > 0:
-            print(f"**Pending Emails:** {inbox_counts['email']}")
-        if inbox_counts['capture'] > 0:
-            print(f"**Pending Captures:** {inbox_counts['capture']}")
-        if inbox_counts['ticket'] > 0:
-            print(f"**Pending Tickets:** {inbox_counts['ticket']}")
-        if inbox_counts['other'] > 0:
-            print(f"**Other:** {inbox_counts['other']}")
+        print('### Inbox')
+        display_map = [
+            ('email', 'Pending Emails'),
+            ('ticket', 'Pending Tickets'),
+            ('idea', 'Ideas'),
+            ('decision', 'Decisions'),
+            ('investigation', 'Investigations'),
+            ('capture', 'Captures'),
+            ('other', 'Other'),
+        ]
+        for key, label in display_map:
+            count = inbox_counts.get(key, 0)
+            if count > 0:
+                print(f"**{label}:** {count}")
         print('')
 
     # Due reminders alert

@@ -1,348 +1,301 @@
-# Getting Started: Building Your System With Claude
+# Onboarding Playbook
 
-> This isn't a form to fill out. It's a collaborative process where Claude helps you discover and articulate how you think, what you're working on, and how you want to work together.
-
-## The Core Insight
-
-Claude doesn't remember between sessions. But a well-structured workspace creates an "attractor basin" - terrain shaped by your thinking that any Claude instance can orient to immediately.
-
-The goal isn't to document everything about yourself. It's to create just enough structure that Claude can find its footing quickly and collaborate at depth from the first message.
-
-**This system works because the documentation is collaborative.** Claude helps you see patterns you might not articulate alone. You help Claude understand what matters. The result is more accurate than either could produce independently.
+> **This document is for Claude, not the user.** When you detect that this system hasn't been initialized yet (voice.md still has placeholder text), read this document and run the onboarding sequence below. The user's job is to answer your questions. Your job is to run a great onboarding, synthesize their answers into the right files, and clean up when done.
 
 ---
 
-## Setup Overview
+## Detection
 
-| Phase | What | Time | Required? |
-|-------|------|------|-----------|
-| 1 | [Voice Discovery](#phase-1-voice-discovery) | 30 min | Yes |
-| 2 | [Project Mapping](#phase-2-project-mapping) | 20 min | Yes |
-| 3 | [Stop Hook](#phase-3-install-the-stop-hook) | 5 min | **Essential** |
-| 4 | [Capture Habit](#phase-4-the-capture-habit) | Ongoing | Yes |
-| 5 | [Agents & Skills](#phase-5-agents--skills-optional) | 15 min | Optional |
-| 6 | [Org Viewer](#phase-6-org-viewer-optional) | 10 min | Optional |
-| 7 | [Obsidian](#phase-7-obsidian-integration-optional) | 30 min | Optional |
-| 8 | [Principle Lattice](#phase-8-developing-the-principle-lattice) | Ongoing | Grows naturally |
+You're in onboarding mode if ANY of these are true:
+- `context/voice.md` contains `_..._` placeholder text
+- `context/projects.md` contains `_..._` placeholder text
+- `context/current-state.md` still says `_None yet_`
 
-**Minimum viable setup**: Phases 1-4. Everything else enhances but isn't required.
+If all three documents are populated with real content, onboarding is complete. Skip this document entirely.
 
 ---
 
-## Phase 1: Voice Discovery
+## The Goal
 
-Open Claude Code in this workspace and start with something like:
+By the end of onboarding, the user should have:
+- A populated `context/voice.md` that lets any future Claude instance collaborate at depth immediately
+- A populated `context/projects.md` with their actual projects and emerging principles
+- An initialized `context/current-state.md` reflecting their real state
+- The stop hook installed (the system's immune system)
+- At least one real item in `inbox/` or `tasks/` to establish the capture habit
+- Org Viewer running (optional but encouraged - it's bundled and zero-config)
 
-> "I want to set up this organization system. Let's start by you helping me figure out how I think and work. Ask me questions."
-
-**What Claude will do:**
-- Ask about your projects, interests, and work patterns
-- Probe for recurring themes and concerns
-- Help you notice what you care about across different domains
-- Start drafting `context/voice.md` based on what emerges
-
-**What you should do:**
-- Answer honestly, not aspirationally
-- Mention what frustrates you in collaborations
-- Talk about recent work that felt satisfying or unsatisfying
-- Let tangents happen - they often reveal important patterns
-
-**By the end**, you'll have a first draft of [context/voice.md](context/voice.md).
-
-### Questions Claude Might Ask
-
-**How you think:**
-- What domains do you move between? (technical, creative, philosophical, practical)
-- What patterns recur across your interests?
-- What do you find yourself caring about that others overlook?
-
-**How you collaborate:**
-- What communication style resonates with you?
-- What behaviors from assistants/collaborators frustrate you?
-- What does productive disagreement look like?
-
-**Discovery prompts that help:**
-- "What's a recent project that felt particularly satisfying? What made it work?"
-- "When you look at someone else's code/writing/system, what catches your eye first?"
-- "What problems keep coming back across different areas of your work?"
+**What success feels like to the user:** "This Claude already gets how I think."
 
 ---
 
-## Phase 2: Project Mapping
+## Phase 1: Voice Discovery (20-30 min)
 
-Next conversation (or continuing):
+### Opening
 
-> "Let's map my current projects and find the threads that connect them."
+Start with something like:
 
-**What Claude will do:**
-- List what you're working on
-- Look for shared concerns, technologies, patterns
-- Group projects by conceptual thread
-- Help you see the topology of your work
+> "Let's set up this organization system. The most important part is helping me understand how you think and work, so I can be useful from the first message of every future session. I'm going to ask you some questions - there are no wrong answers. Just be honest, not aspirational."
 
-**What to share:**
-- Active projects and their current state
-- Past projects that still inform your thinking
-- Ideas you haven't started but keep returning to
-- Frustrations with how projects relate (or don't)
+### Questions to Ask
 
-**By the end**, you'll have a first draft of [context/projects.md](context/projects.md).
+Ask these conversationally, not as a survey. Follow threads. Let tangents happen - they often reveal the most important patterns. You don't need to ask all of them; stop when you have enough signal to draft voice.md.
 
-**Also:** Claude will initialize [context/current-state.md](context/current-state.md) - this is the dynamic state file that tracks your tasks, projects, and inbox counts. It gets updated automatically at the end of sessions (via the stop hook). CLAUDE.md stays as static reference; current-state.md holds the moving parts.
+**How they think:**
+
+- "What domains or fields do you move between in your work and interests?"
+  - *The range here matters. Someone might say "I'm a frontend developer" or "I move between embedded systems, theology, and small business operations" or "I do DevOps by day and compose music by night." Both narrow and wide are valid. You're listening for the cross-domain connections they make naturally.*
+
+- "When you're solving a problem, what's your instinct? Do you reach for the abstract model first, or the concrete thing that works?"
+  - *Examples: some people prototype immediately and clean up later. Others need to understand the whole system before touching anything. Some oscillate depending on stakes. There's no right answer but it deeply affects how you should collaborate with them.*
+
+- "What do you find yourself caring about that other people in your field tend to overlook?"
+  - *This often surfaces their latent principles. Someone who says "I care way too much about error messages" is telling you about communication clarity and user empathy. Someone who says "I can't stop thinking about naming" is telling you about conceptual precision. Listen for the values under the preference.*
+
+- "What patterns keep showing up across different areas of your work?"
+  - *Examples: "I always end up building the documentation system," "I keep automating myself out of jobs," "I notice I restructure things before I extend them," "Everything I build eventually needs a CLI."*
+
+**How they collaborate:**
+
+- "What communication style works for you? Do you want me to be terse and direct, or more exploratory and discursive?"
+  - *Examples: "Give me the code, skip the explanation" is valid. So is "I want to think out loud together." Some want both depending on context - terse for execution, exploratory for design. Get specific - "direct" means different things to different people.*
+
+- "What behaviors from AI assistants (or human collaborators) frustrate you?"
+  - *This is gold. Common frustrations: over-explaining things they already know, asking permission for every little thing, hedging when a clear answer exists, adding features nobody asked for, sycophantic agreement, refusing to disagree. But listen for their specific ones - they'll be unique and highly informative.*
+
+- "When we disagree about an approach, how do you want me to handle it?"
+  - *Some people want hard pushback. Others want alternatives presented and let them choose. Some want "just do what I say and flag concerns once." This shapes every future interaction.*
+
+**What they're working on:**
+
+- "What are you actively working on right now? Don't worry about being organized - just dump."
+  - *Let them ramble. You'll organize it later in projects.md.*
+
+- "What's a project or piece of work you're proud of? What made it work?"
+  - *Surfaces values, quality standards, and what "done well" means to them.*
+
+- "What's something you keep meaning to do but haven't started?"
+  - *Great first inbox item or task candidate.*
+
+### Synthesizing voice.md
+
+Once you have enough signal (usually 10-15 minutes of conversation), tell the user:
+
+> "I have a good picture now. Let me draft your voice.md - this is the document future Claude instances will read to understand how to work with you. I'll show you what I've got and you can tell me what's off."
+
+Write `context/voice.md` with real content. Key principles:
+- **Be specific, not generic.** "Direct communication" is generic. "Terse when executing, exploratory when designing" is specific.
+- **Reflect what they said, not what sounds good.** If they said "I hate when AI adds emoji" - put that in.
+- **Include the surprising things.** The unusual preferences are the most valuable for differentiation.
+- **Areas of depth vs. active learning is critical.** This prevents future Claude instances from over-explaining things they're expert in, or assuming knowledge they don't have.
+
+Show them the draft. Ask: "What's off? What's missing? What did I get wrong?" Iterate until it feels right to them.
+
+### Important
+
+**Don't over-polish on the first pass.** voice.md will evolve through use. A good-enough voice.md today is better than a perfect one that takes an hour. Tell them: "This will evolve. When something feels wrong in a future session, just say so and we'll fix it."
 
 ---
 
-## Phase 3: Install the Stop Hook
+## Phase 2: Project Mapping (15-20 min)
 
-**This is the keystone.** The stop hook is what makes the system self-maintaining rather than discipline-dependent.
+### Opening
 
-Without it, maintenance (capturing knowledge, updating status, creating tasks) depends on remembering to do it - which means it won't happen consistently. The hook forces evaluation at every session end.
+> "Now let's map what you're working on. This helps future sessions understand not just individual projects, but how they connect. What are you actively building or maintaining?"
 
-### Quick Install
+### What to Listen For
+
+- **Project clusters**: projects that share technology, purpose, or philosophy
+- **Recurring themes**: the same concern showing up in different contexts
+- **Maturity spectrum**: what's research vs. building vs. mature vs. done
+- **Tech stack**: what they're using and what they're learning
+
+### Synthesizing projects.md
+
+Write `context/projects.md` with:
+1. **Conceptual threads** grouping related projects with the ASCII diagram format
+2. **Their tech stack** as a reference table
+3. **Project maturity spectrum** showing where things stand
+4. **Principle lattice** - see below
+
+### The Principle Lattice
+
+The template comes with seven starter principles. Present them like this:
+
+> "The system includes some starter principles that have proven useful across different workflows. Let me walk through them - keep what resonates, modify what doesn't, and definitely add your own. These are starting points, not requirements. The goal is to end up with principles that actually describe how YOU think."
+
+The starter principles:
+- **Inversion** - Place the complex at the simple point
+- **Sovereignty** - You own your data and workflow
+- **Structural Correctness** - Architecture that prevents invalid states
+- **Irreducibility** - Compress to essential form
+- **Single-Source** - One source, many derived views
+- **Visibility** - What matters should be observable
+- **Depth Over Broadcast** - The deepest truths are personal, not public
+
+For each one, briefly explain what it means in practice, then ask: "Does this show up in how you think or work?" If yes, help them find their own instantiations (where this principle appears in their work). If it doesn't click, leave it with empty instantiations or remove it.
+
+**Also ask:** "Is there a principle you live by that isn't on this list? Something you keep coming back to that shapes your decisions?"
+
+Often there is. Examples that have come up for others:
+- "Reversibility" - prefer changes that can be undone
+- "Automation over manual" - if I do it twice, script it
+- "Explicit over implicit" - no magic, readable configuration
+- "Worse is better" - simple and working beats complex and theoretical
+- "Composability" - small tools that combine over monoliths
+
+Help them articulate new principles in the same format: one-sentence statement + instantiations across their domains.
+
+**Target**: 4-9 principles with 2-5 instantiations each. This will grow over time - don't force completeness. A lattice with 4 honest principles is better than 8 borrowed ones.
+
+### Initialize current-state.md
+
+Update `context/current-state.md` with:
+- Any tasks that emerged from the conversation
+- Their projects with current status
+- Reset the inbox counts to reflect reality
+
+---
+
+## Phase 3: Install the Stop Hook (5 min)
+
+### Why This Matters
+
+Tell the user directly:
+
+> "There's one piece of infrastructure that makes the whole system self-maintaining: the stop hook. It runs at the end of every session and forces a quick check - did we learn anything worth capturing? Did any task statuses change? Without it, maintenance depends on remembering, which means it won't happen consistently. With it, the system maintains itself."
+
+### Installation
 
 ```bash
 python setup/install.py
 ```
 
-This copies the hook and shows you what to add to settings.json.
+Or walk them through manual installation from `setup/README.md`.
 
-### Manual Install
+### Verify
 
-See [setup/README.md](setup/README.md) for detailed instructions.
+Have them test it:
 
-**What the hook does:** Before any session ends, it forces Claude to evaluate:
-- New knowledge to capture?
-- Project status changed?
-- Tasks to create?
-- Questions worth preserving?
+> "Try ending this session with /stop - you should see the maintenance checklist appear. That means the system's immune system is working."
 
-It blocks the stop until Claude either performs maintenance or explicitly states nothing is needed.
-
-### Verify It Works
-
-End a session with `/stop`. You should see the maintenance checklist appear.
+If they want to continue after testing, that's fine - the hook will fire again at the real end.
 
 ---
 
-## Phase 4: The Capture Habit
+## Phase 4: First Capture (5 min)
 
-Now the system is ready to use. The most important habit:
+### Establish the Habit
 
-**Capture immediately, sort later.**
+During the conversation, things will have come up - tasks they mentioned, ideas that surfaced, things they want to explore. Create at least one real item:
 
-When something comes up:
-- Quick thought → `inbox/`
-- Clear task → `tasks/`
-- Reusable insight → `knowledge/`
+- A task in `tasks/` for something concrete they need to do
+- An idea in `inbox/ideas/` for something percolating
+- A knowledge article in `knowledge/` if any reusable insight emerged
 
-Don't overthink categorization. The `inbox/` exists so you can capture without friction. Sorting happens later, often with Claude's help.
+Tell them:
 
-**Practice prompts:**
-- "I just learned something about X - help me capture it in knowledge/"
-- "This task is getting complex - let's break it into tracked subtasks"
-- "I have five things floating in my head - help me get them into inbox/"
+> "The most important habit is: capture immediately, sort later. When something comes up - a task, an idea, a thing to investigate - drop it in inbox/ and move on. The inbox exists so you never lose a thought to 'I'll remember that later.' There are subfolders if you want to be specific (ideas/, decisions/, investigations/) but captures/ works as a catch-all too."
 
 ---
 
-## Phase 5: Agents & Skills (Optional)
+## Phase 5: Org Viewer (Optional, 2 min)
 
-Once the core system is working, you can add specialized subagents and skills.
+### Quick Introduction
 
-### Agents
+> "There's a document viewer bundled with this system - org-viewer.exe. It gives you a visual way to browse your documents, search across everything, see the knowledge graph, and edit files. Want to try it?"
 
-Focused subagents for specific types of work:
+If yes: run `org-viewer.exe` from the org root. It opens automatically.
 
-| Agent | Purpose | When to use |
-|-------|---------|-------------|
-| **architect** | Design with structural correctness | Planning features, refactoring decisions |
-| **reviewer** | Code review + principle alignment | After writing code |
-| **distiller** | Extract knowledge worth capturing | After substantive sessions |
-| **explorer** | Deep codebase understanding | Before making changes |
+Mention:
+- Keyboard shortcuts (1-6 for views, `t` for theme, `e` to edit)
+- Remote access is possible via Tailscale if they want to browse from their phone
+- Full docs in `ORG-VIEWER.md`
+- Source on GitHub if they want to customize the aesthetics and rebuild: https://github.com/vincitamore/org-viewer
 
-**Installation:** See [setup/README.md#agents](setup/README.md#agents)
+Don't push hard. Some people prefer the command line or other tools. That's fine.
 
-**Usage:**
-```
-Task(architect, "Design the caching layer")
-Task(reviewer, "Review the auth changes")
-```
+---
 
-### Skills
+## Phase 6: Cleanup
 
-The `/org` skill provides quick commands:
+### Remove Scaffolding
+
+Once onboarding is complete, these files are dead weight. Delete them:
 
 ```
-/org              # Full orientation
-/org status       # Quick status check
-/org capture X    # Quick capture to inbox
-/org task X       # Create task
-/org maintain     # Run maintenance check manually
+ONBOARDING.md          ← this file (you've run it, it's done)
+QUICKSTART.md          ← superseded by completed setup
+CONTRIBUTING.md        ← only relevant for contributing to the template repo itself
+samples/               ← entire folder (examples served their purpose during onboarding)
+claude-org-logo.png    ← template branding
+.github/               ← template repo config
 ```
 
-**Installation:** See [setup/README.md#skills](setup/README.md#skills)
+### Obsidian Decision
+
+Ask the user:
+
+> "The system comes with optional Obsidian integration (visual dashboards, graph views, publishing). Do you use Obsidian or are you interested in trying it?"
+
+**If no (most people):** Delete the Obsidian-specific files:
+```
+.obsidian/                              ← vault configuration
+setup/obsidian/                         ← Obsidian setup guide
+knowledge/obsidian-workflow-patterns.md  ← Obsidian-specific knowledge
+publish.css                             ← Obsidian Publish CSS
+scripts/publish.py                      ← Obsidian Publish workflow
+scripts/generate-tag-pages.py           ← org-viewer handles this natively
+scripts/generate-publish-dashboard.py   ← Obsidian Publish specific
+templates/dashboard.md                  ← Obsidian Dataview specific
+```
+
+**If yes:** Keep those files. Move `knowledge/obsidian-workflow-patterns.md` into their knowledge structure appropriately. Point them to `setup/obsidian/README.md` for configuration.
+
+### README.md Decision
+
+Ask the user:
+
+> "The README.md is the GitHub template's landing page. Want me to delete it, or replace it with a brief personal README for your org?"
+
+Most people will want to delete it or replace it with something minimal.
+
+### Update CLAUDE.md
+
+Remove the setup checkpoint at the top (the checkbox section about verifying the stop hook). Remove the "For new users: See ONBOARDING.md" line from the Orientation section. CLAUDE.md should now be a clean operational reference, not a setup guide.
+
+### Final Message
+
+> "Setup is complete. Your system is live. A few things to know:
+>
+> - **If something doesn't work for you, change it.** Rename folders, add inbox categories, modify principles, restructure whatever you want. This is your system. The only load-bearing constraint is frontmatter consistency so the tools can parse your files. Everything else is yours to shape.
+> - **The stop hook keeps things maintained.** Every time you end a session, it'll prompt for captures. Trust the process.
+> - **voice.md and projects.md evolve.** When they feel wrong, just say 'something about voice.md isn't right' and we'll fix it together.
+> - **Capture aggressively, sort lazily.** inbox/ exists so you never lose a thought."
 
 ---
 
-## Phase 6: Org Viewer (Optional)
+## Timing Guide
 
-A native document browser for your org. Double-click to open.
+| Phase | Time | Required? |
+|-------|------|-----------|
+| Voice Discovery | 20-30 min | Yes |
+| Project Mapping | 15-20 min | Yes |
+| Stop Hook | 5 min | **Essential** |
+| First Capture | 5 min | Yes |
+| Org Viewer | 2 min | Optional |
+| Cleanup | 5 min | Yes |
 
-**What Org Viewer adds:**
-- Browse documents with TUI-style interface
-- Full-text search across all files
-- Graph view showing document connections
-- Live reload on file changes
-- MCP integration for Claude Code
-
-**Local use:** Just run `org-viewer.exe` from the org root - it opens automatically.
-
-**Remote access (optional):** Install [Tailscale](https://tailscale.com/download) to browse from your phone or other devices. Access at `http://your-machine-name:3847` and install as a PWA.
-
-**Full guide:** [ORG-VIEWER.md](ORG-VIEWER.md)
+**Total: ~50-65 minutes** for a fully initialized, cleaned-up system.
 
 ---
 
-## Phase 7: Obsidian Integration (Optional)
+## Anti-Patterns to Avoid
 
-If you want visual dashboards, graph views, and publishing:
-
-**What Obsidian adds:**
-- Graph view of document connections
-- Live Dataview dashboards
-- Quick capture via hotkeys
-- Optional publishing to the web
-
-**Quick setup:**
-1. Open this folder as an Obsidian vault
-2. Install plugins: Dataview, Templater, QuickAdd
-3. Enable CSS snippet for semantic checkboxes
-4. Copy `templates/dashboard.md` to root
-
-**Full guide:** [setup/obsidian/README.md](setup/obsidian/README.md)
-
-**Publish workflow:** If using Obsidian Publish, see `scripts/publish.py` for automation.
-
----
-
-## Phase 8: Developing the Principle Lattice
-
-The principle lattice in [context/projects.md](context/projects.md) grows organically. You don't fill it in upfront - you populate it as patterns emerge.
-
-**When to add a principle:**
-- You notice yourself caring about the same thing in different contexts
-- A decision feels obviously right but you can't immediately say why
-- You disagree with conventional wisdom and can articulate why
-
-**How to add:**
-> "I keep noticing I care about X even when others don't. Let's articulate that as a principle and trace where it shows up."
-
-Claude will help you find the irreducible statement and map its instantiations.
-
-### Maintaining the Lattice
-
-Once you have 3+ principles, review periodically:
-- **Target 5-9 principles** - fewer suggests incomplete articulation, more suggests conflation
-- **3-8 instantiations per principle** - fewer is just a preference, more is too broad
-- **Domain coverage** - mature principles appear across multiple domains
-- **Compression test** - can one principle derive another? Merge them.
-
----
-
-## How to Talk to Claude
-
-### Be Direct
-❌ "Could you maybe help me with something if you don't mind?"
-✅ "I need to figure out the auth architecture. Let's think through it."
-
-### State Context Once, Reference Later
-❌ Repeating the same background every session
-✅ "Check voice.md - the relevant part is my preference for X"
-
-### Invite Disagreement
-❌ "Does this look okay?"
-✅ "Push back if you see problems with this approach."
-
-### Use the System
-❌ Keeping tasks in your head
-✅ "Create a task for this in tasks/"
-✅ "This insight should go in knowledge/"
-
-### Maintain Together
-❌ Letting documentation drift
-✅ "The project map is stale - let's update it"
-✅ "Something about voice.md doesn't fit anymore - help me refine it"
-
----
-
-## What Makes This Work
-
-**Continuity Through Architecture** - Each session, Claude reads CLAUDE.md, current-state.md, voice.md, and projects.md. That's enough to resume collaboration at depth.
-
-**Collaborative Discovery** - The documents aren't self-report. They emerged from working together, making them more accurate.
-
-**Living Documentation** - The system evolves. When something doesn't fit, refine it. When patterns emerge, capture them.
-
-**Forcing Functions** - The stop hook converts optional maintenance into mandatory checkpoints. Structure beats discipline.
-
----
-
-## Common Questions
-
-**"What if my voice.md feels wrong?"**
-Refine it. Tell Claude: "Something about this section doesn't feel right." Work together to find better articulation.
-
-**"How detailed should the project map be?"**
-Detailed enough that Claude understands relationships without re-explanation. Not so detailed that maintenance becomes a burden.
-
-**"What if I don't have clear principles yet?"**
-Normal. The lattice builds over time. Start with the defaults (sovereignty, correctness, irreducibility) and discover your own as you work.
-
-**"How often should I update these documents?"**
-When they're wrong. If a session reveals something the documents don't capture, update them. If they still feel accurate, leave them.
-
----
-
-## Quick Reference
-
-| Resource | Purpose |
-|----------|---------|
-| [CLAUDE.md](CLAUDE.md) | Full system documentation |
-| [QUICKSTART.md](QUICKSTART.md) | 5-minute fast track |
-| [setup/README.md](setup/README.md) | Hooks, agents, skills, tools |
-| [ORG-VIEWER.md](ORG-VIEWER.md) | Org Viewer documentation |
-| [setup/obsidian/README.md](setup/obsidian/README.md) | Obsidian integration |
-| [samples/](samples/) | Example completed documents |
-| [templates/](templates/) | File templates |
-| [knowledge/obsidian-workflow-patterns.md](knowledge/obsidian-workflow-patterns.md) | Obsidian patterns |
-
----
-
-## First Session Success Criteria
-
-By the end of your first real session (after setup), you should have:
-
-- [ ] **voice.md populated** - At least 3 sections filled with concrete, specific content (not placeholders)
-- [ ] **Stop hook working** - When you end with `/stop`, you see the maintenance checklist
-- [ ] **One capture made** - Something in `inbox/` or a task in `tasks/`
-- [ ] **One knowledge article** - Even a small one, to establish the pattern
-
-**Signs it's working:**
-- Claude references your voice.md naturally in conversation
-- The maintenance prompt catches something you would have forgotten
-- You find yourself thinking "I should capture this" during work
-
-**Signs something's off:**
-- Claude keeps asking about your preferences (voice.md not detailed enough)
-- Sessions end without any maintenance (hook not installed or threshold too high)
-- You're not sure where to put things (review CLAUDE.md folder structure)
-
----
-
-## Next Steps
-
-1. **Start Phase 1**: Open Claude Code and begin the voice.md conversation
-2. **Install the hook** (Phase 3): This is non-negotiable for system health
-3. **Create your first capture**: Drop something in `inbox/` to establish the habit
-4. **Trust the process**: The system reveals its value over multiple sessions
-
-The best way to understand the system is to use it. Start collaborating.
+- **Don't turn it into a survey.** This is a conversation, not a form. Follow threads, let tangents happen.
+- **Don't over-explain the system.** They'll learn it by using it. Explain only what's immediately relevant.
+- **Don't skip cleanup.** Template artifacts left behind confuse future sessions and create noise.
+- **Don't force the principles.** Better to have 3 genuine ones than 7 borrowed ones.
+- **Don't make voice.md too long.** Dense and specific beats comprehensive and vague. 40-80 lines is ideal.
+- **Don't forget to test the stop hook.** It's the single most important piece of infrastructure.
+- **Don't be precious about the template.** If the user wants to rename `knowledge/` to `notes/` or merge `inbox/` into a single flat folder, help them do it. The system serves them, not the other way around.

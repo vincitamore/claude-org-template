@@ -167,7 +167,10 @@ Before stopping, evaluate this session:
 | New task identified | \u2192 tasks/<name>.md |
 | Question worth preserving | \u2192 queries/<question>.md |
 | Cross-project pattern | \u2192 Add instantiation to principle lattice |
-| Something to revisit | \u2192 inbox/<item>.md |
+| Feature idea / future project | \u2192 inbox/ideas/<item>.md |
+| Decision needed | \u2192 inbox/decisions/<item>.md |
+| Bug to investigate | \u2192 inbox/investigations/<item>.md |
+| Quick unsorted capture | \u2192 inbox/captures/<item>.md |
 | KB file needs organization | \u2192 Move to appropriate subfolder |
 
 If ANY apply: perform the maintenance NOW.

@@ -239,4 +239,4 @@ taskkill /F /PID <pid>
 
 - [org-viewer GitHub](https://github.com/vincitamore/org-viewer) - Source code and releases
 - [Tailscale Documentation](https://tailscale.com/kb/) - Network setup help
-- [ONBOARDING.md](ONBOARDING.md) - Full setup guide
+- [CLAUDE.md](CLAUDE.md) - System documentation and living index

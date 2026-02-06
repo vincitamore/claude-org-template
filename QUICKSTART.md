@@ -9,50 +9,53 @@ cd path/to/your-claude-org
 claude
 ```
 
-## 2. Start the Conversation
+## 2. Just Start Talking
 
-Say this:
+Claude will detect that the system hasn't been set up yet and automatically enter onboarding mode. It will ask you questions about how you think, what you're working on, and how you want to collaborate. Just answer honestly.
 
-> "I want to set up this organization system. Let's start quick - help me create a minimal voice.md and we can refine it later. Ask me 3-4 key questions."
+If for some reason it doesn't auto-detect, say:
 
-Claude will ask you questions. Answer them. In 5 minutes you'll have a working `context/voice.md`.
+> "I want to set up this organization system. Let's start by you helping me figure out how I think and work."
 
-## 3. Capture Something
+## 3. What Happens
 
-Drop your first item in `inbox/`:
-
-> "I have a task I've been meaning to do: [describe it]. Create an inbox item for it."
+Claude will:
+- Ask you questions (5-10 min of conversation)
+- Draft your `context/voice.md` (your collaboration preferences)
+- Map your projects in `context/projects.md`
+- Install the stop hook (the system's immune system)
+- Help you capture your first item
+- Clean up the template scaffolding
 
 ## 4. Start Working
 
 That's it. You now have:
-- A voice.md Claude can orient to
-- Something in your inbox to process
-- A working system
+- A voice.md Claude can orient to every session
+- Your projects mapped with connections
+- A self-maintaining system (via the stop hook)
+- Something in your inbox or tasks to work on
 
 ## What Happens Next
 
 As you work with Claude:
-- The system will suggest captures to `knowledge/`
-- Tasks will accumulate in `tasks/`
-- Patterns will emerge for `context/projects.md`
-- Your `voice.md` will refine through use
+- Knowledge accumulates in `knowledge/`
+- Tasks track in `tasks/`
+- The stop hook catches things worth capturing at session end
+- Your voice.md and projects.md evolve through use
 
 The system grows with you. Start minimal, expand as needed.
 
 ---
 
-## If You Want More Structure
-
-Read [ONBOARDING.md](ONBOARDING.md) for the full guided setup process.
-
 ## If You Want a Visual Browser
 
-Run `org-viewer.exe` from the org root - a native document viewer with search and graph view. For mobile access, add [Tailscale](https://tailscale.com/download). See [ORG-VIEWER.md](ORG-VIEWER.md).
+Run `org-viewer.exe` from the org root - a native document viewer with search, graph view, and editing. For mobile access, add [Tailscale](https://tailscale.com/download). See [ORG-VIEWER.md](ORG-VIEWER.md).
 
-## If Something Feels Off
+## If Something Doesn't Work
 
-Tell Claude: "Something about how we're working isn't quite right." It will help you articulate the issue and update the relevant documentation.
+**Change it.** Rename folders, modify principles, add inbox categories, restructure whatever you want. The only load-bearing constraint is frontmatter consistency. Everything else is yours.
+
+Or tell Claude: "Something about how we're working isn't quite right." It will help you articulate the issue and update the relevant documentation.
 
 ## Core Commands
 
@@ -72,6 +75,6 @@ The system is conversational. Just tell Claude what you need.
 ## Related
 
 - [CLAUDE.md](CLAUDE.md) - Full system documentation and living index
-- [ONBOARDING.md](ONBOARDING.md) - Guided 30-60 minute setup
+- [ONBOARDING.md](ONBOARDING.md) - The full onboarding playbook (Claude reads this automatically)
 - [context/voice.md](context/voice.md) - Your collaboration preferences
 - [setup/](setup/) - Hooks and agents to install

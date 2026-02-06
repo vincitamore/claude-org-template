@@ -1,22 +1,20 @@
 # Setup: Infrastructure
 
-> **Navigation**: This folder contains infrastructure referenced by [ONBOARDING.md](../ONBOARDING.md). See the onboarding guide for the full setup journey.
+> **Navigation**: This folder contains infrastructure referenced by [ONBOARDING.md](../ONBOARDING.md). The onboarding playbook handles installation during setup - this document is the reference for manual installation or later modifications.
 
-| Component | ONBOARDING Phase | Required? |
-|-----------|------------------|-----------|
-| [Hooks](#hooks) | Phase 3 | **Essential** |
-| [Agents](#agents) | Phase 5 | Optional |
-| [Skills](#skills) | Phase 5 | Optional |
-| [Org Viewer](#org-viewer) | Phase 6 | Optional |
-| [Obsidian](#obsidian) | Phase 6 | Optional |
+| Component | Required? | Notes |
+|-----------|-----------|-------|
+| [Hooks](#hooks) | **Essential** | Stop hook is the system's immune system |
+| [Agents](#agents) | Optional | Specialized subagents for focused work |
+| [Skills](#skills) | Optional | Quick commands for system management |
+| [Org Viewer](#org-viewer) | Recommended | Bundled native document browser |
+| [Obsidian](#obsidian) | Alternative | If you prefer Obsidian over Org Viewer |
 
 ---
 
 ## Hooks
 
 ### Maintenance Check (Stop Hook) - ESSENTIAL
-
-> **ONBOARDING Phase 3** - Install this immediately after voice/project discovery.
 
 The stop hook is the keystone mechanism. Without it, maintenance depends on remembering to do it - which means it won't happen consistently. The hook forces evaluation at every session end, blocking the stop until maintenance is addressed or explicitly declined.
 
@@ -81,8 +79,6 @@ Use the full path appropriate for your OS.
 
 ## Agents
 
-> **ONBOARDING Phase 5** (Optional) - Add these after the core system is working.
-
 Specialized subagent configurations for focused work:
 
 | Agent | File | Purpose | When to use |
@@ -120,8 +116,6 @@ Task(explorer, "Understand the authentication flow")
 
 ## Skills
 
-> **ONBOARDING Phase 5** (Optional) - Add these after the core system is working.
-
 The `/org` skill provides quick commands for the organization system:
 
 | Command | Purpose |
@@ -154,30 +148,32 @@ xcopy setup\skills\org %USERPROFILE%\.claude\skills\org /E /I
 
 ## Org Viewer
 
-> **ONBOARDING Phase 6** (Optional) - Native document browser for your org.
-
-A self-contained viewer for your knowledge base. Double-click to open - no configuration needed.
+A native document browser bundled with this system. Run `org-viewer.exe` from the org root - no configuration needed.
 
 **Features:**
 - TUI-style document browser
 - Full-text search
 - Graph visualization
+- Document editing
+- Code editor with syntax highlighting
 - Live reload on file changes
-- MCP integration for Claude Code
+- Reminders view
 
 ### Quick Start
 
-**Local use:** Just run `org-viewer.exe` from the org root - it opens automatically.
+**Local use:** Run `org-viewer.exe` from the org root - it opens automatically.
 
 **Remote access:** Install [Tailscale](https://tailscale.com/download) to access from other devices.
 
-Full documentation: **[tools/README.md](tools/README.md)**
+**Customize:** Source on [GitHub](https://github.com/vincitamore/org-viewer) if you want to change the aesthetics and rebuild.
+
+Full documentation: **[ORG-VIEWER.md](../ORG-VIEWER.md)**
 
 ---
 
 ## Obsidian
 
-> **ONBOARDING Phase 6** (Optional) - Add visual dashboards and graph views.
+> **Alternative to Org Viewer.** If you prefer Obsidian's ecosystem (Dataview, graph views, publishing), this workspace works as an Obsidian vault.
 
 Full Obsidian integration guide: **[obsidian/README.md](obsidian/README.md)**
 
@@ -195,7 +191,6 @@ Quick overview:
 | [../.obsidian/snippets/checkboxes.css](../.obsidian/snippets/checkboxes.css) | Semantic checkbox styling |
 | [../scripts/publish.py](../scripts/publish.py) | Automated publish workflow |
 | [../scripts/generate-tag-pages.py](../scripts/generate-tag-pages.py) | Tag index generation |
-| [../knowledge/obsidian-workflow-patterns.md](../knowledge/obsidian-workflow-patterns.md) | Patterns and examples |
 
 ---
 
@@ -225,7 +220,7 @@ setup/
 
 ## Related
 
-- [../ONBOARDING.md](../ONBOARDING.md) - Full setup journey (references this folder)
+- [../ONBOARDING.md](../ONBOARDING.md) - Onboarding playbook (references this folder)
 - [../QUICKSTART.md](../QUICKSTART.md) - 5-minute fast track
 - [../CLAUDE.md](../CLAUDE.md) - System documentation
 - [../samples/](../samples/) - Example completed documents

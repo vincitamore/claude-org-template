@@ -41,7 +41,7 @@ Report:
 
 ### `/org capture <text>` - Quick Capture
 
-Create `inbox/{timestamp}-capture.md` with:
+Create `inbox/captures/{timestamp}-capture.md` with:
 ```yaml
 ---
 type: inbox
@@ -53,6 +53,12 @@ source: capture
 
 {text}
 ```
+
+For more specific routing, use the appropriate subfolder:
+- `inbox/ideas/` - Feature ideas, future projects
+- `inbox/decisions/` - Architecture/design decisions pending input
+- `inbox/investigations/` - Bugs to research, things to verify
+- `inbox/captures/` - Quick unsorted captures (default)
 
 Don't overthink categorization. Inbox exists for friction-free capture.
 
@@ -105,7 +111,10 @@ Run the same evaluation as the stop hook:
 | New task identified | → tasks/ |
 | Question worth preserving | → queries/ |
 | Cross-project pattern | → principle lattice |
-| Something to revisit | → inbox/ |
+| Feature idea / future project | → inbox/ideas/ |
+| Decision needed | → inbox/decisions/ |
+| Bug to investigate | → inbox/investigations/ |
+| Something to revisit | → inbox/captures/ |
 
 Be aggressive about capture.
 

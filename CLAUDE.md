@@ -6,13 +6,11 @@
 
 ---
 
-**⚠️ SETUP CHECKPOINT**: Before using this system, verify the stop hook is installed:
+## Bootstrap Check
 
-- [ ] Stop hook installed at `~/.claude/hooks/maintenance-check.py`
-- [ ] Hook configured in `~/.claude/settings.json`
-- [ ] Tested: `/stop` shows maintenance checklist
+**Read `context/voice.md` first.** If it still contains `_..._` placeholder text, this system hasn't been initialized yet. Read [ONBOARDING.md](ONBOARDING.md) and run the onboarding sequence - it will guide you through setting up the system collaboratively with the user.
 
-The stop hook is what makes the system self-maintaining. Without it, maintenance depends on discipline (which fails). See [setup/README.md](setup/README.md) for installation.
+If voice.md is populated with real content, onboarding is complete. Continue with normal operation below.
 
 ---
 
@@ -38,8 +36,6 @@ When arriving at this workspace, orient with these documents in order:
 
 These together form the attractor basin. The more thoughtfully you shape these documents, the faster Claude can find its footing in any session.
 
-**For new users**: See [ONBOARDING.md](ONBOARDING.md) for a guided introduction to building this system collaboratively with Claude. Or try [QUICKSTART.md](QUICKSTART.md) for a 5-minute fast track.
-
 ### Before Starting Technical Work
 
 **Search the knowledge base first.** Before diving into implementation:
@@ -51,6 +47,20 @@ Glob "knowledge/*topic*.md"
 ```
 
 The `knowledge/` folder contains hard-won patterns and gotchas that prevent re-learning. If you're about to research something, check if you've already learned it.
+
+## Make It Yours
+
+This system is scaffolding, not scripture. **If something doesn't work for you, change it.**
+
+- Folder name doesn't make sense? Rename it.
+- Principle doesn't resonate? Delete it. Add your own.
+- Want different inbox categories? Make them.
+- Prefer a flat structure over subfolders? Flatten it.
+- Don't like the stop hook prompt? Rewrite it.
+
+The only load-bearing constraint is **frontmatter consistency** - the YAML at the top of each file is what tools use to parse and organize documents. As long as files have valid frontmatter with `type`, `status`, `created`, and `tags`, the system works. Everything else is yours to shape.
+
+When you change something structural, update this file so future sessions know about it.
 
 ## Working Relationship
 
@@ -67,7 +77,7 @@ See [context/voice.md](context/voice.md) for your specific collaboration prefere
 
 ## Core Principles
 
-These principles are load-bearing - they shape how the system works and how Claude should reason within it. They're not decoration; they're operational constraints that keep the system coherent.
+These principles shape how the system works and how Claude should reason within it. They're starter principles - keep what resonates, modify what doesn't, add your own. The lattice in [context/projects.md](context/projects.md) tracks how these show up across your work.
 
 ### Inversion
 
@@ -75,7 +85,7 @@ These principles are load-bearing - they shape how the system works and how Clau
 
 ### Sovereignty
 
-*You own your data and workflow.* Everything lives in local files you control. No SaaS lock-in, no cloud dependency for core function. The system works offline, syncs how you choose, and exports cleanly. Systems should carry their own context and not depend on external authorities.
+*You own your data and workflow.* Everything lives in local files you control. No SaaS lock-in, no cloud dependency for core function. The system works offline, syncs how you choose, and exports cleanly.
 
 ### Structural Correctness
 
@@ -87,15 +97,19 @@ These principles are load-bearing - they shape how the system works and how Clau
 
 ### Single-Source
 
-*One source, many manifestations.* One frontmatter → Dataview queries, session-start hooks, dashboards. One CLAUDE.md → orientation for any session. One voice doc → coherence across all projects. Computed state eliminates drift.
+*One source, many manifestations.* One frontmatter source drives hooks, dashboards, and session context. One CLAUDE.md drives orientation for any session. One voice doc drives coherence across all work. Computed state eliminates drift.
 
 ### Visibility
 
-*What matters should be observable.* Monitoring and logging as first-class design. Archive don't delete. The `queries/` folder preserves questions asked. The `knowledge/` folder makes insights findable. Git log as audit trail.
+*What matters should be observable.* Archive don't delete. The `queries/` folder preserves questions asked. The `knowledge/` folder makes insights findable. Git log as audit trail. If something matters, it should be findable.
 
 ### Depth Over Broadcast
 
 *The deepest truths are personal, not public.* Depth over performance. The documentation serves the work, not an audience. Continuity through architecture is private operational truth.
+
+### [Your Principle]
+
+*Add your own as patterns emerge.* When you notice yourself caring about the same thing in different contexts, or when a decision feels obviously right but you can't immediately say why - that's a principle waiting to be articulated.
 
 ## Folder Structure
 
@@ -106,10 +120,13 @@ claude-org/
 │   ├── current-state.md  # Dynamic state (tasks, projects, inbox, changes)
 │   ├── voice.md       # Intellectual coordinates & collaboration style
 │   └── projects.md    # Project relationships & conceptual threads
-├── inbox/             # Quick captures, unsorted items
+├── inbox/             # Incoming items by type
 │   ├── emails/        # Email staging area
 │   ├── tickets/       # Work tickets, support requests
-│   └── captures/      # Session captures, ideas, notes
+│   ├── ideas/         # Feature ideas, future projects (percolating)
+│   ├── decisions/     # Architecture/design decisions pending input
+│   ├── investigations/# Bugs to research, things to verify
+│   └── captures/      # Quick unsorted captures (triage promptly)
 ├── tasks/             # Task files (see tasks/README.md for full model)
 │   ├── completed/     # Completed tasks
 │   └── paused/        # Paused tasks (preserves context for later)
@@ -122,19 +139,23 @@ claude-org/
 ├── templates/         # Templates for quick file creation
 └── archive/           # Semantic archive for completed/old items
     ├── emails/        # By topic: github/, newsletters/, personal/, misc/
+    ├── tickets/       # Resolved tickets
     ├── research/      # Session research, exploration, setup docs
     └── reports/       # Audit reports, status reports, investigations
 ```
 
 ### Inbox Structure
 
-Semantic subfolders for incoming items:
+Semantic subfolders for incoming items. Use the specific folder when the type is clear, or `captures/` as a catch-all for quick unsorted captures.
 
-| Folder | Contents | Source |
-|--------|----------|--------|
-| `inbox/emails/` | Email staging | Email integrations |
-| `inbox/tickets/` | Work tickets | Ticketing systems |
-| `inbox/captures/` | Ideas, notes, quick thoughts | Session captures |
+| Folder | Contents | Source | Routing |
+|--------|----------|--------|---------|
+| `inbox/emails/` | Email staging | Email integrations | Archive after triage |
+| `inbox/tickets/` | Work tickets | Ticketing systems | Archive after resolution |
+| `inbox/ideas/` | Feature ideas, future projects | Session captures | Percolate until ready for task or archive |
+| `inbox/decisions/` | Pending architecture/design decisions | Session captures | Resolve then archive to research/ |
+| `inbox/investigations/` | Bugs to research, things to verify | Session captures | Resolve then create task or archive |
+| `inbox/captures/` | Quick unsorted captures | Anything | Triage promptly into above folders |
 
 Process inbox items regularly - move to tasks, knowledge, or archive.
 
@@ -154,60 +175,36 @@ Additional folders for full model: `tasks/review/`, `tasks/backlog/`, `tasks/inc
 
 Semantic folders ensure everything has a clear home:
 
-| Folder | Contents | Archival |
-|--------|----------|----------|
-| `emails/` | By sender/topic | Manual |
-| `research/` | Session research, exploration, setup docs | Manual |
-| `reports/` | Audits, status reports, investigations | Manual |
+| Folder | Contents |
+|--------|----------|
+| `emails/` | By sender/topic subfolder |
+| `tickets/` | Resolved work tickets |
+| `research/` | Session research, exploration, setup docs |
+| `reports/` | Audits, status reports, investigations |
 
 Create new subfolders when 5+ items of the same type emerge.
 
-## Obsidian Integration (Optional)
+## Viewing Your Org
 
-This workspace can be viewed in Obsidian with Dataview plugin for visual dashboards and graph views. **Obsidian is not required** - the system works without it, using Claude and the command line.
+### Org Viewer (Recommended)
 
-If using Obsidian:
+A native document browser bundled with this system. Run `org-viewer.exe` from the org root - no configuration needed.
 
-### Computed State (1→7)
+**Features:** TUI-style interface, full-text search, graph view, document editing, code editor, live reload, reminders view.
 
-Frontmatter is the **single source of truth**. Both Obsidian (Dataview) and Claude Code (session-start hook) derive state from frontmatter:
+**Keyboard shortcuts:** `1`-`6` for views, `t` for theme, `e` to edit.
 
-| Computed From | Source |
-|---------------|--------|
-| Active Tasks | `tasks/*.md` where `status: active` |
-| Blocked Tasks | `tasks/*.md` where `status: active` and `blocked-by` non-empty |
-| Completed Tasks | `tasks/completed/*.md` |
-| Pending Emails | `inbox/*.md` where `source: email` |
+**Remote access:** Install [Tailscale](https://tailscale.com/download) to browse from your phone or other devices.
 
-This eliminates drift between documentation and reality.
+**Full docs:** [ORG-VIEWER.md](ORG-VIEWER.md) | **Source:** [GitHub](https://github.com/vincitamore/org-viewer)
 
-### Tag Index Pages (Publish Graph)
+### Obsidian (Alternative)
 
-Obsidian Publish's graph doesn't support tag nodes natively. Work around this with **generated tag pages** that create wikilink connections:
+If you prefer Obsidian, this workspace can be opened as an Obsidian vault. See `setup/obsidian/README.md` for plugin recommendations and configuration. Obsidian adds Dataview dashboards, graph views with color groups, and optional web publishing.
 
-```
-tags/
-├── sovereignty.md    # Links to all #sovereignty docs
-├── architecture.md   # Links to all #architecture docs
-└── ...
-```
+## Frontmatter Convention
 
-Run `python scripts/generate-tag-pages.py` before publishing. This follows 1→7: frontmatter tags are the source, tag pages are derived.
-
-### Dashboard
-
-Copy [templates/dashboard.md](templates/dashboard.md) to your root folder for a live view showing:
-- Active tasks and their status
-- Active projects
-- Recent knowledge articles
-- Inbox items pending processing
-- Recently completed tasks
-
-Requires Dataview plugin to render the queries.
-
-### Frontmatter Convention
-
-All files use YAML frontmatter for Dataview queries. See `tasks/README.md` for full task model documentation.
+All files use YAML frontmatter as the single source of truth. See `tasks/README.md` for full task model documentation.
 
 **Tasks** (`tasks/*.md`) - Starter Model:
 ```yaml
@@ -254,12 +251,12 @@ tags: []
 ---
 ```
 
-**Inbox** (`inbox/*.md`):
+**Inbox** (`inbox/**/*.md`):
 ```yaml
 ---
 type: inbox
 created: 2026-01-27
-source: email | capture | mobile
+source: email | capture | mobile | ticket
 ---
 ```
 
@@ -312,8 +309,6 @@ Use semantic checkboxes in task files for visual clarity:
 | `- [-]` | Cancelled | Won't do (preserves history) |
 | `- [~]` | Partial | In review or partially complete |
 
-These render with colors/icons in Obsidian with appropriate CSS/plugins.
-
 ### Maintenance
 
 When creating/editing files:
@@ -337,16 +332,9 @@ When creating/editing files:
 
 Claude Code provides two complementary systems for managing work within a session:
 
-### Session Task Tracking (TaskCreate/Update/List/Get)
+### Session Task Tracking (TodoWrite)
 
 For **multi-step work within a session**, use structured task tracking:
-
-```
-TaskCreate   → Create task with subject, description, activeForm (spinner text)
-TaskUpdate   → Mark in_progress when starting, completed when done
-TaskList     → See all tasks, their status, and dependencies
-TaskGet      → Retrieve full task details before starting work
-```
 
 **When to create session tasks:**
 - Work requires 3+ distinct steps
@@ -360,13 +348,6 @@ TaskGet      → Retrieve full task details before starting work
 - Purely conversational/research work
 - Task can be done faster than tracking it
 
-**Task workflow:**
-1. Create tasks with clear subjects (imperative: "Fix auth bug") and activeForm (present continuous: "Fixing auth bug")
-2. Set dependencies with `addBlockedBy` when tasks must complete in order
-3. Mark `in_progress` BEFORE starting work (shows spinner to user)
-4. Mark `completed` ONLY when fully done (not partial, not errored)
-5. If blocked, create a new task describing what needs resolution
-
 ### Subagent Orchestration (Task Tool)
 
 For **focused, isolated work**, spawn specialized subagents. Custom agents (in `~/.claude/agents/`) can preload skills and use specific models.
@@ -379,7 +360,6 @@ For **focused, isolated work**, spawn specialized subagents. Custom agents (in `
 | `reviewer` | Code review + principle alignment | After writing/modifying code |
 | `explorer` | Deep codebase understanding | Before making changes, understanding architecture |
 | `distiller` | Extract knowledge worth capturing | After substantive work sessions |
-| `scholar` | Deep research across domains | Research requiring synthesis or original sources |
 
 #### Built-in Agents
 
@@ -409,24 +389,14 @@ Task(explorer, "Understand the authentication flow")
 # Architecture planning
 Task(architect, "Design the caching layer for this API")
 
-# Code review after changes
-Task(reviewer, "Review the changes I just made")
-
-# Knowledge extraction
-Task(distiller, "What from this session should be captured?")
-
 # Parallel work (same message = parallel execution)
 Task(explorer, "Find all API endpoints")
 Task(explorer, "Find all database queries")
-
-# Background work
-Task(reviewer, "Review changes", run_in_background=true)
-# Continue working, check results later with TaskOutput
 ```
 
 ### File-Based Handoffs (Critical for Dependent Workflows)
 
-**Subagents spawn fresh** - they cannot see previous agents' outputs or conversation context. For research→synthesis workflows, use explicit file bridges:
+**Subagents spawn fresh** - they cannot see previous agents' outputs. For research->synthesis workflows, use explicit file bridges:
 
 ```
 # WRONG - synthesis agent sees nothing
@@ -438,23 +408,15 @@ Task(scholar, "Research X. Write to knowledge/x-research.md")
 Task(architect, "Read knowledge/x-research.md, synthesize to knowledge/x-synthesis.md")
 ```
 
-**Default to dependent structures** for multi-step intellectual work. True parallel is only for orthogonal tasks. Research→synthesis benefits from sequential handoffs with file bridges.
-
-### Combining Both Systems
-
-For complex projects, use **both** systems together:
-
-1. **TaskCreate** to establish the work breakdown structure
-2. **Task tool** to delegate exploration/analysis to subagents
-3. **TaskUpdate** to track progress as subagents complete
-4. Session tasks provide visibility; subagents provide parallelism
-
 ## Workflow
 
 ### Adding Items
 
-- **Quick capture**: Drop a file in `inbox/` immediately - sort later
+- **Quick capture**: Drop a file in `inbox/captures/` immediately - sort later
 - **Clear task**: Create `tasks/task-name.md` with frontmatter
+- **Feature idea**: Add to `inbox/ideas/`
+- **Decision needed**: Add to `inbox/decisions/`
+- **Bug to investigate**: Add to `inbox/investigations/`
 - **Research question**: Add to `queries/`
 - **Knowledge**: After conversations with reusable insights, distill to `knowledge/`
 
@@ -488,8 +450,6 @@ Without this hook, maintenance becomes "remember to do it" - which means it won'
 
 See [setup/hooks/maintenance-check.py](setup/hooks/maintenance-check.py) for the full implementation. Copy it to `~/.claude/hooks/` and configure in settings.json.
 
-The hook outputs a checklist and exits with error, blocking the stop until Claude either performs maintenance or explicitly states "No maintenance needed." This is the mechanism that keeps documentation from drifting.
-
 ### Session Start Hook
 Automatically read orientation files, compute current state from frontmatter, present context to Claude. Helpful but not critical - Claude can orient manually.
 
@@ -509,18 +469,4 @@ Quick reference: Check `tasks/*.md` for live task state.
 
 ---
 
-## Customization
-
-This system is a starting point. Make it yours:
-
-1. **Fill in [context/voice.md](context/voice.md)** with how you actually think and work
-2. **Populate [context/projects.md](context/projects.md)** with your project relationships
-3. **Add domain-specific knowledge** as you work
-4. **Add integrations** (MCPs, hooks, skills) for your tools
-5. **Develop your own principle shorthand** as patterns emerge
-6. **Adjust tag taxonomy** for your domains
-
-The structure is load-bearing; the content is yours to shape.
-
----
-*Last updated: 2026-02-05*
+*Last updated: 2026-02-06*

@@ -1,7 +1,7 @@
 ---
 type: context
 created: 2026-02-05
-updated: 2026-02-05
+updated: 2026-02-06
 tags: [meta, state]
 ---
 
@@ -29,8 +29,14 @@ _Empty - knowledge will accumulate as you work._
 
 ## Inbox
 
-**Pending Emails:** 0
-**Pending Captures:** 0
+| Folder | Pending |
+|--------|---------|
+| Emails | 0 |
+| Tickets | 0 |
+| Ideas | 0 |
+| Decisions | 0 |
+| Investigations | 0 |
+| Captures | 0 |
 
 ## Key Scripts
 
