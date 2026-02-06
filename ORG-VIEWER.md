@@ -111,16 +111,40 @@ Tailscale creates a secure private network between your devices. Your org-viewer
 
 Sign in with your preferred identity provider. All your devices on the same Tailscale account can reach each other.
 
-**2. Run org-viewer** on your main machine (where your org lives)
+**2. Generate TLS certificates** for your Tailscale hostname:
 
-**3. Access from other devices** at `http://your-machine-name:3847`
+```bash
+# Find your machine's Tailscale hostname
+tailscale status
 
-Find your Tailscale machine name with `tailscale status` or in the Tailscale app.
+# Generate certs (replace with your actual hostname)
+tailscale cert your-machine.your-tailnet.ts.net
+```
+
+This creates `your-machine.your-tailnet.ts.net.crt` and `.key` files in the current directory.
+
+**3. Set environment variables** before launching org-viewer:
+
+```bash
+# Windows (cmd)
+set ORG_VIEWER_TLS_CERT=C:\path\to\your-machine.your-tailnet.ts.net.crt
+set ORG_VIEWER_TLS_KEY=C:\path\to\your-machine.your-tailnet.ts.net.key
+
+# PowerShell
+$env:ORG_VIEWER_TLS_CERT = "C:\path\to\your-machine.your-tailnet.ts.net.crt"
+$env:ORG_VIEWER_TLS_KEY = "C:\path\to\your-machine.your-tailnet.ts.net.key"
+```
+
+**4. Run org-viewer** on your main machine (where your org lives)
+
+**5. Access from other devices** at `https://your-machine.your-tailnet.ts.net:3848`
+
+> **Without TLS certs**: The viewer still works locally at `http://localhost:3847`, but remote browsers may block mixed content over plain HTTP. TLS is recommended for Tailscale access.
 
 ### Install as PWA (Mobile)
 
 On your phone/tablet:
-1. Navigate to `http://your-machine-name:3847`
+1. Navigate to `https://your-machine.your-tailnet.ts.net:3848`
 2. **iOS**: Share → Add to Home Screen
 3. **Android**: Menu → Install App
 
@@ -177,7 +201,7 @@ Add to `~/.claude/settings.json`:
 
 ## Architecture
 
-- **Single binary** (~9MB) - no dependencies, no installation
+- **Single binary** (~16MB) - no dependencies, no installation
 - **Embedded UI** - opens in its own window
 - **Rust/Tauri** - native performance
 - **React frontend** - TUI-style components
@@ -199,8 +223,11 @@ taskkill /F /PID <pid>
 ### Remote Access Not Working
 1. Verify Tailscale is running on both devices
 2. Check `tailscale status` shows both devices online
-3. Ping your machine from the remote device
-4. Check firewall isn't blocking port 3847
+3. Verify TLS env vars are set: `ORG_VIEWER_TLS_CERT` and `ORG_VIEWER_TLS_KEY`
+4. Check the log file (`%TEMP%\org-viewer.log`) for TLS errors
+5. Regenerate certs if expired: `tailscale cert your-machine.your-tailnet.ts.net`
+6. Ping your machine from the remote device
+7. Check firewall isn't blocking port 3847
 
 ### Documents Not Showing
 - Verify markdown files have valid YAML frontmatter
