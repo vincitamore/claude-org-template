@@ -16,14 +16,26 @@ Claude doesn't remember between sessions. But a well-structured workspace create
 
 ## Getting Started
 
-### Just Open Claude Code
+### 1. Clone and open
 
 ```bash
-cd path/to/your-claude-org
+git clone https://github.com/vincitamore/claude-org-template.git my-org
+cd my-org
 claude
 ```
 
-Claude will automatically detect that the system hasn't been set up and walk you through the onboarding process. It will ask you questions, help you articulate how you think and work, map your projects, install the maintenance hook, and clean up the template scaffolding when done.
+### 2. Paste the initialization prompt
+
+Copy this into your first message:
+
+```
+Let's set up this organization system. Read through CLAUDE.md and the onboarding
+playbook, then walk me through the full setup. Ask me questions, help me fill in
+my voice and project docs, install the hooks, and clean up the scaffolding when
+we're done.
+```
+
+That's it. Claude will read the docs, ask you questions about how you think and work, populate your files, install infrastructure, and clean up the template scaffolding when done.
 
 **Total setup time:** ~50-65 minutes for a fully initialized system.
 
