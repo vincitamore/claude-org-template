@@ -35,3 +35,7 @@ scripts/.publish-config.json
 # knowledge/
 # queries/
 # archive/
+
+# Build caches
+.turbo/
+node_modules/
