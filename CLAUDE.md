@@ -186,19 +186,7 @@ Create new subfolders when 5+ items of the same type emerge.
 
 ## Viewing Your Org
 
-### Org Viewer (Recommended)
-
-A native document browser bundled with this system. Run `org-viewer.exe` from the org root - no configuration needed.
-
-**Features:** TUI-style interface, full-text search, graph view, document editing, code editor, live reload, reminders view.
-
-**Keyboard shortcuts:** `1`-`6` for views, `t` for theme, `e` to edit.
-
-**Remote access:** Install [Tailscale](https://tailscale.com/download) to browse from your phone or other devices.
-
-**Full docs:** [ORG-VIEWER.md](ORG-VIEWER.md) | **Source:** [GitHub](https://github.com/vincitamore/org-viewer)
-
-### Obsidian (Alternative)
+### Obsidian
 
 If you prefer Obsidian, this workspace can be opened as an Obsidian vault. See `setup/obsidian/README.md` for plugin recommendations and configuration. Obsidian adds Dataview dashboards, graph views with color groups, and optional web publishing.
 

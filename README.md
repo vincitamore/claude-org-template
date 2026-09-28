@@ -77,14 +77,6 @@ The structure is load-bearing; the content is yours to shape. If something doesn
 5. Configure agents from [setup/agents/](setup/agents/)
 6. Develop your own principles as patterns emerge
 
-## Org Viewer
-
-A native document browser for your org. Double-click `org-viewer.exe` to open.
-
-Features: TUI-style interface, **document editing**, **code editor** with syntax highlighting, full-text search, graph view, live reload. For remote access from other devices, add [Tailscale](https://tailscale.com/download).
-
-See [ORG-VIEWER.md](ORG-VIEWER.md) | [GitHub](https://github.com/vincitamore/org-viewer)
-
 ## Core Principles
 
 Starter principles included - keep what resonates, add your own:
@@ -100,15 +92,13 @@ Starter principles included - keep what resonates, add your own:
 ## Requirements
 
 - [Claude Code](https://github.com/anthropics/claude-code) CLI
-- Optional: [Tailscale](https://tailscale.com/download) for remote access to Org Viewer
-- Optional: [Obsidian](https://obsidian.md) with Dataview plugin (alternative to Org Viewer)
+- Optional: [Obsidian](https://obsidian.md) with the Dataview plugin, for dashboards and graph views
 
 ## Related Documentation
 
 - [CLAUDE.md](CLAUDE.md) - The living index and ground truth for your workspace
 - [ONBOARDING.md](ONBOARDING.md) - The onboarding playbook
 - [setup/README.md](setup/README.md) - Hooks, agents, tools, and infrastructure
-- [ORG-VIEWER.md](ORG-VIEWER.md) - Org Viewer documentation
 - [samples/](samples/) - Example completed documents for reference
 - [templates/](templates/) - File templates for tasks, knowledge, inbox items
 

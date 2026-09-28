@@ -47,10 +47,6 @@ The system grows with you. Start minimal, expand as needed.
 
 ---
 
-## If You Want a Visual Browser
-
-Run `org-viewer.exe` from the org root - a native document viewer with search, graph view, and editing. For mobile access, add [Tailscale](https://tailscale.com/download). See [ORG-VIEWER.md](ORG-VIEWER.md).
-
 ## If Something Doesn't Work
 
 **Change it.** Rename folders, modify principles, add inbox categories, restructure whatever you want. The only load-bearing constraint is frontmatter consistency. Everything else is yours.

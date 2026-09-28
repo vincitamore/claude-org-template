@@ -60,10 +60,3 @@ org_reminder_dismiss(path="reminders/old-reminder.md")
 ## Session Integration
 
 Due and overdue reminders appear at session start with "ACTION REQUIRED" alert.
-
-## Org Viewer
-
-Access reminders in org-viewer with keyboard shortcut `5`. Filter by status:
-- pending, snoozed, ongoing, completed, dismissed
-
-Reminders appear as red/salmon nodes in the graph view, making time-sensitive items visually distinct.

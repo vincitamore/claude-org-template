@@ -7,8 +7,7 @@
 | [Hooks](#hooks) | **Essential** | Stop hook is the system's immune system |
 | [Agents](#agents) | Optional | Specialized subagents for focused work |
 | [Skills](#skills) | Optional | Quick commands for system management |
-| [Org Viewer](#org-viewer) | Recommended | Bundled native document browser |
-| [Obsidian](#obsidian) | Alternative | If you prefer Obsidian over Org Viewer |
+| [Obsidian](#obsidian) | Optional | Dashboards, graph views and publishing |
 
 ---
 
@@ -146,34 +145,9 @@ xcopy setup\skills\org %USERPROFILE%\.claude\skills\org /E /I
 
 ---
 
-## Org Viewer
-
-A native document browser bundled with this system. Run `org-viewer.exe` from the org root - no configuration needed.
-
-**Features:**
-- TUI-style document browser
-- Full-text search
-- Graph visualization
-- Document editing
-- Code editor with syntax highlighting
-- Live reload on file changes
-- Reminders view
-
-### Quick Start
-
-**Local use:** Run `org-viewer.exe` from the org root - it opens automatically.
-
-**Remote access:** Install [Tailscale](https://tailscale.com/download) to access from other devices.
-
-**Customize:** Source on [GitHub](https://github.com/vincitamore/org-viewer) if you want to change the aesthetics and rebuild.
-
-Full documentation: **[ORG-VIEWER.md](../ORG-VIEWER.md)**
-
----
-
 ## Obsidian
 
-> **Alternative to Org Viewer.** If you prefer Obsidian's ecosystem (Dataview, graph views, publishing), this workspace works as an Obsidian vault.
+> **Optional.** If you use Obsidian's ecosystem (Dataview, graph views, publishing), this workspace works as an Obsidian vault.
 
 Full Obsidian integration guide: **[obsidian/README.md](obsidian/README.md)**
 

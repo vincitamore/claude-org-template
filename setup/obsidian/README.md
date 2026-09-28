@@ -1,6 +1,6 @@
 # Obsidian Integration
 
-> **ONBOARDING Phase 6** (Optional) - Add visual dashboards, graph views, and publishing after the core system is working.
+> **ONBOARDING Phase 5, Cleanup** (Optional) - Add visual dashboards, graph views, and publishing after the core system is working.
 
 This folder contains configuration and guidance for integrating claude-org with Obsidian.
 

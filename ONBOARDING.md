@@ -23,7 +23,6 @@ By the end of onboarding, the user should have:
 - An initialized `context/current-state.md` reflecting their real state
 - The stop hook installed (the system's immune system)
 - At least one real item in `inbox/` or `tasks/` to establish the capture habit
-- Org Viewer running (optional but encouraged - it's bundled and zero-config)
 
 **What success feels like to the user:** "This Claude already gets how I think."
 
@@ -199,25 +198,7 @@ Tell them:
 
 ---
 
-## Phase 5: Org Viewer (Optional, 2 min)
-
-### Quick Introduction
-
-> "There's a document viewer bundled with this system - org-viewer.exe. It gives you a visual way to browse your documents, search across everything, see the knowledge graph, and edit files. Want to try it?"
-
-If yes: run `org-viewer.exe` from the org root. It opens automatically.
-
-Mention:
-- Keyboard shortcuts (1-6 for views, `t` for theme, `e` to edit)
-- Remote access is possible via Tailscale if they want to browse from their phone
-- Full docs in `ORG-VIEWER.md`
-- Source on GitHub if they want to customize the aesthetics and rebuild: https://github.com/vincitamore/org-viewer
-
-Don't push hard. Some people prefer the command line or other tools. That's fine.
-
----
-
-## Phase 6: Cleanup
+## Phase 5: Cleanup
 
 ### Remove Scaffolding
 
@@ -245,7 +226,7 @@ setup/obsidian/                         ← Obsidian setup guide
 knowledge/obsidian-workflow-patterns.md  ← Obsidian-specific knowledge
 publish.css                             ← Obsidian Publish CSS
 scripts/publish.py                      ← Obsidian Publish workflow
-scripts/generate-tag-pages.py           ← org-viewer handles this natively
+scripts/generate-tag-pages.py           ← Obsidian tag pages
 scripts/generate-publish-dashboard.py   ← Obsidian Publish specific
 templates/dashboard.md                  ← Obsidian Dataview specific
 ```
@@ -283,7 +264,6 @@ Remove the setup checkpoint at the top (the checkbox section about verifying the
 | Project Mapping | 15-20 min | Yes |
 | Stop Hook | 5 min | **Essential** |
 | First Capture | 5 min | Yes |
-| Org Viewer | 2 min | Optional |
 | Cleanup | 5 min | Yes |
 
 **Total: ~50-65 minutes** for a fully initialized, cleaned-up system.
